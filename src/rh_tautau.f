@@ -67,6 +67,7 @@ c         res=res+dreal(cres)**2+dimag(cres)**2
 c       enddo
 c     enddo
 
+c Just one polarization
       i1=1
       i2=2
       cres=th(i1,i2)                  
