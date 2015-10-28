@@ -11,9 +11,9 @@ c Variable 'c' is complex, and i,j,k,l,m,n are not defined
 c p1 and p2 are
       dimension p1(0:3),p2(0:3)
 
-      dimension th(2,2)
+      dimension cth(2,2)
 
-C Define a structure type 'tc' with member a(2,2), b(2,2) and c(2,2), 2x2 matrices
+C Define a structure type 'tc' wicth member a(2,2), b(2,2) and c(2,2), 2x2 matrices
       structure /tc/
         double complex a(2,2),b(2,2),c(2,2)
       end structure
@@ -24,16 +24,16 @@ c Make 'rmtau' a common variable
       real*8 rmtau
       COMMON/masses/rmtau
 
-c Make 'czero' and 'cim' two component variables with initialization
+c Make 'czero' and 'cim' two component variables wicth initialization
       PARAMETER (czero=(0.d0,0.d0),cim=(0.d0,1.d0))
 
-c     Check if rmtau is the tau mass
-      print *,'Inside rh_tautau FORTRAN func., value of rmtau:', rmtau
+c     Check if rmtau is cthe tau mass
+c      print *,'Inside rh_tautau FORTRAN func., value of rmtau:', rmtau
 
-      do i=0,3                          
-         print *,'p1(i):',  p1(i), i
-         print *,'p2(i):',  p2(i), i
-      enddo
+c      do i=0,3                          
+c         print *,'p1(i):',  p1(i), i
+c         print *,'p2(i):',  p2(i), i
+c      enddo
 
 C ******************************************************************
 c The product of p1 and k0 and p2 and k0
@@ -50,27 +50,28 @@ c where k0 = (1,1,0,0)
       tsc.b(2,2)=p2k0
       tsc.c(1,1)=p1k0
       tsc.c(2,2)=p1k0
-* mline -- res=th(&1,&2),abcd=tsc.,m1=rmtau,m2=(-rmtau),den=0,nsum=0            
+* mline -- res=cth(&1,&2),abcd=tsc.,m1=rmtau,m2=(-rmtau),den=0,nsum=0            
       do iut=1,2                          
       do jut=1,2
-      th(iut,jut)=tsc.a(iut,jut)+rmtau*tsc.b(iut,jut)+(-rmtau)*t
+      cth(iut,jut)=tsc.a(iut,jut)+rmtau*tsc.b(iut,jut)+(-rmtau)*t
      & sc.c(iut,jut)
       enddo
       enddo
 
       res=0.d0
 
-c     do i1=1,2
-c       do i2=1,2
-c         cres=th(i1,i2)                  
-c         res=res+dreal(cres)**2+dimag(cres)**2
-c       enddo
-c     enddo
+c      do i1=1,2
+c        do i2=1,2
+c          cres=cth(i1,i2)                  
+c          res=res+dreal(cres)**2+dimag(cres)**2
+c        enddo
+c      enddo
 
 c Just one polarization
+
       i1=1
-      i2=2
-      cres=th(i1,i2)                  
+      i2=1
+      cres=cth(i1,i2)                  
       res=res+dreal(cres)**2+dimag(cres)**2
 
       rh_tautau=res/p1k0/p2k0
