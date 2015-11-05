@@ -1,4 +1,4 @@
-OBJ = ../lib/main.cpp.o ../lib/rh_tautau.f.o ../lib/rambo.f.o ../lib/ranmar.f.o
+OBJ = ../lib/main.cpp.o ../lib/rh_tautau.f.o ../lib/rambo.f.o ../lib/ranmar.f.o ../lib/vegas.f.o ../lib/UtilFunctions.cpp.o
 
 ##########################################################
 LINKER = ifort

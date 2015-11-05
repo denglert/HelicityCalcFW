@@ -9,8 +9,14 @@
 #include "HelicityFW.h"
 #include "FortranInterface.h"
 #include "PhysConst.h"
+#include "UtilFunctions.h"
 
 ////////////////////////////////////////
+double fxn(double *x)
+{
+	double fx = 6;
+	return fx;
+};
 
 int main( int argc, const char *argv[] )
 {
@@ -46,7 +52,7 @@ int main( int argc, const char *argv[] )
 	TH3D *ampl_sqr = new TH3D("ampl_sqr",";p_{x};p_{y};p_{z}",pDistr_nBins,pDistr_pmin,pDistr_pmax,pDistr_nBins,pDistr_pmin,pDistr_pmax,pDistr_nBins,pDistr_pmin,pDistr_pmax);
 
 	///////////////////////////////////////
-	// -- Generate events with RAMBO -- ///
+	// -- Generate HiggsDecays with RAMBO -- ///
 	///////////////////////////////////////
 
 	int lenv = 1;
@@ -95,14 +101,21 @@ int main( int argc, const char *argv[] )
 
 
 	///////////////////////////////////////////////
-	// -- Generate events with TGenPhaseSpace -- //
+	// -- Generate HiggsDecays with TGenPhaseSpace -- //
 	///////////////////////////////////////////////
+	
+		
+	TGenPhaseSpace HiggsDecay;
+	TLorentzVector Higgs(0.0, 0.0, 0.0, m_higgs);
+	
+	double TauMasses[2] = {m_tau, m_tau};
+	TGenPhaseSpace TauPosDecay;
+	TGenPhaseSpace TauNegDecay;
 
-	
-	TLorentzVector Mother(0.0, 0.0, 0.0, 125.0);
-	
-	TGenPhaseSpace event;
-	event.SetDecay(Mother, 2, masses);
+	double LeptonMasses1[3] = {m_nu_tau, m_ele, m_nu_ele};
+	double LeptonMasses2[3] = {m_nu_tau, m_muo, m_nu_muo};
+
+	HiggsDecay.SetDecay(Higgs, 2, TauMasses);
 	
 	TH2F *h2 = new TH2F("h2","h2", 50,1.1,1.8, 50,1.1,1.8);
 
@@ -111,31 +124,65 @@ int main( int argc, const char *argv[] )
 	
 	// Eucledian to Minkowski indeces mapping
 	int e2m[4] = {1, 2, 3, 0};
+
+	std::cout << "Process" << std::endl;
+	std::cout << "H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)" << std::endl;
 	
 	for (int iEv = 0; iEv < nEvents; iEv++)
 	{
-	   Double_t weight = event.Generate();
-	   TLorentzVector *p1 = event.GetDecay(0);
-	   TLorentzVector *p2 = event.GetDecay(1);
-//		std::cout << "TGenPhaseSpace values" << std::endl;
-//		std::cout << Form("p1[0]: %+2.2f, p1[1]: %.2f p1[2]: %.2f p1[3]: %.2f", (*p1)[0], (*p1)[1], (*p1)[2], (*p1)[3]) << std::endl;
-//		std::cout << Form("p2[0]: %+2.2f, p2[1]: %.2f p2[2]: %.2f p2[3]: %.2f", (*p2)[0], (*p2)[1], (*p2)[2], (*p2)[3]) << std::endl;
 
-		pDistr[0]->Fill( p1->Px() );
-		pDistr[1]->Fill( p1->Py() );
-		pDistr[2]->Fill( p1->Pz() );
+		std::cout << Form("iEv: %d", iEv) << std::endl;
+
+		// Higgs Decay
+	   Double_t weight = HiggsDecay.Generate();
+
+		// Get tau+ and tau-
+	   TLorentzVector *TauPos = HiggsDecay.GetDecay(0);
+	   TLorentzVector *TauNeg = HiggsDecay.GetDecay(1);
+
+		// Make taus decay
+		TauPosDecay.SetDecay( (*TauPos), 3, LeptonMasses1 );
+		TauNegDecay.SetDecay( (*TauNeg), 3, LeptonMasses2 );
+
+	   Double_t weight1 = TauPosDecay.Generate();
+	   Double_t weight2 = TauNegDecay.Generate();
+
+	   TLorentzVector *TauPos_Daughter_0 = TauPosDecay.GetDecay(0);
+	   TLorentzVector *TauPos_Daughter_1 = TauPosDecay.GetDecay(1);
+	   TLorentzVector *TauPos_Daughter_2 = TauPosDecay.GetDecay(2);
+	   TLorentzVector *TauNeg_Daughter_0 = TauNegDecay.GetDecay(0);
+	   TLorentzVector *TauNeg_Daughter_1 = TauNegDecay.GetDecay(1);
+	   TLorentzVector *TauNeg_Daughter_2 = TauNegDecay.GetDecay(2);
+
+	   TLorentzVector *sum;
+		(*sum) = (*TauPos_Daughter_0) + (*TauPos_Daughter_1) + (*TauPos_Daughter_2) + (*TauNeg_Daughter_0) + (*TauNeg_Daughter_1) + (*TauNeg_Daughter_2);
+		
+
+		std::cout << "sum: "; displayTLorentzVector(sum);
+		std::cout << "TauPos "; displayTLorentzVector(TauPos);
+		std::cout << "TauNeg "; displayTLorentzVector(TauNeg);
+		std::cout << "TauPos_Daughter_0 "; displayTLorentzVector(TauPos_Daughter_0);
+		std::cout << "TauPos_Daughter_1 "; displayTLorentzVector(TauPos_Daughter_1);
+		std::cout << "TauPos_Daughter_2 "; displayTLorentzVector(TauPos_Daughter_2);
+		std::cout << "TauNeg_Daughter_0 "; displayTLorentzVector(TauNeg_Daughter_0);
+		std::cout << "TauNeg_Daughter_1 "; displayTLorentzVector(TauNeg_Daughter_1);
+		std::cout << "TauNeg_Daughter_2 "; displayTLorentzVector(TauNeg_Daughter_2);
+
+		pDistr[0]->Fill( TauPos->Px() );
+		pDistr[1]->Fill( TauPos->Py() );
+		pDistr[2]->Fill( TauPos->Pz() );
 
 		for (int i = 0; i < 4; i++)
 		{
-			p1_[e2m[i]] = (*p1)[i];
-			p2_[e2m[i]] = (*p2)[i];
+			p1_[e2m[i]] = (*TauPos)[i];
+			p2_[e2m[i]] = (*TauNeg)[i];
 		}
 //			std::cout << Form("p1_[0]: %+2.2f, p1_[1]: %.2f p1_[2]: %.2f p1_[3]: %.2f", p1_[0], p1_[1], p1_[2], p1_[3]) << std::endl;
 
 		double value = rh_tautau_(p1_,p2_);
-		std::cout << Form("rh_tatau: %.2f", value) << std::endl;
+//		std::cout << Form("rh_tatau: %.2f", value) << std::endl;
 
-		ampl_sqr->Fill( p1->Px(), p1->Py(), p1->Pz(), value);
+		ampl_sqr->Fill( TauPos->Px(), TauPos->Py(), TauPos->Pz(), value);
 	}
 
 	std::string filebase;
@@ -157,12 +204,56 @@ int main( int argc, const char *argv[] )
 	}
 
 
-		ampl_sqr->Draw();
-		filebase = "./ampl_sqr";
-		figOUTpng = filebase+".png";
-		figOUTpdf = filebase+".pdf";
-		canvas.SaveAs(figOUTpdf.c_str());
-		canvas.Clear();
+	ampl_sqr->Draw();
+	filebase = "./ampl_sqr";
+	figOUTpng = filebase+".png";
+	figOUTpdf = filebase+".pdf";
+	canvas.SaveAs(figOUTpdf.c_str());
+	canvas.Clear();
 
+	///////////////////
+	// --- VEGAS --- //
+	///////////////////
+	
+	// Input parameters
+	int ndim = 3;
+	const int ndmx = 50;
+	const int mxdim = 10;
+
+	double *region = new double[2*ndim];
+	region[0] = -2.;
+	region[0] = +2.;
+	region[1] = -2.;
+	region[1] = +2.;
+	region[2] = -2.;
+	region[2] = +2.;
+
+	int    init  =  -1;
+	int    ncall =  5;
+	int    itmx = 10;
+	int    nprn  =  1;
+	double tgral =  1;
+	double sd    =  1;
+	double acc   =  1;
+
+	// output
+	double chi2a ;
+
+	double **xi = new double*[mxdim];
+	for (int i= 0; i<mxdim; i++)
+	{
+		xi[i] = new double[ndmx];
+	}
+
+	int it ;
+	int ndo ;
+	double si;
+	double swgt;
+	double schi;
+
+
+	vegas_(region, &ndim, &fxn, &init, &ncall,
+			 &itmx, &nprn, &tgral, &sd, &chi2a, &acc,
+			 xi, &it, &ndo, &si, &swgt, &schi );
 
 }
