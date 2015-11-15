@@ -69,8 +69,8 @@ c      enddo
 
 c Just one polarization
 
-      i1=1
-      i2=1
+      i1=2
+      i2=2
       cres=cth(i1,i2)                  
       res=res+dreal(cres)**2+dimag(cres)**2
 

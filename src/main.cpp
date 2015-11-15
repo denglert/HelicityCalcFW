@@ -3,6 +3,7 @@
 #include <TH1D.h>
 #include <TH2D.h>
 #include <TH3D.h>
+#include <TVector3.h>
 #include <TLorentzVector.h>
 #include <TGenPhaseSpace.h>
 #include <TCanvas.h>
@@ -140,6 +141,15 @@ int main( int argc, const char *argv[] )
 	   TLorentzVector *TauPos = HiggsDecay.GetDecay(0);
 	   TLorentzVector *TauNeg = HiggsDecay.GetDecay(1);
 
+		TVector3 TauPos_BoostVector = TauPos->BoostVector();
+		TVector3 TauNeg_BoostVector = TauNeg->BoostVector();
+
+		// Debuggg 
+//		std::cerr << "TauPos_BoostVector" << std::endl;
+//		std::cerr << Form("%4.2f %4.2f %4.2f", TauPos_BoostVector.x(), TauPos_BoostVector.y(), TauPos_BoostVector.z()) << std::endl;
+//		std::cerr << Form("beta: %4.6f \n", sqrt(TauPos_BoostVector.x()*TauPos_BoostVector.x() + TauPos_BoostVector.y()*TauPos_BoostVector.y() + TauPos_BoostVector.z()*TauPos_BoostVector.z()) );
+//		std::cerr << Form("beta: %4.6f \n" ,TauPos->Beta());
+
 		// Make taus decay
 		TauPosDecay.SetDecay( (*TauPos), 3, LeptonMasses1 );
 		TauNegDecay.SetDecay( (*TauNeg), 3, LeptonMasses2 );
@@ -154,11 +164,24 @@ int main( int argc, const char *argv[] )
 	   TLorentzVector *TauNeg_Daughter_1 = TauNegDecay.GetDecay(1);
 	   TLorentzVector *TauNeg_Daughter_2 = TauNegDecay.GetDecay(2);
 
-	   TLorentzVector *sum;
+		// Debuggg 
+		std::cerr << "miau " << std::endl;
+
+	   TLorentzVector *sum = new TLorentzVector;
 		(*sum) = (*TauPos_Daughter_0) + (*TauPos_Daughter_1) + (*TauPos_Daughter_2) + (*TauNeg_Daughter_0) + (*TauNeg_Daughter_1) + (*TauNeg_Daughter_2);
-		
+
+		// Debuggg 
+		std::cerr << "farkas " << std::endl;
+
+//		TauPos_Daughter_0->Boost(-TauPos_BoostVector);
+//		TauPos_Daughter_1->Boost(-TauPos_BoostVector);
+//		TauPos_Daughter_2->Boost(-TauPos_BoostVector);
+
+	   TLorentzVector *TauPosDaughterRestFrameSum = new TLorentzVector;
+		(*TauPosDaughterRestFrameSum) =  (*TauPos_Daughter_0) + (*TauPos_Daughter_1) + (*TauPos_Daughter_2);
 
 		std::cout << "sum: "; displayTLorentzVector(sum);
+		std::cout << "TauPosDaughterRestFrameSum "; displayTLorentzVector(TauPosDaughterRestFrameSum);
 		std::cout << "TauPos "; displayTLorentzVector(TauPos);
 		std::cout << "TauNeg "; displayTLorentzVector(TauNeg);
 		std::cout << "TauPos_Daughter_0 "; displayTLorentzVector(TauPos_Daughter_0);
@@ -193,7 +216,7 @@ int main( int argc, const char *argv[] )
 
 	for (int i = 0; i < 3; i++)
 	{
-  		filebase = Form("./pDistr_%d", i);
+  		filebase = Form("./output/pDistr_%d", i);
 		figOUTpng = filebase+".png";
 		figOUTpdf = filebase+".pdf";
 		pDistr[i]->Draw();
@@ -205,7 +228,7 @@ int main( int argc, const char *argv[] )
 
 
 	ampl_sqr->Draw();
-	filebase = "./ampl_sqr";
+	filebase = "./output/ampl_sqr";
 	figOUTpng = filebase+".png";
 	figOUTpdf = filebase+".pdf";
 	canvas.SaveAs(figOUTpdf.c_str());
@@ -221,20 +244,20 @@ int main( int argc, const char *argv[] )
 	const int mxdim = 10;
 
 	double *region = new double[2*ndim];
-	region[0] = -2.;
-	region[0] = +2.;
-	region[1] = -2.;
-	region[1] = +2.;
-	region[2] = -2.;
-	region[2] = +2.;
+	region[0] =  0.0;
+	region[1] = +1.0;
+	region[2] =  0.0;
+	region[3] = +1.0;
+	region[4] =  0.0;
+	region[5] = +1.0;
 
-	int    init  =  -1;
-	int    ncall =  5;
+	int    init  = -1;
+	int    ncall = 5000;
 	int    itmx = 10;
-	int    nprn  =  1;
-	double tgral =  1;
-	double sd    =  1;
-	double acc   =  1;
+	int    nprn  = 1;
+	double tgral = 0;
+	double sd = 0;
+	double acc = 0.01;
 
 	// output
 	double chi2a ;
@@ -245,7 +268,7 @@ int main( int argc, const char *argv[] )
 		xi[i] = new double[ndmx];
 	}
 
-	int it ;
+	int it;
 	int ndo ;
 	double si;
 	double swgt;

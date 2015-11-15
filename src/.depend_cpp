@@ -39,10 +39,8 @@
  /home/de3u14/lib/build/root/include/TH3D.h \
  /home/de3u14/lib/build/root/include/TH3.h \
  /home/de3u14/lib/build/root/include/TAtt3D.h \
- /home/de3u14/lib/build/root/include/TLorentzVector.h \
- /home/de3u14/lib/build/root/include/TMath.h \
- /home/de3u14/lib/build/root/include/TError.h \
  /home/de3u14/lib/build/root/include/TVector3.h \
+ /home/de3u14/lib/build/root/include/TError.h \
  /home/de3u14/lib/build/root/include/TVector2.h \
  /home/de3u14/lib/build/root/include/TMatrix.h \
  /home/de3u14/lib/build/root/include/TMatrixF.h \
@@ -52,6 +50,8 @@
  /home/de3u14/lib/build/root/include/TMatrixFfwd.h \
  /home/de3u14/lib/build/root/include/TMatrixFUtils.h \
  /home/de3u14/lib/build/root/include/TMatrixFUtilsfwd.h \
+ /home/de3u14/lib/build/root/include/TLorentzVector.h \
+ /home/de3u14/lib/build/root/include/TMath.h \
  /home/de3u14/lib/build/root/include/TRotation.h \
  /home/de3u14/lib/build/root/include/TGenPhaseSpace.h \
  /home/de3u14/lib/build/root/include/TLorentzVector.h \
@@ -67,5 +67,5 @@
  /home/de3u14/lib/build/root/include/TAttBBox2D.h \
  /home/de3u14/lib/build/root/include/TPoint.h \
  /home/de3u14/lib/build/root/include/TAttCanvas.h \
- /home/de3u14/lib/build/root/include/TCanvasImp.h HelicityFW.h \
- FortranInterface.h PhysConst.h UtilFunctions.h
+ /home/de3u14/lib/build/root/include/TCanvasImp.h ../inc/HelicityFW.h \
+ ../inc/FortranInterface.h ../inc/PhysConst.h ../inc/UtilFunctions.h

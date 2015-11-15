@@ -5,5 +5,6 @@
 #include <TLorentzVector.h>
 
 void displayTLorentzVector(TLorentzVector *v);
+void displayLorentzVector(double *v);
 
 #endif
