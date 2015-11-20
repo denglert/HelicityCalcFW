@@ -47,6 +47,7 @@ set runtimepath=~/.vim/bundle/vundle,~/.vim/bundle/supertab,~/.vim/bundle/nerdtr
 set showcmd
 set statusline=%f\ \ \ \ %l:%c
 set tabstop=3
+set textwidth=80
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -57,7 +58,7 @@ endif
 set shortmess=aoO
 badd +0 ../Makefile
 badd +0 Makefile
-badd +0 main.cpp
+badd +0 test_rh_tautau.cpp
 args ../Makefile
 edit ../Makefile
 set splitbelow splitright
@@ -153,19 +154,19 @@ setlocal syntax=make
 endif
 setlocal tabstop=3
 setlocal tags=
-setlocal textwidth=0
+setlocal textwidth=80
 setlocal thesaurus=
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 11 - ((10 * winheight(0) + 30) / 60)
+let s:l = 1 - ((0 * winheight(0) + 30) / 60)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-11
-normal! 07l
+1
+normal! 0
 tabedit Makefile
 set splitbelow splitright
 set nosplitbelow
@@ -260,20 +261,20 @@ setlocal syntax=make
 endif
 setlocal tabstop=3
 setlocal tags=
-setlocal textwidth=0
+setlocal textwidth=80
 setlocal thesaurus=
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 14 - ((13 * winheight(0) + 29) / 59)
+let s:l = 1 - ((0 * winheight(0) + 29) / 59)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-14
+1
 normal! 0
-tabedit main.cpp
+tabedit test_rh_tautau.cpp
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -367,18 +368,18 @@ setlocal syntax=cpp
 endif
 setlocal tabstop=3
 setlocal tags=
-setlocal textwidth=0
+setlocal textwidth=80
 setlocal thesaurus=
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 29) / 59)
+let s:l = 7 - ((6 * winheight(0) + 29) / 59)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+7
 normal! 0
 tabnext 3
 if exists('s:wipebuf')

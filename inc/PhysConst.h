@@ -9,8 +9,10 @@
 const double m_higgs = 125.0; 
 
 // -- Leptons -- //
-const double m_ele = 0.000511; 
-const double m_muo = 0.10569; 
+//const double m_ele = 0.000511; 
+//const double m_muo = 0.10569; 
+const double m_ele = 0.0; 
+const double m_muo = 0.0; 
 const double m_tau = 1.77582; 
 
 // -- Lepton Neutrinos -- //

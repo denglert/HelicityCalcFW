@@ -25,6 +25,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 
       COMMON/masses/rmtau
       COMMON/couplings/wcl,gh_tautau
+      COMMON/amplitudes/taup,taum
 
       PARAMETER (czero=(0.d0,0.d0),cim=(0.d0,1.d0))
 
@@ -236,6 +237,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       res=res/p3k0/p4k0/p5k0/p6k0/p7k0/p8k0
       rh_6f=res
 
+* H->tau+tau- amplitude
       res_htautau=0.d0
       do i=1,2
       do j=1,2
@@ -244,16 +246,17 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       enddo
       res_htautau=res_htautau/p734k0/p568k0
 
-      do i=1,2
-      do j=1,2
-      print*,'i ', i, 'j', j
-      print*,'cdec_taup(i.j)', cdec_taup(i,j)
-      print*,'||^2', conjg(cdec_taup(i,j))*cdec_taup(i,j)
-      enddo
-      enddo
+c     do i=1,2
+c     do j=1,2
+c     print*,'i ', i, 'j', j
+c     print*,'cdec_taup(i.j)', cdec_taup(i,j)
+c     print*,'||^2', conjg(cdec_taup(i,j))*cdec_taup(i,j)
+c     enddo
+c     enddo
 
-      print*,'' 
+c     print*,'' 
 
+* tau- amplitude
       res_taum=0.d0
       do i=1,2
       do j=1,2
@@ -262,6 +265,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       enddo
       res_taum=res_taum/p3k0/p4k0/p7k0/p734k0
 
+* tau+ amplitude
       res_taup=0.d0
       do i=1,2
       do j=1,2
@@ -271,16 +275,17 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       res_taup=res_taup/p5k0/p6k0/p8k0/p568k0
 
       res_nwa=res_htautau*res_taum*res_taup
-      print*,'res', res
+      print*,'res', rea
       print*,'res_nwa', res_nwa
       print*,'res_htautau', res_htautau
       print*,'res_taum', res_taum
       print*,'res_taup', res_taup
+      write(*,"(A, F10.5)") ' res_taum/res_taup', res_taum/res_taup
 * Ratio between the complete chain (with full spin correlation) and
 * narrow width approximation (nwa)
 * Both production and decay are summed over all polarizations
-      print*,'ratio = res/res_nwa',res/res_nwa
-      print*,''
+c      print*,'ratio = res/res_nwa',res/res_nwa
+c      print*,''
 
 *test                                                                           
 
@@ -298,10 +303,10 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 
       enddo
       enddo
-      print*,'i7i8=',i7,i8
-      print*,'cres_test(i7,i8)',cres_test(i7,i8)
-      print*,'cres(i7,i8)',cres(i7,i8)
-      print*,'ratio_i7j8 = cres_test/cres',cres_test(i7,i8)/cres(i7,i8)
+c      print*,'i7i8=',i7,i8
+c      print*,'cres_test(i7,i8)',cres_test(i7,i8)
+c      print*,'cres(i7,i8)',cres(i7,i8)
+c      print*,'ratio_i7j8 = cres_test/cres',cres_test(i7,i8)/cres(i7,i8)
       enddo
       enddo
 

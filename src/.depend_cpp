@@ -1,4 +1,5 @@
-../lib/main.cpp.o: main.cpp /home/de3u14/lib/build/root/include/TH1D.h \
+../lib/test_rh_6f.cpp.o: test_rh_6f.cpp \
+ /home/de3u14/lib/build/root/include/TH1D.h \
  /home/de3u14/lib/build/root/include/TH1.h \
  /home/de3u14/lib/build/root/include/TAxis.h \
  /home/de3u14/lib/build/root/include/TNamed.h \

@@ -1,7 +1,7 @@
 c Function rh_tatau
 c Input 'p1' and 'p2'
 c Returns 8 byte real value 
-      real*8 function rh_tautau(p1,p2)
+      real*8 function rh_tautau(p1,p2,i1,i2)
 
 c Variable a-b, d-h o-z are all real
 c Variable 'c' is complex, and i,j,k,l,m,n are not defined
@@ -19,6 +19,9 @@ C Define a structure type 'tc' wicth member a(2,2), b(2,2) and c(2,2), 2x2 matri
       end structure
 C Define a variable called 'tsc' of type 'tc'
       record/tc/tsc
+
+c i1 and i2 define the polarizations 
+      integer i1, i2
 
 c Make 'rmtau' a common variable
       real*8 rmtau
@@ -69,8 +72,6 @@ c      enddo
 
 c Just one polarization
 
-      i1=2
-      i2=2
       cres=cth(i1,i2)                  
       res=res+dreal(cres)**2+dimag(cres)**2
 

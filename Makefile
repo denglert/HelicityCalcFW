@@ -1,24 +1,26 @@
 all : build 
-	@ ./bin/main
+
+test_rh_tautau : build 
+	@ ./bin/test_rh_tautau
 
 test : build
 	@ ./bin/main_test
 
-main02 : build_main02
-	@ ./bin/main02
+test_rh_6f : build
+	@ ./bin/test_rh_6f
+
+cuba : build
+	@ ./bin/main_cuba_test
 
 ####################
 
-build : build_main build_main_test
+build : build_allbinaries
 
-build_main : 
-	@ cd src; make ../bin/main;
-
-build_main_test : 
-	@ cd src; make ../bin/main_test;
-
-build_main02 : 
-	@ cd src; make ../bin/main02;
+build_allbinaries : 
+	@ cd src; make binaries;
 
 clean :
-	rm ./lib/*.o
+	rm -f ./lib/*.o
+	find ./bin/ -type f -not -name 'dummy' | xargs rm -f
+	rm -f ./src/.depend_cpp
+	touch ./src/.depend_cpp

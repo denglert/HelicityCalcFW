@@ -12,13 +12,6 @@
 #include "PhysConst.h"
 #include "UtilFunctions.h"
 
-////////////////////////////////////////
-double fxn(double *x)
-{
-	double fx = 6;
-	return fx;
-};
-
 int main( int argc, const char *argv[] )
 {
 
@@ -164,14 +157,9 @@ int main( int argc, const char *argv[] )
 	   TLorentzVector *TauNeg_Daughter_1 = TauNegDecay.GetDecay(1);
 	   TLorentzVector *TauNeg_Daughter_2 = TauNegDecay.GetDecay(2);
 
-		// Debuggg 
-		std::cerr << "miau " << std::endl;
 
 	   TLorentzVector *sum = new TLorentzVector;
 		(*sum) = (*TauPos_Daughter_0) + (*TauPos_Daughter_1) + (*TauPos_Daughter_2) + (*TauNeg_Daughter_0) + (*TauNeg_Daughter_1) + (*TauNeg_Daughter_2);
-
-		// Debuggg 
-		std::cerr << "farkas " << std::endl;
 
 //		TauPos_Daughter_0->Boost(-TauPos_BoostVector);
 //		TauPos_Daughter_1->Boost(-TauPos_BoostVector);
@@ -202,8 +190,10 @@ int main( int argc, const char *argv[] )
 		}
 //			std::cout << Form("p1_[0]: %+2.2f, p1_[1]: %.2f p1_[2]: %.2f p1_[3]: %.2f", p1_[0], p1_[1], p1_[2], p1_[3]) << std::endl;
 
-		double value = rh_tautau_(p1_,p2_);
-//		std::cout << Form("rh_tatau: %.2f", value) << std::endl;
+		int pol1, pol2;
+		pol1 = 1; pol2 = 1;
+		double value = rh_tautau_(p1_,p2_,&pol1,&pol2);
+		std::cout << Form("rh_tatau: %.2f", value) << std::endl;
 
 		ampl_sqr->Fill( TauPos->Px(), TauPos->Py(), TauPos->Pz(), value);
 	}
@@ -233,50 +223,5 @@ int main( int argc, const char *argv[] )
 	figOUTpdf = filebase+".pdf";
 	canvas.SaveAs(figOUTpdf.c_str());
 	canvas.Clear();
-
-	///////////////////
-	// --- VEGAS --- //
-	///////////////////
-	
-	// Input parameters
-	int ndim = 3;
-	const int ndmx = 50;
-	const int mxdim = 10;
-
-	double *region = new double[2*ndim];
-	region[0] =  0.0;
-	region[1] = +1.0;
-	region[2] =  0.0;
-	region[3] = +1.0;
-	region[4] =  0.0;
-	region[5] = +1.0;
-
-	int    init  = -1;
-	int    ncall = 5000;
-	int    itmx = 10;
-	int    nprn  = 1;
-	double tgral = 0;
-	double sd = 0;
-	double acc = 0.01;
-
-	// output
-	double chi2a ;
-
-	double **xi = new double*[mxdim];
-	for (int i= 0; i<mxdim; i++)
-	{
-		xi[i] = new double[ndmx];
-	}
-
-	int it;
-	int ndo ;
-	double si;
-	double swgt;
-	double schi;
-
-
-	vegas_(region, &ndim, &fxn, &init, &ncall,
-			 &itmx, &nprn, &tgral, &sd, &chi2a, &acc,
-			 xi, &it, &ndo, &si, &swgt, &schi );
 
 }
