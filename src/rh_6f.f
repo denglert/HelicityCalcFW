@@ -25,7 +25,8 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 
       COMMON/masses/rmtau
       COMMON/couplings/wcl,gh_tautau
-      COMMON/amplitudes/taup,taum
+      COMMON/amplitudes/rh_6f_tautau,rh_6f_taum,rh_6f_taup,
+     &                  rh_6f_res_nwa,rh_6f_res,rh_6f_res_test
 
       PARAMETER (czero=(0.d0,0.d0),cim=(0.d0,1.d0))
 
@@ -56,6 +57,10 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       quqd=p3(0)*p4(0)-p3(1)*p4(1)-p3(2)*p4(2)-p3(3)*p4(3)
       ccl=wcl/cden34
 * TW10 -- qu=p3,qd=p4,v=0,a=cw34.e(0),cl=ccl,nsum=0                             
+* massless fermion line and W routine
+* c computes the coefficient a (b, c and d are zero) of the unique TW0-function,
+* c that is in the case of a massless fermion line with only one insertion.
+* this is the e-, vebar W line
       eps_0=-p3(2)*p4(3)+p4(2)*p3(3)
       ceps_0=eps_0*cim
       auxa=-quqd+p3k0*p4(0)+p4k0*p3(0)
@@ -235,7 +240,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       enddo
       enddo
       res=res/p3k0/p4k0/p5k0/p6k0/p7k0/p8k0
-      rh_6f=res
+      rh_6f_res=res
 
 * H->tau+tau- amplitude
       res_htautau=0.d0
@@ -245,6 +250,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       enddo
       enddo
       res_htautau=res_htautau/p734k0/p568k0
+      rh_6f_tautau=res_htautau
 
 c     do i=1,2
 c     do j=1,2
@@ -264,6 +270,7 @@ c     print*,''
       enddo
       enddo
       res_taum=res_taum/p3k0/p4k0/p7k0/p734k0
+      rh_6f_taum=res_taum
 
 * tau+ amplitude
       res_taup=0.d0
@@ -273,14 +280,16 @@ c     print*,''
       enddo
       enddo
       res_taup=res_taup/p5k0/p6k0/p8k0/p568k0
+      rh_6f_taup=res_taup
 
       res_nwa=res_htautau*res_taum*res_taup
-      print*,'res', rea
-      print*,'res_nwa', res_nwa
-      print*,'res_htautau', res_htautau
-      print*,'res_taum', res_taum
-      print*,'res_taup', res_taup
-      write(*,"(A, F10.5)") ' res_taum/res_taup', res_taum/res_taup
+      rh_6f_res_nwa=res_nwa
+*    print*,'res', res
+*    print*,'res_nwa', res_nwa
+*    print*,'res_htautau', res_htautau
+*    print*,'res_taum', res_taum
+*    print*,'res_taup', res_taup
+*    write(*,"(A, F10.5)") ' res_taum/res_taup', res_taum/res_taup
 * Ratio between the complete chain (with full spin correlation) and
 * narrow width approximation (nwa)
 * Both production and decay are summed over all polarizations

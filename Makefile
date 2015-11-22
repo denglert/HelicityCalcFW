@@ -1,13 +1,13 @@
 all : build 
 
 test_rh_tautau : build 
-	@ ./bin/test_rh_tautau
+	@ ./bin/test_rh_tautau | tee ./log/test_rh_tautau
 
 test : build
 	@ ./bin/main_test
 
 test_rh_6f : build
-	@ ./bin/test_rh_6f
+	@ ./bin/test_rh_6f | tee ./log/test_rh_6f
 
 cuba : build
 	@ ./bin/main_cuba_test

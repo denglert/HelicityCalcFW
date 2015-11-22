@@ -1,0 +1,263 @@
+Main program running..
+Process
+H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
+################
+### iEv:   0 ###
+################
+# Momenta #
+- sum: (E,px,py,pz): (125.00,  -0.00,  -0.00,   0.00)
+- TauNeg (E,px,py,pz): ( 62.50,   1.04, -62.44,   1.71)
+- TauPos (E,px,py,pz): ( 62.50,  -1.04,  62.44,  -1.71)
+- TauNeg_Daughter_0   (v_tau )(E,px,py,pz): ( 30.69,  -0.32, -30.67,   0.95)
+- TauNeg_Daughter_1       (e-)(E,px,py,pz): (  3.67,   0.11,  -3.66,   0.20)
+- TauNeg_Daughter_2   (v_ebar)(E,px,py,pz): ( 28.15,   1.26, -28.11,   0.56)
+- TauPos_Daughter_0 (v_taubar)(E,px,py,pz): ( 30.52,   0.15,  30.50,  -1.03)
+- TauPos_Daughter_1    (muon+)(E,px,py,pz): ( 24.90,  -0.89,  24.89,  -0.20)
+- TauPos_Daughter_2     (v_mu)(E,px,py,pz): (  7.08,  -0.31,   7.06,  -0.48)
+# Standard calculation #
+- tau- (pk')(qk): 0.1827
+- tau+ (pk')(qk): 0.6143
+- tau-/tau+: 0.2974
+# Helicity amplitude calculation #
+- rh_6f_tau-: 2.9235
+- rh_6f_tau+: 9.8288
+- rh_6f tau-/tau+: 0.2974
+- rh_6f_res: 162377.5353
+- rh_6f_res_nwa: 897230.7135
+###
+- rh_6f_taum/taum ratio: 16.0000
+- rh_6f_taup/taup ratio: 16.0000
+################
+### iEv:   1 ###
+################
+# Momenta #
+- sum: (E,px,py,pz): (125.00,   0.00,   0.00,  -0.00)
+- TauNeg (E,px,py,pz): ( 62.50,  19.47,  23.04, -54.71)
+- TauPos (E,px,py,pz): ( 62.50, -19.47, -23.04,  54.71)
+- TauNeg_Daughter_0   (v_tau )(E,px,py,pz): ( 18.32,   5.70,   7.03, -15.92)
+- TauNeg_Daughter_1       (e-)(E,px,py,pz): ( 37.52,  11.44,  13.24, -33.19)
+- TauNeg_Daughter_2   (v_ebar)(E,px,py,pz): (  6.66,   2.32,   2.76,  -5.60)
+- TauPos_Daughter_0 (v_taubar)(E,px,py,pz): (  0.70,  -0.26,  -0.24,   0.60)
+- TauPos_Daughter_1    (muon+)(E,px,py,pz): ( 52.75, -16.84, -19.76,  45.91)
+- TauPos_Daughter_2     (v_mu)(E,px,py,pz): (  9.06,  -2.37,  -3.03,   8.20)
+# Standard calculation #
+- tau- (pk')(qk): 0.4901
+- tau+ (pk')(qk): 0.1079
+- tau-/tau+: 4.5437
+# Helicity amplitude calculation #
+- rh_6f_tau-: 7.8416
+- rh_6f_tau+: 1.7258
+- rh_6f tau-/tau+: 4.5437
+- rh_6f_res: 26314.5453
+- rh_6f_res_nwa: 422562.9856
+###
+- rh_6f_taum/taum ratio: 16.0000
+- rh_6f_taup/taup ratio: 16.0000
+################
+### iEv:   2 ###
+################
+# Momenta #
+- sum: (E,px,py,pz): (125.00,  -0.00,   0.00,   0.00)
+- TauNeg (E,px,py,pz): ( 62.50,  49.50,  -9.99, -36.78)
+- TauPos (E,px,py,pz): ( 62.50, -49.50,   9.99,  36.78)
+- TauNeg_Daughter_0   (v_tau )(E,px,py,pz): ( 31.46,  24.67,  -4.72, -18.95)
+- TauNeg_Daughter_1       (e-)(E,px,py,pz): ( 26.04,  20.72,  -4.73, -15.06)
+- TauNeg_Daughter_2   (v_ebar)(E,px,py,pz): (  5.00,   4.12,  -0.54,  -2.78)
+- TauPos_Daughter_0 (v_taubar)(E,px,py,pz): (  1.16,  -0.90,   0.24,   0.70)
+- TauPos_Daughter_1    (muon+)(E,px,py,pz): ( 30.83, -23.93,   5.27,  18.72)
+- TauPos_Daughter_2     (v_mu)(E,px,py,pz): ( 30.50, -24.68,   4.48,  17.36)
+# Standard calculation #
+- tau- (pk')(qk): 0.6135
+- tau+ (pk')(qk): 0.0338
+- tau-/tau+: 18.1501
+# Helicity amplitude calculation #
+- rh_6f_tau-: 9.8154
+- rh_6f_tau+: 0.5408
+- rh_6f tau-/tau+: 18.1501
+- rh_6f_res: 5949.8844
+- rh_6f_res_nwa: 165744.3462
+###
+- rh_6f_taum/taum ratio: 16.0000
+- rh_6f_taup/taup ratio: 16.0000
+################
+### iEv:   3 ###
+################
+# Momenta #
+- sum: (E,px,py,pz): (125.00,   0.00,   0.00,  -0.00)
+- TauNeg (E,px,py,pz): ( 62.50,  45.77, -26.72,  33.07)
+- TauPos (E,px,py,pz): ( 62.50, -45.77,  26.72, -33.07)
+- TauNeg_Daughter_0   (v_tau )(E,px,py,pz): ( 33.78,  24.74, -14.51,  17.83)
+- TauNeg_Daughter_1       (e-)(E,px,py,pz): (  1.50,   1.20,  -0.70,   0.56)
+- TauNeg_Daughter_2   (v_ebar)(E,px,py,pz): ( 27.22,  19.83, -11.51,  14.68)
+- TauPos_Daughter_0 (v_taubar)(E,px,py,pz): (  4.36,  -3.17,   1.77,  -2.41)
+- TauPos_Daughter_1    (muon+)(E,px,py,pz): ( 56.27, -41.40,  23.91, -29.68)
+- TauPos_Daughter_2     (v_mu)(E,px,py,pz): (  1.87,  -1.21,   1.04,  -0.98)
+# Standard calculation #
+- tau- (pk')(qk): 0.6212
+- tau+ (pk')(qk): 0.1902
+- tau-/tau+: 3.2663
+# Helicity amplitude calculation #
+- rh_6f_tau-: 9.9400
+- rh_6f_tau+: 3.0432
+- rh_6f tau-/tau+: 3.2663
+- rh_6f_res: 390251.8003
+- rh_6f_res_nwa: 944523.4256
+###
+- rh_6f_taum/taum ratio: 16.0000
+- rh_6f_taup/taup ratio: 16.0000
+################
+### iEv:   4 ###
+################
+# Momenta #
+- sum: (E,px,py,pz): (125.00,  -0.00,  -0.00,   0.00)
+- TauNeg (E,px,py,pz): ( 62.50,  44.15,  25.97, -35.77)
+- TauPos (E,px,py,pz): ( 62.50, -44.15, -25.97,  35.77)
+- TauNeg_Daughter_0   (v_tau )(E,px,py,pz): (  3.89,   2.93,   1.54,  -2.03)
+- TauNeg_Daughter_1       (e-)(E,px,py,pz): ( 19.10,  13.82,   7.96, -10.52)
+- TauNeg_Daughter_2   (v_ebar)(E,px,py,pz): ( 39.51,  27.40,  16.47, -23.22)
+- TauPos_Daughter_0 (v_taubar)(E,px,py,pz): ( 12.13,  -8.31,  -5.34,   7.03)
+- TauPos_Daughter_1    (muon+)(E,px,py,pz): (  5.59,  -3.68,  -2.51,   3.37)
+- TauPos_Daughter_2     (v_mu)(E,px,py,pz): ( 44.79, -32.15, -18.12,  25.37)
+# Standard calculation #
+- tau- (pk')(qk): 0.1216
+- tau+ (pk')(qk): 0.0703
+- tau-/tau+: 1.7299
+# Helicity amplitude calculation #
+- rh_6f_tau-: 1.9461
+- rh_6f_tau+: 1.1250
+- rh_6f tau-/tau+: 1.7299
+- rh_6f_res: 5855.4931
+- rh_6f_res_nwa: 68358.6664
+###
+- rh_6f_taum/taum ratio: 16.0000
+- rh_6f_taup/taup ratio: 16.0000
+################
+### iEv:   5 ###
+################
+# Momenta #
+- sum: (E,px,py,pz): (125.00,   0.00,  -0.00,   0.00)
+- TauNeg (E,px,py,pz): ( 62.50, -48.14,  39.68,  -3.34)
+- TauPos (E,px,py,pz): ( 62.50,  48.14, -39.68,   3.34)
+- TauNeg_Daughter_0   (v_tau )(E,px,py,pz): ( 24.77, -19.42,  15.34,  -0.96)
+- TauNeg_Daughter_1       (e-)(E,px,py,pz): ( 14.86, -11.01,   9.94,  -0.89)
+- TauNeg_Daughter_2   (v_ebar)(E,px,py,pz): ( 22.87, -17.71,  14.40,  -1.50)
+- TauPos_Daughter_0 (v_taubar)(E,px,py,pz): ( 39.37,  30.50, -24.86,   1.50)
+- TauPos_Daughter_1    (muon+)(E,px,py,pz): ( 18.53,  13.98, -12.08,   1.34)
+- TauPos_Daughter_2     (v_mu)(E,px,py,pz): (  4.60,   3.66,  -2.74,   0.50)
+# Standard calculation #
+- tau- (pk')(qk): 0.6156
+- tau+ (pk')(qk): 0.6174
+- tau-/tau+: 0.9971
+# Helicity amplitude calculation #
+- rh_6f_tau-: 9.8502
+- rh_6f_tau+: 9.8784
+- rh_6f tau-/tau+: 0.9971
+- rh_6f_res: 1081839.7429
+- rh_6f_res_nwa: 3038299.4105
+###
+- rh_6f_taum/taum ratio: 16.0000
+- rh_6f_taup/taup ratio: 16.0000
+################
+### iEv:   6 ###
+################
+# Momenta #
+- sum: (E,px,py,pz): (125.00,   0.00,  -0.00,  -0.00)
+- TauNeg (E,px,py,pz): ( 62.50, -33.80,  50.58,  14.24)
+- TauPos (E,px,py,pz): ( 62.50,  33.80, -50.58, -14.24)
+- TauNeg_Daughter_0   (v_tau )(E,px,py,pz): ( 24.62, -13.42,  19.75,   6.00)
+- TauNeg_Daughter_1       (e-)(E,px,py,pz): ( 31.79, -17.48,  25.66,   6.82)
+- TauNeg_Daughter_2   (v_ebar)(E,px,py,pz): (  6.09,  -2.90,   5.16,   1.42)
+- TauPos_Daughter_0 (v_taubar)(E,px,py,pz): (  6.80,   3.47,  -5.73,  -1.15)
+- TauPos_Daughter_1    (muon+)(E,px,py,pz): (  7.28,   4.14,  -5.76,  -1.61)
+- TauPos_Daughter_2     (v_mu)(E,px,py,pz): ( 48.43,  26.19, -39.08, -11.48)
+# Standard calculation #
+- tau- (pk')(qk): 0.4340
+- tau+ (pk')(qk): 0.2943
+- tau-/tau+: 1.4744
+# Helicity amplitude calculation #
+- rh_6f_tau-: 6.9434
+- rh_6f_tau+: 4.7094
+- rh_6f tau-/tau+: 1.4744
+- rh_6f_res: 6536.6986
+- rh_6f_res_nwa: 1021031.9848
+###
+- rh_6f_taum/taum ratio: 16.0000
+- rh_6f_taup/taup ratio: 16.0000
+################
+### iEv:   7 ###
+################
+# Momenta #
+- sum: (E,px,py,pz): (125.00,   0.00,  -0.00,   0.00)
+- TauNeg (E,px,py,pz): ( 62.50, -43.93,  13.61, -42.28)
+- TauPos (E,px,py,pz): ( 62.50,  43.93, -13.61,  42.28)
+- TauNeg_Daughter_0   (v_tau )(E,px,py,pz): (  9.53,  -6.69,   2.14,  -6.45)
+- TauNeg_Daughter_1       (e-)(E,px,py,pz): (  7.26,  -4.70,   1.73,  -5.26)
+- TauNeg_Daughter_2   (v_ebar)(E,px,py,pz): ( 45.71, -32.55,   9.74, -30.58)
+- TauPos_Daughter_0 (v_taubar)(E,px,py,pz): ( 35.06,  24.70,  -7.83,  23.61)
+- TauPos_Daughter_1    (muon+)(E,px,py,pz): (  0.35,   0.14,  -0.11,   0.30)
+- TauPos_Daughter_2     (v_mu)(E,px,py,pz): ( 27.09,  19.09,  -5.66,  18.37)
+# Standard calculation #
+- tau- (pk')(qk): 0.2629
+- tau+ (pk')(qk): 0.6201
+- tau-/tau+: 0.4240
+# Helicity amplitude calculation #
+- rh_6f_tau-: 4.2067
+- rh_6f_tau+: 9.9221
+- rh_6f tau-/tau+: 0.4240
+- rh_6f_res: 51320.7782
+- rh_6f_res_nwa: 1303311.7993
+###
+- rh_6f_taum/taum ratio: 16.0000
+- rh_6f_taup/taup ratio: 16.0000
+################
+### iEv:   8 ###
+################
+# Momenta #
+- sum: (E,px,py,pz): (125.00,   0.00,   0.00,  -0.00)
+- TauNeg (E,px,py,pz): ( 62.50, -39.26,  32.23,  36.38)
+- TauPos (E,px,py,pz): ( 62.50,  39.26, -32.23, -36.38)
+- TauNeg_Daughter_0   (v_tau )(E,px,py,pz): (  9.43,  -5.56,   5.20,   5.56)
+- TauNeg_Daughter_1       (e-)(E,px,py,pz): ( 16.40, -10.20,   8.19,   9.90)
+- TauNeg_Daughter_2   (v_ebar)(E,px,py,pz): ( 36.66, -23.50,  18.84,  20.91)
+- TauPos_Daughter_0 (v_taubar)(E,px,py,pz): ( 11.67,   6.87,  -6.40,  -6.92)
+- TauPos_Daughter_1    (muon+)(E,px,py,pz): ( 41.58,  26.29, -21.32, -24.15)
+- TauPos_Daughter_2     (v_mu)(E,px,py,pz): (  9.26,   6.10,  -4.51,  -5.31)
+# Standard calculation #
+- tau- (pk')(qk): 0.3883
+- tau+ (pk')(qk): 0.6211
+- tau-/tau+: 0.6252
+# Helicity amplitude calculation #
+- rh_6f_tau-: 6.2130
+- rh_6f_tau+: 9.9372
+- rh_6f tau-/tau+: 0.6252
+- rh_6f_res: 505184.9453
+- rh_6f_res_nwa: 1927815.8680
+###
+- rh_6f_taum/taum ratio: 16.0000
+- rh_6f_taup/taup ratio: 16.0000
+################
+### iEv:   9 ###
+################
+# Momenta #
+- sum: (E,px,py,pz): (125.00,   0.00,   0.00,  -0.00)
+- TauNeg (E,px,py,pz): ( 62.50,  12.35,  55.35, -26.21)
+- TauPos (E,px,py,pz): ( 62.50, -12.35, -55.35,  26.21)
+- TauNeg_Daughter_0   (v_tau )(E,px,py,pz): (  0.50,   0.15,   0.46,  -0.14)
+- TauNeg_Daughter_1       (e-)(E,px,py,pz): (  6.18,   1.62,   5.45,  -2.43)
+- TauNeg_Daughter_2   (v_ebar)(E,px,py,pz): ( 55.81,  10.58,  49.44, -23.64)
+- TauPos_Daughter_0 (v_taubar)(E,px,py,pz): (  9.36,  -1.71,  -8.49,   3.55)
+- TauPos_Daughter_1    (muon+)(E,px,py,pz): ( 25.64,  -5.38, -22.33,  11.38)
+- TauPos_Daughter_2     (v_mu)(E,px,py,pz): ( 27.50,  -5.25, -24.53,  11.28)
+# Standard calculation #
+- tau- (pk')(qk): 0.0386
+- tau+ (pk')(qk): 0.6192
+- tau-/tau+: 0.0623
+# Helicity amplitude calculation #
+- rh_6f_tau-: 0.6170
+- rh_6f_tau+: 9.9078
+- rh_6f tau-/tau+: 0.0623
+- rh_6f_res: 15165.9165
+- rh_6f_res_nwa: 190893.1646
+###
+- rh_6f_taum/taum ratio: 16.0000
+- rh_6f_taup/taup ratio: 16.0000

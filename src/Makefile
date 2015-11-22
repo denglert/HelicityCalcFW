@@ -76,11 +76,11 @@ CLFLAGS = $(CUBALFLAGS) $(ROOTLFLAGS)
 
 # ROOT flags can also be set to environment variables
 ROOTCFLAGS = `root-config --cflags`
-ROOTLFLAGS = -L/home/de3u14/lib/build/root/lib -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -limf -lm -ldl
+ROOTLFLAGS = -L/home/de3u14/lib/build/hep/root/lib -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -limf -lm -ldl
 
 # CUBAFLAGS flags can also be set to environment variables
-CUBACFLAGS = -I/home/de3u14/lib/build/Cuba/Cuba-4.2
-CUBALFLAGS = -L/home/de3u14/lib/build/Cuba/Cuba-4.2 -lcuba
+CUBACFLAGS = -I/home/de3u14/lib/build/hep/Cuba/Cuba-4.2
+CUBALFLAGS = -L/home/de3u14/lib/build/hep/Cuba/Cuba-4.2 -lcuba
 
 ../lib/%.cpp.o : %.cpp
 	$(CC) $(ROOTCFLAGS) $(CCFLAGS) -c $< -o $@
