@@ -19,12 +19,10 @@ int e2m[4] = {1, 2, 3, 0};
 int main( int argc, const char *argv[] )
 {
 
-	std::cout << "Main program running.." << std::endl;
-
 	////////////////////////
-	// 					    //
+	// 					  //
 	// -- Initializing -- //
-	// 				       //
+	// 				      //
 	////////////////////////
 	
 
@@ -72,8 +70,12 @@ int main( int argc, const char *argv[] )
 	double p7_[4];
 	double p8_[4];
 
+	std::cout << "\n\n#########################" << std::endl;
+	std::cout << "### Consistency check ###" << std::endl;
+	std::cout << "#########################\n" << std::endl;
+
 	std::cout << "Process" << std::endl;
-	std::cout << "H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)" << std::endl;
+	std::cout << "H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)\n" << std::endl;
 	
 	for (int iEv = 0; iEv < nEvents; iEv++)
 	{
@@ -86,6 +88,7 @@ int main( int argc, const char *argv[] )
 		// Get tau+ and tau-
 	   TLorentzVector *TauNeg = HiggsDecay.GetDecay(1);
 	   TLorentzVector *TauPos = HiggsDecay.GetDecay(0);
+
 
 		TVector3 TauNeg_BoostVector = TauNeg->BoostVector();
 		TVector3 TauPos_BoostVector = TauPos->BoostVector();

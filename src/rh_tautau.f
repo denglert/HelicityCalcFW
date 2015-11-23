@@ -44,7 +44,13 @@ c where k0 = (1,1,0,0)
       p1k0=p1(0)-p1(1)
       p2k0=p2(0)-p2(1)
 
+c subroutine TH(qu,qd,abc)
+c computes the coefficients a,b,c (d=0) for the insertion of a scalar particle
+c into a fermion line.
 * TSC -- qu=p1,qd=p2,a=tsc.a,b=tsc.b,c=tsc.c,cr=1.d0,cl=1.d0                    
+c subroutine TSC(qu,qd,abc,cr,cl,den)
+c computes the coefficients a,b,c (d=0) for the insertion of a pseudoscalar
+c particle into a fermion line.
       auxa=-p1k0*p2(2)+p2k0*p1(2)
       cauxa=-cim*(p2(3)*p1k0-p1(3)*p2k0)
       tsc.a(1,2)=(auxa+cauxa)
@@ -54,6 +60,15 @@ c where k0 = (1,1,0,0)
       tsc.c(1,1)=p1k0
       tsc.c(2,2)=p1k0
 * mline -- res=cth(&1,&2),abcd=tsc.,m1=rmtau,m2=(-rmtau),den=0,nsum=0            
+c subroutine mline(mline,abcd,m1,m2,den,nsum)
+c computes the final massive fermion line A+m1*B+m2*C+m1*m2*D.
+c The name of the final result mline must contain the fermion indices specified
+c in the abcd coefficients. For example, if abcd=name(i1,i2) so that the
+c a-coefficient is given by name(i1,i2).a(i3,i4), then the mline must be named as
+c mline(i1?,i2?,&1,&2). In the output file, mline will appear as
+c mline(i1,i2,i3,i4) within a do loop over all 4 indices.
+c If one wants to change the order of the indices in mline, e.g. mline(i1,i4,i2,i3),
+c the input must be the following: mline(i1?,&2,i2?,&1).
       do iut=1,2                          
       do jut=1,2
       cth(iut,jut)=tsc.a(iut,jut)+rmtau*tsc.b(iut,jut)+(-rmtau)*t

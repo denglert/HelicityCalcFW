@@ -25,17 +25,12 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 
       COMMON/masses/rmtau
       COMMON/couplings/wcl,gh_tautau
-      COMMON/amplitudes/rh_6f_tautau,rh_6f_taum,rh_6f_taup,
+      COMMON/amplitudes/rh_6f_tautau,rh_6f_taum(2,2),rh_6f_taup(2,2),
      &                  rh_6f_res_nwa,rh_6f_res,rh_6f_res_test
 
       PARAMETER (czero=(0.d0,0.d0),cim=(0.d0,1.d0))
 
-*     print*,'p3(e-)', p3
-*     print*,'p4(vebar)', p4
-*     print*,'p5(vmu)', p5
-*     print*,'p6(mu+)', p6
-*     print*,'p7(vtau)', p7
-*     print*,'p8(vtaubar)', p8
+**********************************************************************
 
       do mu=0,3
       p734(mu)=p7(mu)+p3(mu)+p4(mu)
@@ -52,10 +47,13 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       p734k0=p734(0)-p734(1)
       p568k0=p568(0)-p568(1)
 
+**********************************************************************
+
       cden34=1.d0
 * quqd -- p=p3,q=p4                                                             
       quqd=p3(0)*p4(0)-p3(1)*p4(1)-p3(2)*p4(2)-p3(3)*p4(3)
       ccl=wcl/cden34
+
 * TW10 -- qu=p3,qd=p4,v=0,a=cw34.e(0),cl=ccl,nsum=0                             
 * massless fermion line and W routine
 * c computes the coefficient a (b, c and d are zero) of the unique TW0-function,
@@ -80,6 +78,9 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       cw34.e(3)=ccl*(auxa-ceps_0)
       cw34.ek0=cw34.e(0)-cw34.e(1)
 
+
+**********************************************************************
+
       cden56=1.d0
 * quqd -- p=p5,q=p6                                                             
       quqd=p5(0)*p6(0)-p5(1)*p6(1)-p5(2)*p6(2)-p5(3)*p6(3)
@@ -103,6 +104,8 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       auxa=p5k0*p6(3)+p6k0*p5(3)
       cw56.e(3)=ccl*(auxa-ceps_0)
       cw56.ek0=cw56.e(0)-cw56.e(1)
+
+**********************************************************************
 
       cden734=1.d0
 * quqd -- p=p7,q=p734                                                           
@@ -131,6 +134,8 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       tw7_734.c(2,1)=ccl*(-cauxc+ceps_1)
       tw7_734.d(1,1)=ccl*cw34.ek0
 
+**********************************************************************
+
       cden568=1.d0/gh_tautau
       ccr=1.d0/cden568
       ccl=1.d0/cden568
@@ -144,6 +149,9 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       th734_568.b(2,2)=ccl*p568k0
       th734_568.c(1,1)=ccl*p734k0
       th734_568.c(2,2)=ccr*p734k0
+
+**********************************************************************
+
 * quqd -- p=p568,q=p8                                                           
       quqd=p568(0)*p8(0)-p568(1)*p8(1)-p568(2)*p8(2)-p568(3)*p8(
      & 3)
@@ -168,6 +176,9 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       tw568_8.b(1,2)=wcl*(cauxb-ceps_2)
       tw568_8.c(2,1)=wcl*(-cauxc+ceps_1)
       tw568_8.d(1,1)=wcl*cw56.ek0
+
+**********************************************************************
+
 * TWTSC -- aa=t7_568.a,bb=t7_568.b,cc=t7_568.c,dd=t7_568.d,a1=tw7_734.a,b1=     
 * tw7_734.b,c1=tw7_734.c,d1=tw7_734.d,a2=th734_568.a,b2=th734_568.b,c2=th734    * _568.c,prq=p734q,m=rmtau,nsum=0                                               
       t7_568.b(1,2)=rmtau*(tw7_734.d(1,1)*th734_568.a(1,2)+tw7_7
@@ -182,9 +193,20 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       t7_568.a(2,1)=(tw7_734.c(2,1)*p734q*th734_568.b(1,1)+tw7_73
      & 4.a(2,2)*th734_568.a(2,1))/p734k0
       t7_568.c(2,1)=rmtau*tw7_734.c(2,1)*th734_568.c(1,1)/p734k0
+
+**********************************************************************
+
+c subroutine TT(aabbccdd,a1b1c1d1,a2b2c2d2,prq,m,nsum)
+c same as above, but with all coefficients equal to zero when i is different from j:
+c a1(i,j)=0, d1(i,j)=0, b1(i,j)=0, c1(i,j)=0,a2(i,j)=0, d2(i,j)=0, b2(i,j)=0, c2(i,j)=0.
 * TTW -- aa=t568_8.a,bb=t568_8.b,cc=t568_8.c,dd=t568_8.d,a1=t7_568.a,b1=t7_     
 * 568.b,c1=t7_568.c,d1=t7_568.d,a2=tw568_8.a,b2=tw568_8.b,c2=tw568_8.c,d2=tw    
 * 568_8.d,prq=p568q,m=rmtau,nsum=0                                              
+c subroutine TTW(aabbccdd,a1b1c1d1,a2b2c2d2,prq,m,nsum)
+c same as subroutine TT. The TTW-function is just optimized not to
+c consider for the TW-function all terms proportional to the right-handed
+c cr coupling.
+
       t568_8.c(1,1)=rmtau*(t7_568.a(1,1)*tw568_8.d(1,1)+t7_568.c
      & (1,2)*tw568_8.c(2,1))/p568k0
       t568_8.d(1,1)=(t7_568.d(1,1)*p568q*tw568_8.d(1,1)+t7_568.b(
@@ -201,12 +223,20 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
      & 2,2)*tw568_8.a(2,2))/p568k0
       t568_8.b(2,2)=rmtau*(t7_568.b(2,1)*tw568_8.b(1,2)+t7_568.d
      & (2,2)*tw568_8.a(2,2))/p568k0
+
+**********************************************************************
+**********************************************************************
+**********************************************************************
+
 * mline -- res=cres(&1,&2),abcd=t568_8.,m1=0,m2=0,den=0,nsum=0                  
       do iut=1,2
       do jut=1,2
       cres(iut,jut)=t568_8.a(iut,jut)
       enddo
       enddo
+
+
+**********************************************************************
 
 * mline -- res=cdec_taum(&1,&2),abcd=tw7_734.,m1=0,m2=(-rmtau),den=0,           
 * nsum=0                                                                        
@@ -216,12 +246,16 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       enddo
       enddo
 
+**********************************************************************
+
 * mline -- res=cdec_taup(&1,&2),abcd=tw568_8.,m1=rmtau,m2=0,den=0,nsum=0        
       do iut=1,2
       do jut=1,2
       cdec_taup(iut,jut)=tw568_8.a(iut,jut)+rmtau*tw568_8.b(iut,jut)
       enddo
       enddo
+
+**********************************************************************
 
 * mline -- res=ch_tautau(&1,&2),abcd=th743_568.,m1=rmtau,m2=(-rmtau),den=0,     
 * nsum=0                                                                        
@@ -232,7 +266,6 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       enddo
       enddo
 
-
       res=0.d0
       do i=1,2
       do j=1,2
@@ -242,6 +275,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       res=res/p3k0/p4k0/p5k0/p6k0/p7k0/p8k0
       rh_6f_res=res
 
+**********************************************************************
 * H->tau+tau- amplitude
       res_htautau=0.d0
       do i=1,2
@@ -262,6 +296,7 @@ c     enddo
 
 c     print*,'' 
 
+**********************************************************************
 * tau- amplitude
       res_taum=0.d0
       do i=1,2
@@ -272,6 +307,7 @@ c     print*,''
       res_taum=res_taum/p3k0/p4k0/p7k0/p734k0
       rh_6f_taum=res_taum
 
+**********************************************************************
 * tau+ amplitude
       res_taup=0.d0
       do i=1,2
@@ -298,6 +334,7 @@ c      print*,''
 
 *test                                                                           
 
+**********************************************************************
 * Ratio between the amplitude of the complete result and the same result
 * computed via the mulitplication of mlines in 4 sets of polarizations
       do i7=1,2
