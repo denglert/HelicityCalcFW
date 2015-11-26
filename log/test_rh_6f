@@ -6,6 +6,7 @@
 
 Process
 H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
+
 ################
 ### iEv:   0 ###
 ################
@@ -23,15 +24,54 @@ H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
 - tau- (pk')(qk): 0.1827
 - tau+ (pk')(qk): 0.6143
 - tau-/tau+: 0.2974
+ tau- amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            1 j:            2 real:   0.000000000000000E+000
+ i:            1 j:            2 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            2 j:            1 real:    419.974192580582     
+ i:            2 j:            1 imag:    277.403357799278     
+ tau- amplitudes:
+ i:            2 j:            2 real:    359.590813282774     
+ i:            2 j:            2 imag:    387.481255017019     
+ tau+ amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            1 j:            2 real:   -811.920970315116     
+ i:            1 j:            2 imag:    531.364089163782     
+ tau+ amplitudes:
+ i:            2 j:            1 real:   0.000000000000000E+000
+ i:            2 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            2 j:            2 real:    55.9815465318546     
+ i:            2 j:            2 imag:   -1633.49375063063     
+   (0,0)    (0,0) 
+(420,277.4) (359.6,387.5) 
+   (0,0) (-811.9,531.4) 
+   (0,0) (55.98,-1633) 
 # Helicity amplitude calculation #
-- rh_6f_tau-: 2.9235
-- rh_6f_tau+: 9.8288
-- rh_6f tau-/tau+: 0.2974
+rh_6f_tau-[0][0].r: 0.0000 
+rh_6f_tau-[0][0].i: 0.0000 
+rh_6f_tau-[0][1].r: 419.9742 
+rh_6f_tau-[0][1].i: 277.4034 
+rh_6f_tau-[1][0].r: 0.0000 
+rh_6f_tau-[1][0].i: 0.0000 
+rh_6f_tau-[1][1].r: 359.5908 
+rh_6f_tau-[1][1].i: 387.4813 
+rh_6f_tau+[0][0].r: 0.0000 
+rh_6f_tau+[0][0].i: 0.0000 
+rh_6f_tau+[0][1].r: 0.0000 
+rh_6f_tau+[0][1].i: 0.0000 
+rh_6f_tau+[1][0].r: -811.9210 
+rh_6f_tau+[1][0].i: 531.3641 
+rh_6f_tau+[1][1].r: 55.9815 
+rh_6f_tau+[1][1].i: -1633.4938 
 - rh_6f_res: 162377.5353
-- rh_6f_res_nwa: 897230.7135
+- rh_6f_res_nwa: 163512259047.3505
 ###
-- rh_6f_taum/taum ratio: 16.0000
-- rh_6f_taup/taup ratio: 16.0000
 ################
 ### iEv:   1 ###
 ################
@@ -49,15 +89,54 @@ H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
 - tau- (pk')(qk): 0.4901
 - tau+ (pk')(qk): 0.1079
 - tau-/tau+: 4.5437
+ tau- amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            1 j:            2 real:   0.000000000000000E+000
+ i:            1 j:            2 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            2 j:            1 real:    252.138970355614     
+ i:            2 j:            1 imag:   -53.0140754289734     
+ tau- amplitudes:
+ i:            2 j:            2 real:   -592.471882777551     
+ i:            2 j:            2 imag:    252.610202986758     
+ tau+ amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            1 j:            2 real:   -89.3003421541743     
+ i:            1 j:            2 imag:    88.2005014668690     
+ tau+ amplitudes:
+ i:            2 j:            1 real:   0.000000000000000E+000
+ i:            2 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            2 j:            2 real:    138.308968042668     
+ i:            2 j:            2 imag:    270.183761789360     
+   (0,0)    (0,0) 
+(252.1,-53.01) (-592.5,252.6) 
+   (0,0) (-89.3,88.2) 
+   (0,0) (138.3,270.2) 
 # Helicity amplitude calculation #
-- rh_6f_tau-: 7.8416
-- rh_6f_tau+: 1.7258
-- rh_6f tau-/tau+: 4.5437
+rh_6f_tau-[0][0].r: 0.0000 
+rh_6f_tau-[0][0].i: 0.0000 
+rh_6f_tau-[0][1].r: 252.1390 
+rh_6f_tau-[0][1].i: -53.0141 
+rh_6f_tau-[1][0].r: 0.0000 
+rh_6f_tau-[1][0].i: 0.0000 
+rh_6f_tau-[1][1].r: -592.4719 
+rh_6f_tau-[1][1].i: 252.6102 
+rh_6f_tau+[0][0].r: 0.0000 
+rh_6f_tau+[0][0].i: 0.0000 
+rh_6f_tau+[0][1].r: 0.0000 
+rh_6f_tau+[0][1].i: 0.0000 
+rh_6f_tau+[1][0].r: -89.3003 
+rh_6f_tau+[1][0].i: 88.2005 
+rh_6f_tau+[1][1].r: 138.3090 
+rh_6f_tau+[1][1].i: 270.1838 
 - rh_6f_res: 26314.5453
-- rh_6f_res_nwa: 422562.9856
+- rh_6f_res_nwa: 25932200503.1176
 ###
-- rh_6f_taum/taum ratio: 16.0000
-- rh_6f_taup/taup ratio: 16.0000
 ################
 ### iEv:   2 ###
 ################
@@ -75,15 +154,54 @@ H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
 - tau- (pk')(qk): 0.6135
 - tau+ (pk')(qk): 0.0338
 - tau-/tau+: 18.1501
+ tau- amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            1 j:            2 real:   0.000000000000000E+000
+ i:            1 j:            2 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            2 j:            1 real:    21.7478593900199     
+ i:            2 j:            1 imag:   -4.24540063143823     
+ tau- amplitudes:
+ i:            2 j:            2 real:   -14.1721209456969     
+ i:            2 j:            2 imag:    57.9478846291019     
+ tau+ amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            1 j:            2 real:   -426.133806884647     
+ i:            1 j:            2 imag:    84.9155877115959     
+ tau+ amplitudes:
+ i:            2 j:            1 real:   0.000000000000000E+000
+ i:            2 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            2 j:            2 real:    140.502593159741     
+ i:            2 j:            2 imag:   -411.589904720864     
+   (0,0)    (0,0) 
+(21.75,-4.245) (-14.17,57.95) 
+   (0,0) (-426.1,84.92) 
+   (0,0) (140.5,-411.6) 
 # Helicity amplitude calculation #
-- rh_6f_tau-: 9.8154
-- rh_6f_tau+: 0.5408
-- rh_6f tau-/tau+: 18.1501
+rh_6f_tau-[0][0].r: 0.0000 
+rh_6f_tau-[0][0].i: 0.0000 
+rh_6f_tau-[0][1].r: 21.7479 
+rh_6f_tau-[0][1].i: -4.2454 
+rh_6f_tau-[1][0].r: 0.0000 
+rh_6f_tau-[1][0].i: 0.0000 
+rh_6f_tau-[1][1].r: -14.1721 
+rh_6f_tau-[1][1].i: 57.9479 
+rh_6f_tau+[0][0].r: 0.0000 
+rh_6f_tau+[0][0].i: 0.0000 
+rh_6f_tau+[0][1].r: 0.0000 
+rh_6f_tau+[0][1].i: 0.0000 
+rh_6f_tau+[1][0].r: -426.1338 
+rh_6f_tau+[1][0].i: 84.9156 
+rh_6f_tau+[1][1].r: 140.5026 
+rh_6f_tau+[1][1].i: -411.5899 
 - rh_6f_res: 5949.8844
-- rh_6f_res_nwa: 165744.3462
+- rh_6f_res_nwa: 68550999.5650
 ###
-- rh_6f_taum/taum ratio: 16.0000
-- rh_6f_taup/taup ratio: 16.0000
 ################
 ### iEv:   3 ###
 ################
@@ -101,15 +219,54 @@ H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
 - tau- (pk')(qk): 0.6212
 - tau+ (pk')(qk): 0.1902
 - tau-/tau+: 3.2663
+ tau- amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            1 j:            2 real:   0.000000000000000E+000
+ i:            1 j:            2 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            2 j:            1 real:    53.0334220470817     
+ i:            2 j:            1 imag:   -7.54107313013459     
+ tau- amplitudes:
+ i:            2 j:            2 real:   -21.1318942383126     
+ i:            2 j:            2 imag:   -1.01700931871168     
+ tau+ amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            1 j:            2 real:    73.2554667807902     
+ i:            1 j:            2 imag:    133.277578860015     
+ tau+ amplitudes:
+ i:            2 j:            1 real:   0.000000000000000E+000
+ i:            2 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            2 j:            2 real:    298.579690899734     
+ i:            2 j:            2 imag:    795.850579016207     
+   (0,0)    (0,0) 
+(53.03,-7.541) (-21.13,-1.017) 
+   (0,0) (73.26,133.3) 
+   (0,0) (298.6,795.9) 
 # Helicity amplitude calculation #
-- rh_6f_tau-: 9.9400
-- rh_6f_tau+: 3.0432
-- rh_6f tau-/tau+: 3.2663
+rh_6f_tau-[0][0].r: 0.0000 
+rh_6f_tau-[0][0].i: 0.0000 
+rh_6f_tau-[0][1].r: 53.0334 
+rh_6f_tau-[0][1].i: -7.5411 
+rh_6f_tau-[1][0].r: 0.0000 
+rh_6f_tau-[1][0].i: 0.0000 
+rh_6f_tau-[1][1].r: -21.1319 
+rh_6f_tau-[1][1].i: -1.0170 
+rh_6f_tau+[0][0].r: 0.0000 
+rh_6f_tau+[0][0].i: 0.0000 
+rh_6f_tau+[0][1].r: 0.0000 
+rh_6f_tau+[0][1].i: 0.0000 
+rh_6f_tau+[1][0].r: 73.2555 
+rh_6f_tau+[1][0].i: 133.2776 
+rh_6f_tau+[1][1].r: 298.5797 
+rh_6f_tau+[1][1].i: 795.8506 
 - rh_6f_res: 390251.8003
-- rh_6f_res_nwa: 944523.4256
+- rh_6f_res_nwa: 316135687.7674
 ###
-- rh_6f_taum/taum ratio: 16.0000
-- rh_6f_taup/taup ratio: 16.0000
 ################
 ### iEv:   4 ###
 ################
@@ -127,15 +284,54 @@ H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
 - tau- (pk')(qk): 0.1216
 - tau+ (pk')(qk): 0.0703
 - tau-/tau+: 1.7299
+ tau- amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            1 j:            2 real:   0.000000000000000E+000
+ i:            1 j:            2 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            2 j:            1 real:    24.0774719859894     
+ i:            2 j:            1 imag:    30.6179605020075     
+ tau- amplitudes:
+ i:            2 j:            2 real:    23.9549205855046     
+ i:            2 j:            2 imag:    9.44172107923107     
+ tau+ amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            1 j:            2 real:   -508.310174175265     
+ i:            1 j:            2 imag:    1020.22896985736     
+ tau+ amplitudes:
+ i:            2 j:            1 real:   0.000000000000000E+000
+ i:            2 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            2 j:            2 real:   -589.086007529702     
+ i:            2 j:            2 imag:    319.618550618732     
+   (0,0)    (0,0) 
+(24.08,30.62) (23.95,9.442) 
+   (0,0) (-508.3,1020) 
+   (0,0) (-589.1,319.6) 
 # Helicity amplitude calculation #
-- rh_6f_tau-: 1.9461
-- rh_6f_tau+: 1.1250
-- rh_6f tau-/tau+: 1.7299
+rh_6f_tau-[0][0].r: 0.0000 
+rh_6f_tau-[0][0].i: 0.0000 
+rh_6f_tau-[0][1].r: 24.0775 
+rh_6f_tau-[0][1].i: 30.6180 
+rh_6f_tau-[1][0].r: 0.0000 
+rh_6f_tau-[1][0].i: 0.0000 
+rh_6f_tau-[1][1].r: 23.9549 
+rh_6f_tau-[1][1].i: 9.4417 
+rh_6f_tau+[0][0].r: 0.0000 
+rh_6f_tau+[0][0].i: 0.0000 
+rh_6f_tau+[0][1].r: 0.0000 
+rh_6f_tau+[0][1].i: 0.0000 
+rh_6f_tau+[1][0].r: -508.3102 
+rh_6f_tau+[1][0].i: 1020.2290 
+rh_6f_tau+[1][1].r: -589.0860 
+rh_6f_tau+[1][1].i: 319.6186 
 - rh_6f_res: 5855.4931
-- rh_6f_res_nwa: 68358.6664
+- rh_6f_res_nwa: 76650204.1260
 ###
-- rh_6f_taum/taum ratio: 16.0000
-- rh_6f_taup/taup ratio: 16.0000
 ################
 ### iEv:   5 ###
 ################
@@ -153,15 +349,54 @@ H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
 - tau- (pk')(qk): 0.6156
 - tau+ (pk')(qk): 0.6174
 - tau-/tau+: 0.9971
+ tau- amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            1 j:            2 real:   0.000000000000000E+000
+ i:            1 j:            2 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            2 j:            1 real:   -6058.61530051858     
+ i:            2 j:            1 imag:   -2094.98417586843     
+ tau- amplitudes:
+ i:            2 j:            2 real:   -562.614152382853     
+ i:            2 j:            2 imag:   -3023.80428930123     
+ tau+ amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            1 j:            2 real:    19.0654920409267     
+ i:            1 j:            2 imag:    16.9830969029139     
+ tau+ amplitudes:
+ i:            2 j:            1 real:   0.000000000000000E+000
+ i:            2 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            2 j:            2 real:    17.1761122092346     
+ i:            2 j:            2 imag:   -66.6072929121093     
+   (0,0)    (0,0) 
+(-6059,-2095) (-562.6,-3024) 
+   (0,0) (19.07,16.98) 
+   (0,0) (17.18,-66.61) 
 # Helicity amplitude calculation #
-- rh_6f_tau-: 9.8502
-- rh_6f_tau+: 9.8784
-- rh_6f tau-/tau+: 0.9971
+rh_6f_tau-[0][0].r: 0.0000 
+rh_6f_tau-[0][0].i: 0.0000 
+rh_6f_tau-[0][1].r: -6058.6153 
+rh_6f_tau-[0][1].i: -2094.9842 
+rh_6f_tau-[1][0].r: 0.0000 
+rh_6f_tau-[1][0].i: 0.0000 
+rh_6f_tau-[1][1].r: -562.6142 
+rh_6f_tau-[1][1].i: -3023.8043 
+rh_6f_tau+[0][0].r: 0.0000 
+rh_6f_tau+[0][0].i: 0.0000 
+rh_6f_tau+[0][1].r: 0.0000 
+rh_6f_tau+[0][1].i: 0.0000 
+rh_6f_tau+[1][0].r: 19.0655 
+rh_6f_tau+[1][0].i: 16.9831 
+rh_6f_tau+[1][1].r: 17.1761 
+rh_6f_tau+[1][1].i: -66.6073 
 - rh_6f_res: 1081839.7429
-- rh_6f_res_nwa: 3038299.4105
+- rh_6f_res_nwa: 15593954072305.7109
 ###
-- rh_6f_taum/taum ratio: 16.0000
-- rh_6f_taup/taup ratio: 16.0000
 ################
 ### iEv:   6 ###
 ################
@@ -179,15 +414,54 @@ H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
 - tau- (pk')(qk): 0.4340
 - tau+ (pk')(qk): 0.2943
 - tau-/tau+: 1.4744
+ tau- amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            1 j:            2 real:   0.000000000000000E+000
+ i:            1 j:            2 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            2 j:            1 real:   -95.8354027172099     
+ i:            2 j:            1 imag:   -1161.36806582432     
+ tau- amplitudes:
+ i:            2 j:            2 real:   -377.436267866904     
+ i:            2 j:            2 imag:    3125.08538960122     
+ tau+ amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            1 j:            2 real:   -96.2678755109019     
+ i:            1 j:            2 imag:   -137.488371763110     
+ tau+ amplitudes:
+ i:            2 j:            1 real:   0.000000000000000E+000
+ i:            2 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            2 j:            2 real:    37.7628885910611     
+ i:            2 j:            2 imag:   -42.0986212578922     
+   (0,0)    (0,0) 
+(-95.84,-1161) (-377.4,3125) 
+   (0,0) (-96.27,-137.5) 
+   (0,0) (37.76,-42.1) 
 # Helicity amplitude calculation #
-- rh_6f_tau-: 6.9434
-- rh_6f_tau+: 4.7094
-- rh_6f tau-/tau+: 1.4744
+rh_6f_tau-[0][0].r: 0.0000 
+rh_6f_tau-[0][0].i: 0.0000 
+rh_6f_tau-[0][1].r: -95.8354 
+rh_6f_tau-[0][1].i: -1161.3681 
+rh_6f_tau-[1][0].r: 0.0000 
+rh_6f_tau-[1][0].i: 0.0000 
+rh_6f_tau-[1][1].r: -377.4363 
+rh_6f_tau-[1][1].i: 3125.0854 
+rh_6f_tau+[0][0].r: 0.0000 
+rh_6f_tau+[0][0].i: 0.0000 
+rh_6f_tau+[0][1].r: 0.0000 
+rh_6f_tau+[0][1].i: 0.0000 
+rh_6f_tau+[1][0].r: -96.2679 
+rh_6f_tau+[1][0].i: -137.4884 
+rh_6f_tau+[1][1].r: 37.7629 
+rh_6f_tau+[1][1].i: -42.0986 
 - rh_6f_res: 6536.6986
-- rh_6f_res_nwa: 1021031.9848
+- rh_6f_res_nwa: 1656764862670.1741
 ###
-- rh_6f_taum/taum ratio: 16.0000
-- rh_6f_taup/taup ratio: 16.0000
 ################
 ### iEv:   7 ###
 ################
@@ -205,15 +479,54 @@ H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
 - tau- (pk')(qk): 0.2629
 - tau+ (pk')(qk): 0.6201
 - tau-/tau+: 0.4240
+ tau- amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            1 j:            2 real:   0.000000000000000E+000
+ i:            1 j:            2 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            2 j:            1 real:   -713.513003166834     
+ i:            2 j:            1 imag:   -2273.58022396320     
+ tau- amplitudes:
+ i:            2 j:            2 real:   -1039.68037633306     
+ i:            2 j:            2 imag:   -187.384153826161     
+ tau+ amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            1 j:            2 real:    15.0551320825826     
+ i:            1 j:            2 imag:   -51.7126898805431     
+ tau+ amplitudes:
+ i:            2 j:            1 real:   0.000000000000000E+000
+ i:            2 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            2 j:            2 real:   -5.91579720642584     
+ i:            2 j:            2 imag:   -16.3951743354119     
+   (0,0)    (0,0) 
+(-713.5,-2274) (-1040,-187.4) 
+   (0,0) (15.06,-51.71) 
+   (0,0) (-5.916,-16.4) 
 # Helicity amplitude calculation #
-- rh_6f_tau-: 4.2067
-- rh_6f_tau+: 9.9221
-- rh_6f tau-/tau+: 0.4240
+rh_6f_tau-[0][0].r: 0.0000 
+rh_6f_tau-[0][0].i: 0.0000 
+rh_6f_tau-[0][1].r: -713.5130 
+rh_6f_tau-[0][1].i: -2273.5802 
+rh_6f_tau-[1][0].r: 0.0000 
+rh_6f_tau-[1][0].i: 0.0000 
+rh_6f_tau-[1][1].r: -1039.6804 
+rh_6f_tau-[1][1].i: -187.3842 
+rh_6f_tau+[0][0].r: 0.0000 
+rh_6f_tau+[0][0].i: 0.0000 
+rh_6f_tau+[0][1].r: 0.0000 
+rh_6f_tau+[0][1].i: 0.0000 
+rh_6f_tau+[1][0].r: 15.0551 
+rh_6f_tau+[1][0].i: -51.7127 
+rh_6f_tau+[1][1].r: -5.9158 
+rh_6f_tau+[1][1].i: -16.3952 
 - rh_6f_res: 51320.7782
-- rh_6f_res_nwa: 1303311.7993
+- rh_6f_res_nwa: 2104982549169.3638
 ###
-- rh_6f_taum/taum ratio: 16.0000
-- rh_6f_taup/taup ratio: 16.0000
 ################
 ### iEv:   8 ###
 ################
@@ -231,15 +544,54 @@ H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
 - tau- (pk')(qk): 0.3883
 - tau+ (pk')(qk): 0.6211
 - tau-/tau+: 0.6252
+ tau- amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            1 j:            2 real:   0.000000000000000E+000
+ i:            1 j:            2 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            2 j:            1 real:    3333.99840560044     
+ i:            2 j:            1 imag:    98.4111056848529     
+ tau- amplitudes:
+ i:            2 j:            2 real:    626.278919716156     
+ i:            2 j:            2 imag:    1911.77530811992     
+ tau+ amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            1 j:            2 real:   -47.8442399432641     
+ i:            1 j:            2 imag:   -112.452481420609     
+ tau+ amplitudes:
+ i:            2 j:            1 real:   0.000000000000000E+000
+ i:            2 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            2 j:            2 real:    195.957780995689     
+ i:            2 j:            2 imag:   -10.9554716183882     
+   (0,0)    (0,0) 
+(3334,98.41) (626.3,1912) 
+   (0,0) (-47.84,-112.5) 
+   (0,0) (196,-10.96) 
 # Helicity amplitude calculation #
-- rh_6f_tau-: 6.2130
-- rh_6f_tau+: 9.9372
-- rh_6f tau-/tau+: 0.6252
+rh_6f_tau-[0][0].r: 0.0000 
+rh_6f_tau-[0][0].i: 0.0000 
+rh_6f_tau-[0][1].r: 3333.9984 
+rh_6f_tau-[0][1].i: 98.4111 
+rh_6f_tau-[1][0].r: 0.0000 
+rh_6f_tau-[1][0].i: 0.0000 
+rh_6f_tau-[1][1].r: 626.2789 
+rh_6f_tau-[1][1].i: 1911.7753 
+rh_6f_tau+[0][0].r: 0.0000 
+rh_6f_tau+[0][0].i: 0.0000 
+rh_6f_tau+[0][1].r: 0.0000 
+rh_6f_tau+[0][1].i: 0.0000 
+rh_6f_tau+[1][0].r: -47.8442 
+rh_6f_tau+[1][0].i: -112.4525 
+rh_6f_tau+[1][1].r: 195.9578 
+rh_6f_tau+[1][1].i: -10.9555 
 - rh_6f_res: 505184.9453
-- rh_6f_res_nwa: 1927815.8680
+- rh_6f_res_nwa: 4707755439455.8037
 ###
-- rh_6f_taum/taum ratio: 16.0000
-- rh_6f_taup/taup ratio: 16.0000
 ################
 ### iEv:   9 ###
 ################
@@ -257,12 +609,51 @@ H -->  (tau+) (tau-) --> (3 leptons) (3 leptons)
 - tau- (pk')(qk): 0.0386
 - tau+ (pk')(qk): 0.6192
 - tau-/tau+: 0.0623
+ tau- amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            1 j:            2 real:   0.000000000000000E+000
+ i:            1 j:            2 imag:   0.000000000000000E+000
+ tau- amplitudes:
+ i:            2 j:            1 real:    29.4159228126548     
+ i:            2 j:            1 imag:   -34.4154603768560     
+ tau- amplitudes:
+ i:            2 j:            2 real:    8.86864641277865     
+ i:            2 j:            2 imag:   -10.4063711305641     
+ tau+ amplitudes:
+ i:            1 j:            1 real:   0.000000000000000E+000
+ i:            1 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            1 j:            2 real:    1857.34843302976     
+ i:            1 j:            2 imag:    1853.17630439447     
+ tau+ amplitudes:
+ i:            2 j:            1 real:   0.000000000000000E+000
+ i:            2 j:            1 imag:   0.000000000000000E+000
+ tau+ amplitudes:
+ i:            2 j:            2 real:   -1180.70589611956     
+ i:            2 j:            2 imag:   -258.180349231111     
+   (0,0)    (0,0) 
+(29.42,-34.42) (8.869,-10.41) 
+   (0,0) (1857,1853) 
+   (0,0) (-1181,-258.2) 
 # Helicity amplitude calculation #
-- rh_6f_tau-: 0.6170
-- rh_6f_tau+: 9.9078
-- rh_6f tau-/tau+: 0.0623
+rh_6f_tau-[0][0].r: 0.0000 
+rh_6f_tau-[0][0].i: 0.0000 
+rh_6f_tau-[0][1].r: 29.4159 
+rh_6f_tau-[0][1].i: -34.4155 
+rh_6f_tau-[1][0].r: 0.0000 
+rh_6f_tau-[1][0].i: 0.0000 
+rh_6f_tau-[1][1].r: 8.8686 
+rh_6f_tau-[1][1].i: -10.4064 
+rh_6f_tau+[0][0].r: 0.0000 
+rh_6f_tau+[0][0].i: 0.0000 
+rh_6f_tau+[0][1].r: 0.0000 
+rh_6f_tau+[0][1].i: 0.0000 
+rh_6f_tau+[1][0].r: 1857.3484 
+rh_6f_tau+[1][0].i: 1853.1763 
+rh_6f_tau+[1][1].r: -1180.7059 
+rh_6f_tau+[1][1].i: -258.1803 
 - rh_6f_res: 15165.9165
-- rh_6f_res_nwa: 190893.1646
+- rh_6f_res_nwa: 692142079.4717
 ###
-- rh_6f_taum/taum ratio: 16.0000
-- rh_6f_taup/taup ratio: 16.0000

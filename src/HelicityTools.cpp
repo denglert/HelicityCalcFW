@@ -1,5 +1,4 @@
 #include "HelicityTools.h"
-#include "FortranInterface.h"
 
 double HelicityTools::rh_tautau_polarized(double *p1, double *p2, int &pol1, int &pol2)
 {
@@ -14,3 +13,43 @@ double HelicityTools::rh_tautau_unpolarized(double *p1, double *p2)
 	{ res = res + rh_tautau_(p1,p2,&pol1,&pol2); }
 	return res;
 };
+
+
+// --- TauMatrix class --- //
+
+double TauMatrix::CalcSum()
+{
+	double sum = 0;
+	for (int i=0; i<2; i++)
+	for (int j=0; j<2; j++)
+	{
+		sum = sum + m[i][j].real()*m[i][j].real()+m[i][j].imag()*m[i][j].imag();
+	}
+	return sum;
+}
+
+void TauMatrix::Display()
+{
+	for (int i=0; i<2; i++)
+	{
+		for (int j=0; j<2; j++)
+		{
+			std::cout << std::setw(8) << std::setprecision(4) << m[i][j] << " " ;
+		}
+		std::cout << std::endl;
+	}
+}
+
+
+void TauMatrix::ReadInCMatrix_2_2( CMatrix_2_2 &cmatrix )
+{
+
+	for (int i=0; i<2; i++)
+	{
+		for (int j=0; j<2; j++)
+		{
+			m[i][j] = cmatrix[j][i].r + I*cmatrix[j][i].i;
+		}
+	}
+
+}

@@ -11,6 +11,7 @@
 #include "FortranInterface.h"
 #include "PhysConst.h"
 #include "UtilFunctions.h"
+#include "HelicityTools.h"
 
 // Eucledian to Minkowski indeces mapping
 int e2m[4] = {1, 2, 3, 0};
@@ -33,19 +34,29 @@ int main( int argc, const char *argv[] )
 	double E_cm = 125.; 					  // GeV
 	double masses[2] = {m_tau, m_tau}; // GeV
 
+	// Auxiliary vector(s)
+	TLorentzVector k0 (1.0, 0.0, 0.0, 1.0);
+
 	// Fortran COMMON blocks
 	masses_.rmtau             = m_tau;
 	couplings_.wcl            = 1.0;
 	couplings_.gh_tautau      = 1.0;
-	amplitudes_.rh_6f_taup    = 0.0;
-	amplitudes_.rh_6f_taum    = 0.0;
 	amplitudes_.rh_6f_tautau  = 0.0;
 	amplitudes_.rh_6f_res     = 0.0;
 	amplitudes_.rh_6f_res_nwa = 0.0;
 
-	///////////////////////////////////////////////
+	// Ampltiudes
+	//cval cdec_taum[2][2];
+	CMatrix_2_2 cdec_taum;
+	CMatrix_2_2 cdec_taup;
+	CMatrix_2_2 cdec_tautau;
+
+	TauMatrix taum;
+	TauMatrix taup;
+
+	////////////////////////////////////////////////////
 	// -- Generate HiggsDecays with TGenPhaseSpace -- //
-	///////////////////////////////////////////////
+	////////////////////////////////////////////////////
 	
 	TGenPhaseSpace HiggsDecay;
 	TLorentzVector Higgs(0.0, 0.0, 0.0, m_higgs);
@@ -88,7 +99,6 @@ int main( int argc, const char *argv[] )
 		// Get tau+ and tau-
 	   TLorentzVector *TauNeg = HiggsDecay.GetDecay(1);
 	   TLorentzVector *TauPos = HiggsDecay.GetDecay(0);
-
 
 		TVector3 TauNeg_BoostVector = TauNeg->BoostVector();
 		TVector3 TauPos_BoostVector = TauPos->BoostVector();
@@ -145,18 +155,36 @@ int main( int argc, const char *argv[] )
 //		double rh_tautau_val = rh_tautau_(p1_,p2_);
 //		std::cout << Form("rh_tautau: %.2f\n", rh_tautau_val) << std::endl;
 
-		double rh_6f_val = rh_6f_(p3_,p4_,p5_,p6_,p7_,p8_);
+		double rh_6f_val = rh_6f_(p3_,p4_,p5_,p6_,p7_,p8_,cdec_taum,cdec_taup,cdec_tautau);
+
+		taum.ReadInCMatrix_2_2(cdec_taum);
+		taup.ReadInCMatrix_2_2(cdec_taup);
+
+		taum.Display();
+		taup.Display();
+
 		std::cout << Form("# Helicity amplitude calculation #") << std::endl;
-		std::cout << Form("- rh_6f_tau-: %.4f", amplitudes_.rh_6f_taum ) << std::endl;
-		std::cout << Form("- rh_6f_tau+: %.4f", amplitudes_.rh_6f_taup ) << std::endl;
-		std::cout << Form("- rh_6f tau-/tau+: %.4f", amplitudes_.rh_6f_taum/amplitudes_.rh_6f_taup	) << std::endl;
+		for (int i=0; i<2; i++)
+		for (int j=0; j<2; j++)
+		{
+		  std::cout << Form("rh_6f_tau-[%d][%d].r: %.4f \n",i,j,cdec_taum[i][j].r);
+		  std::cout << Form("rh_6f_tau-[%d][%d].i: %.4f \n",i,j,cdec_taum[i][j].i);
+		}
+
+		for (int i=0; i<2; i++)
+		for (int j=0; j<2; j++)
+		{
+		  std::cout << Form("rh_6f_tau+[%d][%d].r: %.4f \n",i,j,cdec_taup[i][j].r);
+		  std::cout << Form("rh_6f_tau+[%d][%d].i: %.4f \n",i,j,cdec_taup[i][j].i);
+		}
+		//std::cout << Form("- rh_6f tau-/tau+: %.4f", amplitudes_.rh_6f_taum/amplitudes_.rh_6f_taup	) << std::endl;
 		std::cout << Form("- rh_6f_res: %.4f", amplitudes_.rh_6f_res ) << std::endl;
 		std::cout << Form("- rh_6f_res_nwa: %.4f", amplitudes_.rh_6f_res_nwa ) << std::endl;
 
 		std::cout << Form("###") << std::endl;
-		std::cout << Form("- rh_6f_taum/taum ratio: %.4f", amplitudes_.rh_6f_taum/tauneg_amp ) << std::endl;
-		std::cout << Form("- rh_6f_taup/taup ratio: %.4f", amplitudes_.rh_6f_taup/taupos_amp ) << std::endl;
-//		std::cout << Form("rh_6f: %.2f", rh_6f_val) << std::endl;
+		//std::cout << Form("- rh_6f_taum/taum ratio: %.4f", amplitudes_.rh_6f_taum/tauneg_amp ) << std::endl;
+		//std::cout << Form("- rh_6f_taup/taup ratio: %.4f", amplitudes_.rh_6f_taup/taupos_amp ) << std::endl;
+		//std::cout << Form("rh_6f: %.2f", rh_6f_val) << std::endl;
 		//	double LeptonMasses1[3] = {m_nu_tau, m_ele, m_nu_ele};
 		//	double LeptonMasses2[3] = {m_nu_tau, m_muo, m_nu_muo};
 		// H(p) -> e-(p3) vebar(p4) vmu(p5) mu+(p6) vtau(p7) vtaubar(p8)                 

@@ -6,6 +6,9 @@ OBJ_rh_6f = $(CMN) ../lib/HelicityTools.cpp.o ../lib/test_rh_6f.cpp.o ../lib/rh_
 
 OBJ_CUBA = $(CMN) ../lib/main_cuba_test.cpp.o ../lib/vegas.f.o
 
+
+OBJ_test_HelicityTools = $(CMN) ../lib/test_HelicityTools.cpp.o ../lib/HelicityTools.cpp.o ../lib/rh_tautau.f.o
+
 CMN = ../lib/UtilFunctions.cpp.o 
 
 #########################
@@ -13,7 +16,7 @@ CMN = ../lib/UtilFunctions.cpp.o
 #########################
 LINKER = ifort
 
-binaries : ../bin/test_rh_tautau ../bin/test_rh_6f ../bin/main_cuba_test ../bin/main_test
+binaries : ../bin/test_rh_tautau ../bin/test_rh_6f ../bin/main_cuba_test ../bin/main_test ../bin/test_HelicityTools
 
 ../bin/test_rh_tautau : $(OBJ_rh_tautau)
 ifeq ($(LINKER),ifort)
@@ -24,6 +27,14 @@ ifeq ($(LINKER),g++)
 endif
 
 ../bin/test_rh_6f : $(OBJ_rh_6f)
+ifeq ($(LINKER),ifort)
+	$(FC) -o $@ $^ $(FLFLAGS) 
+endif
+ifeq ($(LINKER),g++)
+	$(CC) $(CLFLAGS) -o $@ $^
+endif
+
+../bin/test_HelicityTools: $(OBJ_test_HelicityTools)
 ifeq ($(LINKER),ifort)
 	$(FC) -o $@ $^ $(FLFLAGS) 
 endif

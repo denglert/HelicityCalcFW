@@ -1,4 +1,17 @@
+#ifndef FORTRANINTERFACE_H
+#define FORTRANINTERFACE_H
+
 // Define Fortran functions //
+
+struct cval
+{
+	double r;
+	double i;
+};
+
+typedef struct cval cval;
+
+typedef cval CMatrix_2_2[2][2] ;
 
 extern "C"
 {
@@ -9,7 +22,7 @@ extern "C"
 					double **xi, int *it, int *ndo, double *si, double *swgt, double *schi );
 
 	double rh_tautau_(double *p1, double *p2, int *i1, int *i2);
-	double rh_6f_(double *p3, double *p4, double *p5, double *p6, double *p7, double *p8);
+	double rh_6f_(double *p3, double *p4, double *p5, double *p6, double *p7, double *p8, CMatrix_2_2 &cdec_taum, CMatrix_2_2 &cdec_taup, CMatrix_2_2 &cdec_tautau);
 
    extern struct
 	{
@@ -25,10 +38,10 @@ extern "C"
    extern struct
 	{
 		double rh_6f_tautau;
-		double rh_6f_taum;
-		double rh_6f_taup;
 		double rh_6f_res_nwa;
 		double rh_6f_res;
 		double rh_6f_res_test;
 	} amplitudes_;
 }
+
+#endif

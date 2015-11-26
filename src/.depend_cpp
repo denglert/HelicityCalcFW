@@ -69,4 +69,5 @@
  /home/de3u14/lib/build/hep/root/include/TPoint.h \
  /home/de3u14/lib/build/hep/root/include/TAttCanvas.h \
  /home/de3u14/lib/build/hep/root/include/TCanvasImp.h ../inc/HelicityFW.h \
- ../inc/FortranInterface.h ../inc/PhysConst.h ../inc/UtilFunctions.h
+ ../inc/FortranInterface.h ../inc/PhysConst.h ../inc/UtilFunctions.h \
+ ../inc/HelicityTools.h ../inc/FortranInterface.h

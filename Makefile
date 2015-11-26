@@ -9,6 +9,9 @@ test : build
 test_rh_6f : build
 	@ ./bin/test_rh_6f | tee ./log/test_rh_6f
 
+test_HelicityTools : build
+	@ ./bin/test_HelicityTools
+
 cuba : build
 	@ ./bin/main_cuba_test
 

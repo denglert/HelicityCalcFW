@@ -2,7 +2,8 @@
 c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 * Process and momenta convention:
 * H(p) -> e-(p3) vebar(p4) vmu(p5) mu+(p6) vtau(p7) vtaubar(p8)                 
-      real*8 function rh_6f(p3,p4,p5,p6,p7,p8)
+      real*8 function rh_6f(p3,p4,p5,p6,p7,p8,
+     &                      cdec_taum,cdec_taup,cdec_tautau)
 
       implicit real*8 (a-b,d-h,o-z)
       implicit double complex (c)
@@ -12,6 +13,8 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 
       dimension cres(2,2),cdec_taum(2,2),cdec_taup(2,2),ch_tautau(2,2)
       dimension cres_test(2,2)
+
+      dimension cmatrix(2,2)
 
       structure/pol/
         double complex e(0:3),ek0
@@ -25,7 +28,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 
       COMMON/masses/rmtau
       COMMON/couplings/wcl,gh_tautau
-      COMMON/amplitudes/rh_6f_tautau,rh_6f_taum(2,2),rh_6f_taup(2,2),
+      COMMON/amplitudes/rh_6f_tautau,
      &                  rh_6f_res_nwa,rh_6f_res,rh_6f_res_test
 
       PARAMETER (czero=(0.d0,0.d0),cim=(0.d0,1.d0))
@@ -48,17 +51,55 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       p568k0=p568(0)-p568(1)
 
 **********************************************************************
+c e-(p3) and vu_e_bar(p4)
 
       cden34=1.d0
 * quqd -- p=p3,q=p4                                                             
       quqd=p3(0)*p4(0)-p3(1)*p4(1)-p3(2)*p4(2)-p3(3)*p4(3)
       ccl=wcl/cden34
 
+c subroutine TW(qu,qd,v,abcd,cl,den,quqd,nsum)
+c Computes the coefficients a,b,c,d of the peculiar TW-function.
+c Entries: qu and qd are the 4-momenta of the fermions represented by the
+c fermion line. By convention, qd points towards the vertex.
+c v represents the polarization (or a subdiagram which can be interpreted as a
+c polarization). If the polarization vector v is complex, its name must start by c.
+c For example, the real polarization of a gluon will have name e1, e2.
+c The complex polarization deriving from a subdiagram can be instead named
+c as c12z(i1,i2).e where i1 and i2 are the polarization indices of the
+c subdiagram fermions.
+c If there is no polarization vector, and one wants to compute the individual
+c components T_mu of the insertion T, the entry v=0,1,2,3 gives back the
+c components mu=0,1,2,3. In this case, one must give v=#.
+c abcd is the name of the T-function coefficients. One must give a unique name for
+c all coefficients (e.g. name.). After running the input file, the automatic output
+c will be name.a, name.b, name.c and name.d for the 4 coefficients.
+c If the polarization v has fermion indices specified, the name of abcd must
+c contain those indices in the same order, followed by a ? in order to write
+c down a loop on those indices in the output file.c For example, if v=c12z(i1,i2).e, one must write as abcd entry - name(i1?,i2?).
+c If v=#, then the abcd name must be written as name(#).
+c cl is the left-handed bosonic couplings to fermions (cr=0 by default).
+c The entry den allows one to divide the T-function by a denominator (e.g.
+c a propagator). If den=0, no division will be made. If den=1, the cl and cr
+c couplings will be divided by the included den. If the denominator is complex,
+c its name must start by c (e.g. cden).
+c If nquqd=1, the scalar product between the qd and qu 4-momenta will be
+c computed.
+c nsum =1 allows one to add the computed coefficients a,b,c,d to those
+c previously evaluated.
+
+c subroutine TW0(qu,qd,v,abcd,cl,den,nquqd,nsum)
+c same as subroutine TW(qu,qd,v,a,b,c,d,cl,nsum). The TW0-function is
+c just optimized not to compute all terms proportional to the mass of the
+c fermion line.
+
+c subroutine TW10(qu,qd,v,a,cl,den,nquqd,nsum)
+c massless fermion line and W routine
+c computes the coefficient a (b, c and d are zero) of the unique TW0-function,
+c that is in the case of a massless fermion line with only one insertion.
+c this is the e-, vebar W line
+
 * TW10 -- qu=p3,qd=p4,v=0,a=cw34.e(0),cl=ccl,nsum=0                             
-* massless fermion line and W routine
-* c computes the coefficient a (b, c and d are zero) of the unique TW0-function,
-* c that is in the case of a massless fermion line with only one insertion.
-* this is the e-, vebar W line
       eps_0=-p3(2)*p4(3)+p4(2)*p3(3)
       ceps_0=eps_0*cim
       auxa=-quqd+p3k0*p4(0)+p4k0*p3(0)
@@ -301,11 +342,14 @@ c     print*,''
       res_taum=0.d0
       do i=1,2
       do j=1,2
+      cval = cdec_taum(i,j)
       res_taum=res_taum+cdec_taum(i,j)*conjg(cdec_taum(i,j))
+      print*,'tau- amplitudes:'
+      print*,'i: ',i,'j: ',j, 'real: ', DBLE( cval )
+      print*,'i: ',i,'j: ',j, 'imag: ', AIMAG( cval )
       enddo
       enddo
       res_taum=res_taum/p3k0/p4k0/p7k0/p734k0
-      rh_6f_taum=res_taum
 
 **********************************************************************
 * tau+ amplitude
@@ -313,10 +357,14 @@ c     print*,''
       do i=1,2
       do j=1,2
       res_taup=res_taup+cdec_taup(i,j)*conjg(cdec_taup(i,j))     
+      cval = cdec_taup(i,j)
+      res_taum=res_taum+cdec_taum(i,j)*conjg(cdec_taum(i,j))
+      print*,'tau+ amplitudes:'
+      print*,'i: ',i,'j: ',j, 'real: ', DBLE( cval )
+      print*,'i: ',i,'j: ',j, 'imag: ', AIMAG( cval )
       enddo
       enddo
       res_taup=res_taup/p5k0/p6k0/p8k0/p568k0
-      rh_6f_taup=res_taup
 
       res_nwa=res_htautau*res_taum*res_taup
       rh_6f_res_nwa=res_nwa
