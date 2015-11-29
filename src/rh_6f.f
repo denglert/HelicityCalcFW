@@ -28,7 +28,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 
       COMMON/masses/rmtau
       COMMON/couplings/wcl,gh_tautau
-      COMMON/amplitudes/rh_6f_tautau,
+      COMMON/amplitudes/rh_6f_tautau,rh_6f_taum,rh_6f_taup,
      &                  rh_6f_res_nwa,rh_6f_res,rh_6f_res_test
 
       PARAMETER (czero=(0.d0,0.d0),cim=(0.d0,1.d0))
@@ -296,6 +296,20 @@ c cr coupling.
       enddo
       enddo
 
+      print*,'tw568_8.a(iut,jut)'
+      do iut=1,2
+      do jut=1,2
+      print*,'i: ',i,'j: ', j, tw568_8.a(iut,jut)
+      enddo
+      enddo
+
+      print*,'tw568_8.b(iut,jut)'
+      do iut=1,2
+      do jut=1,2
+      print*,'i: ',i,'j: ', j, tw568_8.b(iut,jut)
+      enddo
+      enddo
+
 **********************************************************************
 
 * mline -- res=ch_tautau(&1,&2),abcd=th743_568.,m1=rmtau,m2=(-rmtau),den=0,     
@@ -340,31 +354,31 @@ c     print*,''
 **********************************************************************
 * tau- amplitude
       res_taum=0.d0
+      print*,'tau- amplitudes (inside FORTRAN):'
       do i=1,2
       do j=1,2
       cval = cdec_taum(i,j)
       res_taum=res_taum+cdec_taum(i,j)*conjg(cdec_taum(i,j))
-      print*,'tau- amplitudes:'
-      print*,'i: ',i,'j: ',j, 'real: ', DBLE( cval )
-      print*,'i: ',i,'j: ',j, 'imag: ', AIMAG( cval )
+      print*,'i: ',i,'j: ',j, cval
       enddo
       enddo
       res_taum=res_taum/p3k0/p4k0/p7k0/p734k0
+      rh_6f_taum=res_taum
 
 **********************************************************************
 * tau+ amplitude
       res_taup=0.d0
+      print*,'tau+ amplitudes (inside FORTRAN):'
       do i=1,2
       do j=1,2
       res_taup=res_taup+cdec_taup(i,j)*conjg(cdec_taup(i,j))     
       cval = cdec_taup(i,j)
       res_taum=res_taum+cdec_taum(i,j)*conjg(cdec_taum(i,j))
-      print*,'tau+ amplitudes:'
-      print*,'i: ',i,'j: ',j, 'real: ', DBLE( cval )
-      print*,'i: ',i,'j: ',j, 'imag: ', AIMAG( cval )
+      print*,'i: ',i,'j: ',j, cval
       enddo
       enddo
       res_taup=res_taup/p5k0/p6k0/p8k0/p568k0
+      rh_6f_taup=res_taup
 
       res_nwa=res_htautau*res_taum*res_taup
       rh_6f_res_nwa=res_nwa

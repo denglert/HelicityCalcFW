@@ -15,7 +15,9 @@ double HelicityTools::rh_tautau_unpolarized(double *p1, double *p2)
 };
 
 
+/////////////////////////////
 // --- TauMatrix class --- //
+/////////////////////////////
 
 double TauMatrix::CalcSum()
 {
@@ -30,14 +32,20 @@ double TauMatrix::CalcSum()
 
 void TauMatrix::Display()
 {
+	std::cout << name << " matrix: " << std::endl;
 	for (int i=0; i<2; i++)
 	{
 		for (int j=0; j<2; j++)
 		{
-			std::cout << std::setw(8) << std::setprecision(4) << m[i][j] << " " ;
+			std::cout << std::setw(12) << std::setprecision(4) << m[i][j] << " " ;
 		}
 		std::cout << std::endl;
 	}
+}
+
+void TauMatrix::DisplaySum()
+{
+	std::cout << name << " sum of squared matrix elements: " << std::setw(12) << std::setprecision(4) << TauMatrix::CalcSum() << std::endl ;
 }
 
 
@@ -52,4 +60,10 @@ void TauMatrix::ReadInCMatrix_2_2( CMatrix_2_2 &cmatrix )
 		}
 	}
 
+}
+
+
+void TauMatrix::SetName(const char str[])
+{
+	name = str;
 }

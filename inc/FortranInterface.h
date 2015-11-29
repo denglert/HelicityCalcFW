@@ -38,6 +38,8 @@ extern "C"
    extern struct
 	{
 		double rh_6f_tautau;
+		double rh_6f_taum;
+		double rh_6f_taup;
 		double rh_6f_res_nwa;
 		double rh_6f_res;
 		double rh_6f_res_test;

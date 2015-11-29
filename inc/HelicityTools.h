@@ -19,12 +19,16 @@ class HelicityTools
 
 class TauMatrix
 {
-	
+	private:	
+	std::string name;
+
 	public:
 	compv m[2][2];
 	int indeces;
 	double CalcSum();
 	void Display();
+	void DisplaySum();
+	void SetName(const char str[]);
 	void ReadInCMatrix_2_2( CMatrix_2_2 &cmatrix );
 
 };
