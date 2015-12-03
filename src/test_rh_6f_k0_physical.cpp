@@ -1,3 +1,9 @@
+////////////////////////////////
+// test_rh_6f_k0_physical.cpp //
+////////////////////////////////
+
+// Auxiliary vector 'k0' taken to be physical
+
 #include <iostream>
 #include <cmath>
 #include <complex>
@@ -28,7 +34,7 @@ int main( int argc, const char *argv[] )
 	////////////////////////
 	
 
-	int nEvents = 1;
+	int nEvents = 3;
 
 	// Event parameters
 	int nParticles = 2;
@@ -50,10 +56,12 @@ int main( int argc, const char *argv[] )
 	//cval cdec_taum[2][2];
 	CMatrix_2_2 cdec_taum;
 	CMatrix_2_2 cdec_taup;
-	CMatrix_2_2 cdec_tautau;
+	CMatrix_2_2 ch_tautau;
 
+	TauMatrix h_tautau;
 	TauMatrix taum;
 	TauMatrix taup;
+	h_tautau.SetName("H->tau- tau+");
 	taum.SetName("taum");
 	taup.SetName("taup");
 
@@ -106,6 +114,8 @@ int main( int argc, const char *argv[] )
 		// Higgs Decay
 	   Double_t weight = HiggsDecay.Generate();
 
+		std::cout << "weight: " << weight << std::endl;
+
 		// Get tau+ and tau-
 	   TLorentzVector *p734 = HiggsDecay.GetDecay(1);
 	   TLorentzVector *p568 = HiggsDecay.GetDecay(0);
@@ -117,8 +127,11 @@ int main( int argc, const char *argv[] )
 		p734Decay.SetDecay( (*p734), 3, LeptonMasses1 );
 		p568Decay.SetDecay( (*p568), 3, LeptonMasses2 );
 
-	   Double_t weight2 = p734Decay.Generate();
 	   Double_t weight1 = p568Decay.Generate();
+	   Double_t weight2 = p734Decay.Generate();
+
+		std::cout << "weight1: " << weight1 << std::endl;
+		std::cout << "weight2: " << weight2 << std::endl;
 
 	   TLorentzVector *p7 = p734Decay.GetDecay(0); // v_tau
 	   TLorentzVector *p3 = p734Decay.GetDecay(1); // ele-
@@ -208,11 +221,13 @@ int main( int argc, const char *argv[] )
 //		std::cout << Form("rh_tautau: %.2f\n", rh_tautau_val) << std::endl;
 
 		std::cout << Form("\n# --- Helicity amplitude calculation --- #") << std::endl;
-		double rh_6f_val = rh_6f_(p3_,p4_,p5_,p6_,p7_,p8_,cdec_taum,cdec_taup,cdec_tautau);
+		double rh_6f_val = rh_6f_(p3_,p4_,p5_,p6_,p7_,p8_,cdec_taum,cdec_taup,ch_tautau);
 
+		h_tautau.ReadInCMatrix_2_2( ch_tautau );
 		taum.ReadInCMatrix_2_2(cdec_taum);
 		taup.ReadInCMatrix_2_2(cdec_taup);
 
+		h_tautau.Display();
 		taum.Display();
 		taup.Display();
 

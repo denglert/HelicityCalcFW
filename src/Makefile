@@ -1,13 +1,14 @@
-OBJ_rh_tautau = $(CMN) ../lib/test_rh_tautau.cpp.o ../lib/HelicityTools.cpp.o ../lib/rh_tautau.f.o ../lib/rambo.f.o ../lib/ranmar.f.o ../lib/vegas.f.o ../lib/rh_6f.f.o
+OBJ_rh_tautau = $(CMN) ../lib/test_rh_tautau.cpp.o ../lib/HelicityTools.cpp.o ../lib/rh_tautau.f.o ../lib/rambo.f.o ../lib/ranmar.f.o ../lib/vegas.f.o 
+OBJ_rh_6f_k0_1001     = $(CMN) ../lib/HelicityTools.cpp.o ../lib/FortranUtils.f.o ../lib/test_rh_6f_k0_1001.cpp.o     ../lib/rh_6f_k0_1001.f.o
+OBJ_rh_6f_k0_physical = $(CMN) ../lib/HelicityTools.cpp.o ../lib/FortranUtils.f.o ../lib/test_rh_6f_k0_physical.cpp.o ../lib/rh_6f_k0_physical.f.o
 
-OBJ_test = $(CMN) ../lib/HelicityTools.cpp.o ../lib/main_test.cpp.o ../lib/rh_tautau.f.o ../lib/rambo.f.o ../lib/ranmar.f.o ../lib/vegas.f.o ../lib/rh_6f.f.o
-
-OBJ_rh_6f = $(CMN) ../lib/HelicityTools.cpp.o ../lib/test_rh_6f.cpp.o ../lib/rh_tautau.f.o ../lib/rambo.f.o ../lib/ranmar.f.o ../lib/vegas.f.o ../lib/rh_6f.f.o
+OBJ_test = $(CMN) ../lib/HelicityTools.cpp.o ../lib/main_test.cpp.o ../lib/rh_tautau.f.o ../lib/rambo.f.o ../lib/ranmar.f.o ../lib/vegas.f.o ../lib/rh_6f_k0_1001.f.o
 
 OBJ_CUBA = $(CMN) ../lib/main_cuba_test.cpp.o ../lib/vegas.f.o
 
-
 OBJ_test_HelicityTools = $(CMN) ../lib/test_HelicityTools.cpp.o ../lib/HelicityTools.cpp.o ../lib/rh_tautau.f.o
+
+OBJ_test_FortranUtils = ../lib/TestFortranUtils.f.o ../lib/FortranUtils.f.o
 
 CMN = ../lib/UtilFunctions.cpp.o 
 
@@ -16,7 +17,7 @@ CMN = ../lib/UtilFunctions.cpp.o
 #########################
 LINKER = ifort
 
-binaries : ../bin/test_rh_tautau ../bin/test_rh_6f ../bin/main_cuba_test ../bin/main_test ../bin/test_HelicityTools
+binaries : ../bin/test_rh_tautau ../bin/test_rh_6f_k0_1001 ../bin/test_rh_6f_k0_physical ../bin/main_cuba_test ../bin/main_test ../bin/test_HelicityTools ../bin/test_FortranUtils
 
 ../bin/test_rh_tautau : $(OBJ_rh_tautau)
 ifeq ($(LINKER),ifort)
@@ -26,7 +27,15 @@ ifeq ($(LINKER),g++)
 	$(CC) $(CLFLAGS) -o $@ $^
 endif
 
-../bin/test_rh_6f : $(OBJ_rh_6f)
+../bin/test_rh_6f_k0_physical : $(OBJ_rh_6f_k0_physical)
+ifeq ($(LINKER),ifort)
+	$(FC) -o $@ $^ $(FLFLAGS) 
+endif
+ifeq ($(LINKER),g++)
+	$(CC) $(CLFLAGS) -o $@ $^
+endif
+
+../bin/test_rh_6f_k0_1001 : $(OBJ_rh_6f_k0_1001)
 ifeq ($(LINKER),ifort)
 	$(FC) -o $@ $^ $(FLFLAGS) 
 endif
@@ -35,6 +44,14 @@ ifeq ($(LINKER),g++)
 endif
 
 ../bin/test_HelicityTools: $(OBJ_test_HelicityTools)
+ifeq ($(LINKER),ifort)
+	$(FC) -o $@ $^ $(FLFLAGS) 
+endif
+ifeq ($(LINKER),g++)
+	$(CC) $(CLFLAGS) -o $@ $^
+endif
+
+../bin/test_FortranUtils: $(OBJ_test_FortranUtils)
 ifeq ($(LINKER),ifort)
 	$(FC) -o $@ $^ $(FLFLAGS) 
 endif
@@ -52,10 +69,10 @@ endif
 
 ../bin/main_cuba_test : $(OBJ_CUBA)
 ifeq ($(LINKER),ifort)
-	$(FC) -o $@ $^ $(FLFLAGS) 
+	$(FC) -o $@ $^ $(FLFLAGS) $(CUBALFLAGS)
 endif
 ifeq ($(LINKER),g++)
-	$(CC) $(CLFLAGS) -o $@ $^
+	$(CC) $(CLFLAGS) $(CUBALFLAGS) -o $@ $^
 endif
 
 #########################################################
@@ -70,7 +87,7 @@ FC     = ifort
 FCFLAGS = -c
 
 #FLFLAGS = -cxxlib -nofor_main -\#
-FLFLAGS = -cxxlib -nofor_main $(ROOTLFLAGS) $(CUBALFLAGS)
+FLFLAGS = -cxxlib -nofor_main $(ROOTLFLAGS)
 
 ../lib/%.f.o : %.f
 	$(FC) $(FCFLAGS) $< -o $@ 
@@ -82,8 +99,8 @@ FLFLAGS = -cxxlib -nofor_main $(ROOTLFLAGS) $(CUBALFLAGS)
 CC     = g++
 #CC     = icc
 
-CCFLAGS = $(CUBACFLAGS) -I../inc/ -MMD -MF .depend_cpp
-CLFLAGS = $(CUBALFLAGS) $(ROOTLFLAGS)
+CCFLAGS = -I../inc/ -MMD -MF .depend_cpp
+CLFLAGS = $(ROOTLFLAGS)
 
 # ROOT flags can also be set to environment variables
 ROOTCFLAGS = `root-config --cflags`

@@ -6,11 +6,18 @@ test_rh_tautau : build
 test : build
 	@ ./bin/main_test
 
-test_rh_6f : build
-	@ ./bin/test_rh_6f | tee ./log/test_rh_6f
+test_rh_6f_k0_1001 : build
+	@ ./bin/test_rh_6f_k0_1001 | tee ./log/test_rh_6f_k0_1001
+
+test_rh_6f_k0_physical : build
+	@ ./bin/test_rh_6f_k0_physical | tee ./log/test_rh_6f_k0_physical
 
 test_HelicityTools : build
 	@ ./bin/test_HelicityTools
+
+test_FortranUtils : build
+	@ ./bin/test_FortranUtils
+
 
 cuba : build
 	@ ./bin/main_cuba_test

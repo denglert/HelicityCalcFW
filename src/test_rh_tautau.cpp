@@ -29,7 +29,7 @@ int main( int argc, const char *argv[] )
 	double masses[2] = {m_tau, m_tau}; // GeV
 	masses_.rmtau = m_tau;
 
-	HelicityTools ht;
+//	HelicityTools ht;
 
 	////////////////////////////////////////////////////
 	// -- Generate HiggsDecays with TGenPhaseSpace -- //
@@ -89,18 +89,18 @@ int main( int argc, const char *argv[] )
 			p2_[e2m[i]] = (*TauNeg)[i];
 		}
 
-		std::cout << "Polarized case" << std::endl;
-		int pol1, pol2;
-		pol1 = 1; pol2 = 1;
-		std::cout << Form("(1,1): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
-		pol1 = 1; pol2 = 2;
-		std::cout << Form("(1,2): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
-		pol1 = 2; pol2 = 1;
-		std::cout << Form("(2,1): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
-		pol1 = 2; pol2 = 2;
-		std::cout << Form("(2,2): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
-		std::cout << "Unpolarized case" << std::endl;
-		std::cout << Form("%2.2f \n", ht.rh_tautau_unpolarized(p1_,p2_));
+//		std::cout << "Polarized case" << std::endl;
+//		int pol1, pol2;
+//		pol1 = 1; pol2 = 1;
+//		std::cout << Form("(1,1): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
+//		pol1 = 1; pol2 = 2;
+//		std::cout << Form("(1,2): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
+//		pol1 = 2; pol2 = 1;
+//		std::cout << Form("(2,1): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
+//		pol1 = 2; pol2 = 2;
+//		std::cout << Form("(2,2): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
+//		std::cout << "Unpolarized case" << std::endl;
+//		std::cout << Form("%2.2f \n", ht.rh_tautau_unpolarized(p1_,p2_));
 
 
 	}
@@ -139,18 +139,18 @@ int main( int argc, const char *argv[] )
 			p2_[e2m[i]] = (*TauNeg)[i];
 		}
 
-		std::cout << "Polarized case" << std::endl;
-		int pol1, pol2;
-		pol1 = 1; pol2 = 1;
-		std::cout << Form("(1,1): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
-		pol1 = 1; pol2 = 2;
-		std::cout << Form("(1,2): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
-		pol1 = 2; pol2 = 1;
-		std::cout << Form("(2,1): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
-		pol1 = 2; pol2 = 2;
-		std::cout << Form("(2,2): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
-		std::cout << "Unpolarized case" << std::endl;
-		std::cout << Form("%2.2f \n", ht.rh_tautau_unpolarized(p1_,p2_));
+//		std::cout << "Polarized case" << std::endl;
+//		int pol1, pol2;
+//		pol1 = 1; pol2 = 1;
+//		std::cout << Form("(1,1): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
+//		pol1 = 1; pol2 = 2;
+//		std::cout << Form("(1,2): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
+//		pol1 = 2; pol2 = 1;
+//		std::cout << Form("(2,1): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
+//		pol1 = 2; pol2 = 2;
+//		std::cout << Form("(2,2): %2.2f \n", ht.rh_tautau_polarized(p1_,p2_,pol1,pol2));
+//		std::cout << "Unpolarized case" << std::endl;
+//		std::cout << Form("%2.2f \n", ht.rh_tautau_unpolarized(p1_,p2_));
 	}
 
 }

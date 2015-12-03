@@ -2,14 +2,17 @@
 c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 * Process and momenta convention:
 * H(p) -> e-(p3) vebar(p4) vmu(p5) mu+(p6) vtau(p7) vtaubar(p8)                 
+* Auxiliary vector 'k0' taken as:
+* TLorentzVector k0 (1.0, 0.0, 0.0, 1.0);
+* which correspond to (1.0, 1.0, 0.0, 0.0) with the conv used here;
       real*8 function rh_6f(p3,p4,p5,p6,p7,p8,
-     &                      cdec_taum,cdec_taup,cdec_tautau)
+     &                      cdec_taum,cdec_taup,ch_tautau)
 
       implicit real*8 (a-b,d-h,o-z)
-      implicit double complex (c)
+      implicit complex*16 (c)
 
-      dimension p3(0:3),p4(0:3),p5(0:3),p6(0:3),p7(0:3),p8(0:3)
-      dimension p734(0:3),p568(0:3)
+      real*8 p3(0:3),p4(0:3),p5(0:3),p6(0:3),p7(0:3),p8(0:3)
+      real*8 p734(0:3),p568(0:3)
 
       dimension cres(2,2),cdec_taum(2,2),cdec_taup(2,2),ch_tautau(2,2)
       dimension cres_test(2,2)
@@ -17,12 +20,12 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       dimension cmatrix(2,2)
 
       structure/pol/
-        double complex e(0:3),ek0
+        complex*16 e(0:3),ek0
       end structure
       record/pol/cw34,cw56
 
       structure/tc/
-        double complex a(2,2),b(2,2),c(2,2),d(2,2)
+        complex*16 a(2,2),b(2,2),c(2,2),d(2,2)
       end structure
       record/tc/tw7_734,th734_568,tw568_8,t7_568,t568_8
 
