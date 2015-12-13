@@ -18,6 +18,8 @@ test_HelicityTools : build
 test_FortranUtils : build
 	@ ./bin/test_FortranUtils
 
+test_PhaseSpaceTools : build
+	@ ./bin/test_PhaseSpaceTools
 
 cuba : build
 	@ ./bin/main_cuba_test

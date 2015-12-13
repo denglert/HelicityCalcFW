@@ -138,10 +138,10 @@ int main( int argc, const char *argv[] )
 		TVector3 TauNeg_BoostVector = TauNeg->BoostVector();
 
 		// Debuggg 
-//		std::cerr << "TauPos_BoostVector" << std::endl;
-//		std::cerr << Form("%4.2f %4.2f %4.2f", TauPos_BoostVector.x(), TauPos_BoostVector.y(), TauPos_BoostVector.z()) << std::endl;
-//		std::cerr << Form("beta: %4.6f \n", sqrt(TauPos_BoostVector.x()*TauPos_BoostVector.x() + TauPos_BoostVector.y()*TauPos_BoostVector.y() + TauPos_BoostVector.z()*TauPos_BoostVector.z()) );
-//		std::cerr << Form("beta: %4.6f \n" ,TauPos->Beta());
+		std::cerr << "TauPos_BoostVector" << std::endl;
+		std::cerr << Form("%4.2f %4.2f %4.2f", TauPos_BoostVector.x(), TauPos_BoostVector.y(), TauPos_BoostVector.z()) << std::endl;
+		std::cerr << Form("beta: %4.6f \n", sqrt(TauPos_BoostVector.x()*TauPos_BoostVector.x() + TauPos_BoostVector.y()*TauPos_BoostVector.y() + TauPos_BoostVector.z()*TauPos_BoostVector.z()) );
+		std::cerr << Form("beta: %4.6f \n" ,TauPos->Beta());
 
 		// Make taus decay
 		TauPosDecay.SetDecay( (*TauPos), 3, LeptonMasses1 );
@@ -192,10 +192,10 @@ int main( int argc, const char *argv[] )
 
 		int pol1, pol2;
 		pol1 = 1; pol2 = 1;
-		double value = rh_tautau_(p1_,p2_,&pol1,&pol2);
-		std::cout << Form("rh_tatau: %.2f", value) << std::endl;
+		//double value = rh_tautau_(p1_,p2_,&pol1,&pol2);
+	//	std::cout << Form("rh_tatau: %.2f", value) << std::endl;
 
-		ampl_sqr->Fill( TauPos->Px(), TauPos->Py(), TauPos->Pz(), value);
+//		ampl_sqr->Fill( TauPos->Px(), TauPos->Py(), TauPos->Pz(), value);
 	}
 
 	std::string filebase;

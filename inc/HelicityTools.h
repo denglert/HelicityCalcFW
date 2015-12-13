@@ -21,16 +21,26 @@ class TauMatrix
 {
 	private:	
 	std::string name;
+	double k0[4];
+	int nParticles;
+	double *p[4];
+	double unpolarizedamp;
 
 	public:
 	compv m[2][2];
 	int indeces;
 	double CalcSum();
-	void Display();
-	void DisplaySum();
+	void Show();
+	void ShowSum();
+	void ShowUnpolarizedAmp();
+	void Showk0();
+	void Showpi(int i);
 	void SetName(const char str[]);
 	void ReadInCMatrix_2_2( CMatrix_2_2 &cmatrix );
-
+	void Setk0(double k0_0, double k0_1, double k0_2, double k0_3);
+	void SetnParts(int nParts);
+	void Setpi(int i, double p_0, double p_1, double p_2, double p_3);
+	void CalcUnpolarizedAmp();
 };
 
 #endif

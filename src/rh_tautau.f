@@ -1,7 +1,7 @@
 c Function rh_tatau
 c Input 'p1' and 'p2'
 c Returns 8 byte real value 
-      real*8 function rh_tautau(p1,p2,i1,i2)
+      real*8 function rh_tautau(p1,p2,cth)
 
 c Variable a-b, d-h o-z are all real
 c Variable 'c' is complex, and i,j,k,l,m,n are not defined
@@ -41,8 +41,10 @@ c      enddo
 C ******************************************************************
 c The product of p1 and k0 and p2 and k0
 c where k0 = (1,1,0,0)
-      p1k0=p1(0)-p1(1)
-      p2k0=p2(0)-p2(1)
+
+      factor = 1
+      p1k0=factor*(p1(0)-p1(2))
+      p2k0=factor*(p2(0)-p2(2))
 
 c subroutine TH(qu,qd,abc)
 c computes the coefficients a,b,c (d=0) for the insertion of a scalar particle
@@ -78,17 +80,17 @@ c the input must be the following: mline(i1?,&2,i2?,&1).
 
       res=0.d0
 
-c      do i1=1,2
-c        do i2=1,2
-c          cres=cth(i1,i2)                  
-c          res=res+dreal(cres)**2+dimag(cres)**2
-c        enddo
-c      enddo
+       do i1=1,2
+         do i2=1,2
+           cres=cth(i1,i2)                  
+           res=res+dreal(cres)**2+dimag(cres)**2
+         enddo
+       enddo
 
 c Just one polarization
 
-      cres=cth(i1,i2)                  
-      res=res+dreal(cres)**2+dimag(cres)**2
+c     cres=cth(i1,i2)                  
+c     res=res+dreal(cres)**2+dimag(cres)**2
 
       rh_tautau=res/p1k0/p2k0
 

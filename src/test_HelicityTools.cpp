@@ -18,6 +18,6 @@ int main( int argc, const char *argv[] )
 	std::cout << "Sum of the matrix elements squared: " << tau.CalcSum() <<
 			  std::endl;
 
-	tau.Display();
+	tau.Show();
 
 }

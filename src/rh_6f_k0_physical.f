@@ -12,6 +12,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       real*8 LorentzScalarProd
       real*8 CalcP3Mag
       complex*16 ComplexLorentzScalarProd
+      real*8 factor
 
       real*8 p3(0:3),p4(0:3),p5(0:3),p6(0:3),p7(0:3),p8(0:3)
       real*8 p734(0:3),p568(0:3)
@@ -90,15 +91,17 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       k0_cw34(1)=1
       k0_cw56(1)=1
 
+      factor = 1
+
 *     call Constructk0(k0_p3,p734)
 *     call Constructk0(k0_p4,p734)
 *     call Constructk0(k0_p5,p568)
 *     call Constructk0(k0_p6,p568)
-      call Constructk0(k0_p7,p734)
+*     call Constructk0(k0_p7,p734)
 *     call Constructk0(k0_p8,p568)
-      call Constructk0(k0_734,p734)
+*     call Constructk0(k0_734,p734)
 *     call Constructk0(k0_568,p568)
-      call Constructk0(k0_cw34,p734)
+*     call Constructk0(k0_cw34,p734)
 *     call Constructk0(k0_cw56,p568)
 
 
@@ -129,14 +132,14 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       
 
       ! k0 product
-*     p3k0=p3(0)-p3(1)
-*     p4k0=p4(0)-p4(1)
-*     p5k0=p5(0)-p5(1)
-*     p6k0=p6(0)-p6(1)
-*     p7k0=p7(0)-p7(1)
-*     p8k0=p8(0)-p8(1)
-*     p734k0=p734(0)-p734(1)
-*     p568k0=p568(0)-p568(1)
+      p3k0=factor*(p3(0)-p3(1))
+      p4k0=factor*(p4(0)-p4(1)) 
+      p5k0=factor*(p5(0)-p5(1))
+      p6k0=factor*(p6(0)-p6(1))
+      p7k0=factor*(p7(0)-p7(1))
+      p8k0=factor*(p8(0)-p8(1))
+      p734k0=factor*(p734(0)-p734(1))
+      p568k0=factor*(p568(0)-p568(1))
 
 **********************************************************************
 c e-(p3) and vu_e_bar(p4)
@@ -206,8 +209,8 @@ c this is the e-, vebar W line
       auxa=p3k0*p4(3)+p4k0*p3(3)
       cw34.e(3)=ccl*(auxa-ceps_0)
 
-*     cw34.ek0=cw34.e(0)-cw34.e(1) ! k0 product
-      cw34.ek0=ComplexLorentzScalarProd(cw34.e,k0_cw34) ! k0 product
+      cw34.ek0=factor*(cw34.e(0)-cw34.e(1)) ! k0 product
+*     cw34.ek0=ComplexLorentzScalarProd(cw34.e,k0_cw34) ! k0 product
 
 
 **********************************************************************
@@ -235,8 +238,8 @@ c this is the e-, vebar W line
       auxa=p5k0*p6(3)+p6k0*p5(3)
       cw56.e(3)=ccl*(auxa-ceps_0)
 
-*     cw56.ek0=cw56.e(0)-cw56.e(1) ! k0 product
-      cw56.ek0=ComplexLorentzScalarProd(cw56.e,k0_cw56) ! k0 product
+      cw56.ek0=factor*(cw56.e(0)-cw56.e(1)) ! k0 product
+*     cw56.ek0=ComplexLorentzScalarProd(cw56.e,k0_cw56) ! k0 product
 
 **********************************************************************
 

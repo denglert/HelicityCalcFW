@@ -227,9 +227,9 @@ int main( int argc, const char *argv[] )
 		taum.ReadInCMatrix_2_2(cdec_taum);
 		taup.ReadInCMatrix_2_2(cdec_taup);
 
-		h_tautau.Display();
-		taum.Display();
-		taup.Display();
+		h_tautau.Show();
+		taum.Show();
+		taup.Show();
 
 		double taum_rh_6f_pol_1 = std::abs(taum.m[1][0])*std::abs(taum.m[1][0]);
 		double taum_rh_6f_pol_2 = std::abs(taum.m[1][1])*std::abs(taum.m[1][1]);
@@ -243,8 +243,8 @@ int main( int argc, const char *argv[] )
 		taup_rh_6f_pol_1 = taup_rh_6f_pol_1/p5k0/p6k0/p8k0/p568k0;
 		taup_rh_6f_pol_2 = taup_rh_6f_pol_2/p5k0/p6k0/p8k0/p568k0;
 
-		taum.DisplaySum();
-		taup.DisplaySum();
+		taum.ShowSum();
+		taup.ShowSum();
 //		for (int i=0; i<2; i++)
 //		for (int j=0; j<2; j++)
 //		{

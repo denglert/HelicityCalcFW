@@ -50,7 +50,7 @@ Polarized case:
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
- i:            0 j:            0 (444.883215877383,400.611965131394)
+ i:            0 j:            0 (444.883215877405,400.611965131395)
  tw568_8.b(iut,jut)
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
  i:            0 j:            0 (303.317661467666,142.622139569662)
@@ -59,43 +59,43 @@ Polarized case:
  tau- amplitudes (inside FORTRAN):
  i:            1 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
  i:            1 j:            2 (0.000000000000000E+000,0.000000000000000E+000)
- i:            2 j:            1 (-2.76710904424678,6.67504388656310)
- i:            2 j:            2 (8.43848479147399,-18.2870026641614)
+ i:            2 j:            1 (-1745.38408640084,903.209744333812)
+ i:            2 j:            2 (61.1129066480019,-1124.47726994290)
  tau+ amplitudes (inside FORTRAN):
  i:            1 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
  i:            1 j:            2 (538.637569587511,253.271247890597)
  i:            2 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
- i:            2 j:            2 (444.883215877383,400.611965131394)
+ i:            2 j:            2 (444.883215877405,400.611965131395)
 H->tau- tau+ matrix: 
-   (111.1,0) (-4030,110.7) 
-(4030,110.7)    (111.1,0) 
+    (3.71,0) (-7805,214.3) 
+(7805,214.3)     (3.71,0) 
 taum matrix: 
        (0,0)        (0,0) 
-(-2.767,6.675) (8.438,-18.29) 
+(-1745,903.2) (61.11,-1124) 
 taup matrix: 
        (0,0) (538.6,253.3) 
        (0,0) (444.9,400.6) 
-taum sum of squared matrix elements:        457.8
+taum sum of squared matrix elements:     5.13e+06
 taup sum of squared matrix elements:    7.127e+05
-- taum_unpolarized (calc via sum of square of tau elements): 0.0009
+- taum_unpolarized (calc via sum of square of tau elements): 9.8288
 - taup_unpolarized (calc via sum of square of tau elements): 2.9235
-- taum_rh_6f_pol_1 (calc via square): 0.0001
-- taum_rh_6f_pol_2 (calc via square): 0.0008
+- taum_rh_6f_pol_1 (calc via square): 7.3992
+- taum_rh_6f_pol_2 (calc via square): 2.4296
 - taup_rh_6f_pol_1 (calc via square): 1.4533
 - taup_rh_6f_pol_2 (calc via square): 1.4702
-- (taum_rh_6f_pol_1-taum_rh_6f_pol_2) (calc via square): -0.0007
+- (taum_rh_6f_pol_1-taum_rh_6f_pol_2) (calc via square): 4.9696
 - (taup_rh_6f_pol_1-taup_rh_6f_pol_2) (calc via square): -0.0170
-- rh_6f_taum (passed through FORTRAN common): 3.1970
+- rh_6f_taum (passed through FORTRAN common): 9.8288
 - rh_6f_taup (passed through FORTRAN common): 2.9235
-- rh_6f tau-/tau+ (passed through FORTRAN common): 1.0936
-- rh_6f_res (passed through FORTRAN common): 116615.4627
-- rh_6f_res_nwa (passed through FORTRAN common): 690117145.3501
+- rh_6f tau-/tau+ (passed through FORTRAN common): 3.3620
+- rh_6f_res (passed through FORTRAN common): 168359.0139
+- rh_6f_res_nwa (passed through FORTRAN common): 468326452397.9980
 
 # --- Comparison --- #
-- rh_6f_taum/taum ratio (unpolarized): 5.2043
+- rh_6f_taum/taum ratio (unpolarized): 16.0000
 - rh_6f_taup/taup ratio (unpolarized): 16.0000
-- taum_pol_1 (rh_6f/standard ratio) (polarized): 0.0001
-- taum_pol_2 (rh_6f/standard ratio) (polarized): 0.0026
+- taum_pol_1 (rh_6f/standard ratio) (polarized): 8.0000
+- taum_pol_2 (rh_6f/standard ratio) (polarized): 8.0000
 - taup_pol_1 (rh_6f/standard ratio) (polarized): 8.0000
 - taup_pol_2 (rh_6f/standard ratio) (polarized): 8.0000
 
@@ -135,7 +135,7 @@ Polarized case:
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
- i:            0 j:            0 (-848.951116479700,449.071697757707)
+ i:            0 j:            0 (-848.951116479536,449.071697757710)
  tw568_8.b(iut,jut)
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
  i:            0 j:            0 (-1093.13114598054,-678.750181469183)
@@ -144,43 +144,43 @@ Polarized case:
  tau- amplitudes (inside FORTRAN):
  i:            1 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
  i:            1 j:            2 (0.000000000000000E+000,0.000000000000000E+000)
- i:            2 j:            1 (1.53556955538775,1.32062191084908)
- i:            2 j:            2 (-2.66638192254411,1.21687489079739)
+ i:            2 j:            1 (178.213033883475,54.5827579323562)
+ i:            2 j:            2 (-80.4227100882221,16.8720107226009)
  tau+ amplitudes (inside FORTRAN):
  i:            1 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
  i:            1 j:            2 (-1941.20415165516,-1205.33814725660)
  i:            2 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
- i:            2 j:            2 (-848.951116479700,449.071697757707)
+ i:            2 j:            2 (-848.951116479536,449.071697757710)
 H->tau- tau+ matrix: 
-   (143.8,0) (1911,-4539) 
-(-1911,-4539)    (143.8,0) 
+   (69.14,0) (2879,-6839) 
+(-2879,-6839)    (69.14,0) 
 taum matrix: 
        (0,0)        (0,0) 
-(1.536,1.321) (-2.666,1.217) 
+(178.2,54.58) (-80.42,16.87) 
 taup matrix: 
        (0,0) (-1941,-1205) 
        (0,0) (-849,449.1) 
-taum sum of squared matrix elements:        12.69
+taum sum of squared matrix elements:    4.149e+04
 taup sum of squared matrix elements:    6.143e+06
-- taum_unpolarized (calc via sum of square of tau elements): 0.0005
+- taum_unpolarized (calc via sum of square of tau elements): 1.7258
 - taup_unpolarized (calc via sum of square of tau elements): 7.8416
-- taum_rh_6f_pol_1 (calc via square): 0.0002
-- taum_rh_6f_pol_2 (calc via square): 0.0004
+- taum_rh_6f_pol_1 (calc via square): 1.4449
+- taum_rh_6f_pol_2 (calc via square): 0.2809
 - taup_rh_6f_pol_1 (calc via square): 6.6642
 - taup_rh_6f_pol_2 (calc via square): 1.1773
-- (taum_rh_6f_pol_1-taum_rh_6f_pol_2) (calc via square): -0.0002
+- (taum_rh_6f_pol_1-taum_rh_6f_pol_2) (calc via square): 1.1641
 - (taup_rh_6f_pol_1-taup_rh_6f_pol_2) (calc via square): 5.4869
-- rh_6f_taum (passed through FORTRAN common): 0.9930
+- rh_6f_taum (passed through FORTRAN common): 1.7258
 - rh_6f_taup (passed through FORTRAN common): 7.8416
-- rh_6f tau-/tau+ (passed through FORTRAN common): 0.1266
-- rh_6f_res (passed through FORTRAN common): 121582.1258
-- rh_6f_res_nwa (passed through FORTRAN common): 63574426.3898
+- rh_6f tau-/tau+ (passed through FORTRAN common): 0.2201
+- rh_6f_res (passed through FORTRAN common): 26919.4661
+- rh_6f_res_nwa (passed through FORTRAN common): 10159684484.6575
 
 # --- Comparison --- #
-- rh_6f_taum/taum ratio (unpolarized): 9.2060
+- rh_6f_taum/taum ratio (unpolarized): 16.0000
 - rh_6f_taup/taup ratio (unpolarized): 16.0000
-- taum_pol_1 (rh_6f/standard ratio) (polarized): 0.0009
-- taum_pol_2 (rh_6f/standard ratio) (polarized): 0.0102
+- taum_pol_1 (rh_6f/standard ratio) (polarized): 8.0000
+- taum_pol_2 (rh_6f/standard ratio) (polarized): 8.0000
 - taup_pol_1 (rh_6f/standard ratio) (polarized): 8.0000
 - taup_pol_2 (rh_6f/standard ratio) (polarized): 8.0000
 
@@ -220,7 +220,7 @@ Polarized case:
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
- i:            0 j:            0 (-226.296633420801,2671.08782701242)
+ i:            0 j:            0 (-226.296633420622,2671.08782701242)
  tw568_8.b(iut,jut)
  i:            0 j:            0 (0.000000000000000E+000,0.000000000000000E+000)
  i:            0 j:            0 (-2499.14516258372,2658.62894270683)
@@ -229,42 +229,42 @@ Polarized case:
  tau- amplitudes (inside FORTRAN):
  i:            1 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
  i:            1 j:            2 (0.000000000000000E+000,0.000000000000000E+000)
- i:            2 j:            1 (0.978630172493778,-1.06709980164629)
- i:            2 j:            2 (-1.44730936225196,-0.424768716018093)
+ i:            2 j:            1 (5.41017415469429,-8.54118055788155)
+ i:            2 j:            2 (-7.81564689751551,-4.91171924325483)
  tau+ amplitudes (inside FORTRAN):
  i:            1 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
  i:            1 j:            2 (-4438.03196261943,4721.24644903765)
  i:            2 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
- i:            2 j:            2 (-226.296633420801,2671.08782701242)
+ i:            2 j:            2 (-226.296633420622,2671.08782701242)
 H->tau- tau+ matrix: 
-   (197.1,0) (-1129,-4156) 
-(1129,-4156)    (197.1,0) 
+   (175.8,0) (-1248,-4597) 
+(1248,-4597)    (175.8,0) 
 taum matrix: 
        (0,0)        (0,0) 
-(0.9786,-1.067) (-1.447,-0.4248) 
+(5.41,-8.541) (-7.816,-4.912) 
 taup matrix: 
        (0,0) (-4438,4721) 
        (0,0) (-226.3,2671) 
-taum sum of squared matrix elements:        4.372
+taum sum of squared matrix elements:        187.4
 taup sum of squared matrix elements:    4.917e+07
-- taum_unpolarized (calc via sum of square of tau elements): 0.0126
+- taum_unpolarized (calc via sum of square of tau elements): 0.5408
 - taup_unpolarized (calc via sum of square of tau elements): 9.8154
-- taum_rh_6f_pol_1 (calc via square): 0.0060
-- taum_rh_6f_pol_2 (calc via square): 0.0066
+- taum_rh_6f_pol_1 (calc via square): 0.2949
+- taum_rh_6f_pol_2 (calc via square): 0.2459
 - taup_rh_6f_pol_1 (calc via square): 8.3810
 - taup_rh_6f_pol_2 (calc via square): 1.4344
-- (taum_rh_6f_pol_1-taum_rh_6f_pol_2) (calc via square): -0.0005
+- (taum_rh_6f_pol_1-taum_rh_6f_pol_2) (calc via square): 0.0491
 - (taup_rh_6f_pol_1-taup_rh_6f_pol_2) (calc via square): 6.9466
-- rh_6f_taum (passed through FORTRAN common): 2.0688
+- rh_6f_taum (passed through FORTRAN common): 0.5408
 - rh_6f_taup (passed through FORTRAN common): 9.8154
-- rh_6f tau-/tau+ (passed through FORTRAN common): 0.2108
-- rh_6f_res (passed through FORTRAN common): 213938.3233
-- rh_6f_res_nwa (passed through FORTRAN common): 20979996.1149
+- rh_6f tau-/tau+ (passed through FORTRAN common): 0.0551
+- rh_6f_res (passed through FORTRAN common): 6119.8384
+- rh_6f_res_nwa (passed through FORTRAN common): 57610527.9319
 
 # --- Comparison --- #
-- rh_6f_taum/taum ratio (unpolarized): 61.2068
+- rh_6f_taum/taum ratio (unpolarized): 16.0000
 - rh_6f_taup/taup ratio (unpolarized): 16.0000
-- taum_pol_1 (rh_6f/standard ratio) (polarized): 0.1641
-- taum_pol_2 (rh_6f/standard ratio) (polarized): 0.2136
+- taum_pol_1 (rh_6f/standard ratio) (polarized): 8.0000
+- taum_pol_2 (rh_6f/standard ratio) (polarized): 8.0000
 - taup_pol_1 (rh_6f/standard ratio) (polarized): 8.0000
 - taup_pol_2 (rh_6f/standard ratio) (polarized): 8.0000

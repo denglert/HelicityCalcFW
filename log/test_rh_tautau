@@ -18,31 +18,34 @@ The unpolarized amplitude should be:
 |M|^2 = 2*m_higgs^2 = 31250.00
 
 iEv: 0
-Polarized case
-(1,1): 0.00 
-(1,2): 15625.00 
-(2,1): 15625.00 
-(2,2): 0.00 
-Unpolarized case
-31250.00 
+CPP TauMatrix class:
+H->tau+ tau- taumatrix matrix: 
+       (0,0) (7808,-214.4) 
+(-7808,-214.4)        (0,0) 
+H->tau+ tau- taumatrix sum of squared matrix elements:     1.22e+08
+H->tau+ tau- taumatrix unpolarized amplitude:        31250
+Fortran rh_tautau:
+unpolarized amplitude (computed directly in rh_tautau): 30250920.7542
 
 iEv: 1
-Polarized case
-(1,1): 0.00 
-(1,2): 15625.00 
-(2,1): 15625.00 
-(2,2): 0.00 
-Unpolarized case
-31250.00 
+CPP TauMatrix class:
+H->tau+ tau- taumatrix matrix: 
+       (0,0) (-3397,2291) 
+ (3397,2291)        (0,0) 
+H->tau+ tau- taumatrix sum of squared matrix elements:    3.357e+07
+H->tau+ tau- taumatrix unpolarized amplitude:        31250
+Fortran rh_tautau:
+unpolarized amplitude (computed directly in rh_tautau): 10598.5175
 
 iEv: 2
-Polarized case
-(1,1): 0.00 
-(1,2): 15625.00 
-(2,1): 15625.00 
-(2,2): 0.00 
-Unpolarized case
-31250.00 
+CPP TauMatrix class:
+H->tau+ tau- taumatrix matrix: 
+       (0,0) (-4193,-621.5) 
+(4193,-621.5)        (0,0) 
+H->tau+ tau- taumatrix sum of squared matrix elements:    3.593e+07
+H->tau+ tau- taumatrix unpolarized amplitude:        31250
+Fortran rh_tautau:
+unpolarized amplitude (computed directly in rh_tautau): 12920.2075
 
 ########################
 ### Massive scenario ###
@@ -56,28 +59,43 @@ The unpolarized amplitude should be:
 |M|^2 = 2*m_higgs^2 - 8*m_tau^2) = 31224.77
 
 iEv: 0
-Polarized case
-(1,1): 0.00 
-(1,2): 15612.38 
-(2,1): 15612.38 
-(2,2): 0.00 
-Unpolarized case
-31224.77 
+CPP TauMatrix class:
+H->tau+ tau- taumatrix matrix: 
+     (203,0)  (7145,3150) 
+(-7145,3150)      (203,0) 
+k0[0] 1
+k0[1] 1
+k0[2] 0
+k0[3] 0
+H->tau+ tau- taumatrix sum of squared matrix elements:     1.22e+08
+H->tau+ tau- taumatrix unpolarized amplitude:     31245.87
+Fortran rh_tautau:
+unpolarized amplitude (computed directly in rh_tautau): 191025.3777
 
 iEv: 1
-Polarized case
-(1,1): 0.05 
-(1,2): 15612.34 
-(2,1): 15612.34 
-(2,2): 0.05 
-Unpolarized case
-31224.77 
+CPP TauMatrix class:
+H->tau+ tau- taumatrix matrix: 
+   (17.77,0) (625.4,7769) 
+(-625.4,7769)    (17.77,0) 
+k0[0] 1
+k0[1] 1
+k0[2] 0
+k0[3] 0
+H->tau+ tau- taumatrix sum of squared matrix elements:    1.215e+08
+H->tau+ tau- taumatrix unpolarized amplitude:     31224.83
+Fortran rh_tautau:
+unpolarized amplitude (computed directly in rh_tautau): 31302.0720
 
 iEv: 2
-Polarized case
-(1,1): 3.46 
-(1,2): 15608.93 
-(2,1): 15608.93 
-(2,2): 3.46 
-Unpolarized case
-31224.77 
+CPP TauMatrix class:
+H->tau+ tau- taumatrix matrix: 
+   (115.4,0)  (4060,5602) 
+(-4060,5602)    (115.4,0) 
+k0[0] 1
+k0[1] 1
+k0[2] 0
+k0[3] 0
+H->tau+ tau- taumatrix sum of squared matrix elements:    9.575e+07
+H->tau+ tau- taumatrix unpolarized amplitude:     31226.54
+Fortran rh_tautau:
+unpolarized amplitude (computed directly in rh_tautau): 33581.6045

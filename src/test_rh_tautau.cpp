@@ -29,7 +29,14 @@ int main( int argc, const char *argv[] )
 	double masses[2] = {m_tau, m_tau}; // GeV
 	masses_.rmtau = m_tau;
 
-//	HelicityTools ht;
+
+	CMatrix_2_2 cth;
+	TauMatrix taumatrix;
+
+	taumatrix.SetName("H->tau+ tau- taumatrix");
+	taumatrix.SetnParts(2);
+	taumatrix.Setk0(1.0,1.0,0.0,0.0);
+
 
 	////////////////////////////////////////////////////
 	// -- Generate HiggsDecays with TGenPhaseSpace -- //
@@ -89,6 +96,21 @@ int main( int argc, const char *argv[] )
 			p2_[e2m[i]] = (*TauNeg)[i];
 		}
 
+		double unpolarizedamp = rh_tautau_(p1_,p2_,cth);
+		taumatrix.ReadInCMatrix_2_2( cth );
+
+		std::cout << "CPP TauMatrix class:" << std::endl;
+		taumatrix.Setpi(0,p1_[0],p1_[1],p1_[2],p1_[3]);
+		taumatrix.Setpi(1,p2_[0],p2_[1],p2_[2],p2_[3]);
+
+		taumatrix.Show();
+		taumatrix.ShowSum();
+		taumatrix.CalcUnpolarizedAmp();
+		taumatrix.ShowUnpolarizedAmp();
+
+		std::cout << "Fortran rh_tautau:" << std::endl;
+		std::cout << Form("unpolarized amplitude (computed directly in rh_tautau): %.4f", unpolarizedamp) << std::endl;
+
 //		std::cout << "Polarized case" << std::endl;
 //		int pol1, pol2;
 //		pol1 = 1; pol2 = 1;
@@ -138,6 +160,22 @@ int main( int argc, const char *argv[] )
 			p1_[e2m[i]] = (*TauPos)[i];
 			p2_[e2m[i]] = (*TauNeg)[i];
 		}
+
+		double unpolarizedamp = rh_tautau_(p1_,p2_,cth);
+		taumatrix.ReadInCMatrix_2_2( cth );
+
+		std::cout << "CPP TauMatrix class:" << std::endl;
+		taumatrix.Setpi(0,p1_[0],p1_[1],p1_[2],p1_[3]);
+		taumatrix.Setpi(1,p2_[0],p2_[1],p2_[2],p2_[3]);
+
+		taumatrix.Show();
+		taumatrix.Showk0();
+		taumatrix.ShowSum();
+		taumatrix.CalcUnpolarizedAmp();
+		taumatrix.ShowUnpolarizedAmp();
+
+		std::cout << "Fortran rh_tautau:" << std::endl;
+		std::cout << Form("unpolarized amplitude (computed directly in rh_tautau): %.4f", unpolarizedamp) << std::endl;
 
 //		std::cout << "Polarized case" << std::endl;
 //		int pol1, pol2;

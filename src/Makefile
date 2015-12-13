@@ -10,6 +10,8 @@ OBJ_test_HelicityTools = $(CMN) ../lib/test_HelicityTools.cpp.o ../lib/HelicityT
 
 OBJ_test_FortranUtils = ../lib/TestFortranUtils.f.o ../lib/FortranUtils.f.o
 
+OBJ_test_PhaseSpaceTools = $(CMN) ../lib/test_PhaseSpaceTools.cpp.o ../lib/PhaseSpaceTools.cpp.o ../lib/UtilFunctions.cpp.o
+
 CMN = ../lib/UtilFunctions.cpp.o 
 
 #########################
@@ -17,7 +19,7 @@ CMN = ../lib/UtilFunctions.cpp.o
 #########################
 LINKER = ifort
 
-binaries : ../bin/test_rh_tautau ../bin/test_rh_6f_k0_1001 ../bin/test_rh_6f_k0_physical ../bin/main_cuba_test ../bin/main_test ../bin/test_HelicityTools ../bin/test_FortranUtils
+binaries : ../bin/test_rh_tautau ../bin/test_rh_6f_k0_1001 ../bin/test_rh_6f_k0_physical ../bin/main_cuba_test ../bin/main_test ../bin/test_HelicityTools ../bin/test_FortranUtils ../bin/test_PhaseSpaceTools
 
 ../bin/test_rh_tautau : $(OBJ_rh_tautau)
 ifeq ($(LINKER),ifort)
@@ -44,6 +46,14 @@ ifeq ($(LINKER),g++)
 endif
 
 ../bin/test_HelicityTools: $(OBJ_test_HelicityTools)
+ifeq ($(LINKER),ifort)
+	$(FC) -o $@ $^ $(FLFLAGS) 
+endif
+ifeq ($(LINKER),g++)
+	$(CC) $(CLFLAGS) -o $@ $^
+endif
+
+../bin/test_PhaseSpaceTools: $(OBJ_test_PhaseSpaceTools)
 ifeq ($(LINKER),ifort)
 	$(FC) -o $@ $^ $(FLFLAGS) 
 endif
@@ -109,6 +119,9 @@ ROOTLFLAGS = -L/home/de3u14/lib/build/hep/root/lib -lCore -lCint -lRIO -lNet -lH
 # CUBAFLAGS flags can also be set to environment variables
 CUBACFLAGS = -I/home/de3u14/lib/build/hep/Cuba/Cuba-4.2
 CUBALFLAGS = -L/home/de3u14/lib/build/hep/Cuba/Cuba-4.2 -lcuba
+
+../lib/main_cuba_test.cpp.o : main_cuba_test.cpp
+	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
 
 ../lib/%.cpp.o : %.cpp
 	$(CC) $(ROOTCFLAGS) $(CCFLAGS) -c $< -o $@
