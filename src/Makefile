@@ -17,6 +17,8 @@ OBJ_test_FortranUtils = ../lib/TestFortranUtils.f.o ../lib/FortranUtils.f.o
 OBJ_test_PhaseSpaceTools = $(CMN) ../lib/test_PhaseSpaceTools.cpp.o ../lib/PhaseSpaceTools.cpp.o ../lib/UtilFunctions.cpp.o
 
 OBJ_test_PhaseSpaceIntegration = $(CMN) ../lib/test_PhaseSpaceIntegration.cpp.o ../lib/PhaseSpaceTools.cpp.o ../lib/UtilFunctions.cpp.o
+OBJ_test_PhaseSpaceIntegration2 = $(CMN) ../lib/test_PhaseSpaceIntegration2.cpp.o ../lib/PhaseSpaceTools.cpp.o ../lib/UtilFunctions.cpp.o
+OBJ_test_PhaseSpaceIntegration3 = $(CMN) ../lib/test_PhaseSpaceIntegration3.cpp.o ../lib/PhaseSpaceTools.cpp.o ../lib/UtilFunctions.cpp.o
 
 CMN = ../lib/UtilFunctions.cpp.o 
 
@@ -26,7 +28,7 @@ CMN = ../lib/UtilFunctions.cpp.o
 ## Linking
 LINKER = ifort
 
-binaries : ../bin/test_rh_tautau ../bin/test_rh_6f_k0_1001 ../bin/test_rh_6f_k0_physical ../bin/test_cuba ../bin/main_test ../bin/test_HelicityTools ../bin/test_FortranUtils ../bin/test_PhaseSpaceTools ../bin/test_PhaseSpaceIntegration
+binaries : ../bin/test_rh_tautau ../bin/test_rh_6f_k0_1001 ../bin/test_rh_6f_k0_physical ../bin/test_cuba ../bin/main_test ../bin/test_HelicityTools ../bin/test_FortranUtils ../bin/test_PhaseSpaceTools ../bin/test_PhaseSpaceIntegration ../bin/test_PhaseSpaceIntegration2 ../bin/test_PhaseSpaceIntegration3
 
 ../bin/test_rh_tautau : $(OBJ_rh_tautau)
 ifeq ($(LINKER),ifort)
@@ -69,6 +71,22 @@ ifeq ($(LINKER),g++)
 endif
 
 ../bin/test_PhaseSpaceIntegration: $(OBJ_test_PhaseSpaceIntegration)
+ifeq ($(LINKER),ifort)
+	$(FC) -o $@ $^ $(FLFLAGS) $(CUBALFLAGS)
+endif
+ifeq ($(LINKER),g++)
+	$(CC) $(CLFLAGS) $(CUBALFLAGS) -o $@ $^
+endif
+
+../bin/test_PhaseSpaceIntegration2: $(OBJ_test_PhaseSpaceIntegration2)
+ifeq ($(LINKER),ifort)
+	$(FC) -o $@ $^ $(FLFLAGS) $(CUBALFLAGS)
+endif
+ifeq ($(LINKER),g++)
+	$(CC) $(CLFLAGS) $(CUBALFLAGS) -o $@ $^
+endif
+
+../bin/test_PhaseSpaceIntegration3: $(OBJ_test_PhaseSpaceIntegration3)
 ifeq ($(LINKER),ifort)
 	$(FC) -o $@ $^ $(FLFLAGS) $(CUBALFLAGS)
 endif
@@ -143,6 +161,12 @@ CUBALFLAGS = -L/home/de3u14/lib/build/hep/Cuba/Cuba-4.2 -lcuba
 	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
 
 ../lib/test_PhaseSpaceIntegration.cpp.o : test_PhaseSpaceIntegration.cpp
+	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
+
+../lib/test_PhaseSpaceIntegration2.cpp.o : test_PhaseSpaceIntegration2.cpp
+	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
+
+../lib/test_PhaseSpaceIntegration3.cpp.o : test_PhaseSpaceIntegration3.cpp
 	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
 
 ### General compilation rule for .cpp sources

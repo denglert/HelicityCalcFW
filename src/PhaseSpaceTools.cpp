@@ -8,11 +8,16 @@ namespace TwoBodyFunc
 	double beta(double s, double m1_sqr, double m2_sqr)
 	{
 		double beta;
-		beta = sqrt( 1.0 - 2.0*(m1_sqr + m2_sqr)/s + (m1_sqr-m2_sqr)*(m1_sqr-m2_sqr)/s/s );
+		beta = sqrt( 1.0 - 2.0*(m1_sqr + m2_sqr)/s + ((m1_sqr-m2_sqr)*(m1_sqr-m2_sqr)/s/s) );
 		return beta;
 	};
 
-
+	double lambda(double a, double b, double c)
+	{
+		double value;
+		value = (a-b-c)*(a-b-c)-4*b*c;
+		return value;
+	};
 
 	double p (double s, double m1_sqr, double m2_sqr)
 	{
@@ -29,23 +34,6 @@ namespace TwoBodyFunc
 		return E;
 	}
 
-}
-
-//////////////////////////
-// class ThreeBodyDecay //
-ThreeBodyDecay::ThreeBodyDecay()
-{
-
-	P = new TLorentzVector();
-	p = new TLorentzVector*[3];
-	p[0] = new TLorentzVector();
-	p[1] = new TLorentzVector();
-	p[2] = new TLorentzVector();
-
-	//Jacobian = (M-m[0]-m[1]-m[2])*2*(2*M_PI)*2*(2*M_PI);
-	//PSFactor = 1.0 /pow(2*M_PI,5.0)/pow(2.0,3.0);
-	//PSConst = Jacobian*PSFactor;
-	PSConst = (M-m[0]-m[1]-m[2])/pow(M_PI,3.0)/128.0;
 }
 
 ThreeBodyDecay::ThreeBodyDecay(double M_, double m1_, double m2_, double m3_)
@@ -67,10 +55,9 @@ ThreeBodyDecay::ThreeBodyDecay(double M_, double m1_, double m2_, double m3_)
 	m_sqr[1] = m2_*m2_;
 	m_sqr[2] = m3_*m3_;
 
-//	Jacobian = (M-m[0]-m[1]-m[2])*2*(2*M_PI)*2*(2*M_PI);
-//	PSFactor = 1/pow(2*M_PI,5.0)/pow(2.0,3.0);
-//	PSConst = Jacobian*PSFactor;
-	PSConst = (M-m[0]-m[1]-m[2])/pow(2*M_PI,3.0)/16.0;
+	s23_min    = (m[1]+m[2])*(m[1]+m[2]);
+	s23_length = (M-m[0])*(M-m[0]) - s23_min;
+	PSConst = s23_length/pow(M_PI,3.0)/128.0;
 }
 
 ThreeBodyDecay::~ThreeBodyDecay()
@@ -97,8 +84,8 @@ void ThreeBodyDecay::SetMotherMass (double mass)
 void ThreeBodyDecay::SetPhaseSpace(double x1, double x2, double x3, double x4, double x5)
 {
 
-	s23_sqrt  = x1*(M-m[0]-m[1]-m[2]) + m[1] + m[2];
-		  s23  = s23_sqrt*s23_sqrt;
+		  s23  = s23_min + s23_length*x1;
+   s23_sqrt  = sqrt(s23);
 	costheta1 = 1-2*x2;
 	sintheta1 = sqrt(1-costheta1*costheta1);
 	     phi1 = 2*M_PI*x3;
@@ -113,13 +100,17 @@ void ThreeBodyDecay::SetPhaseSpace(double x1, double x2, double x3, double x4, d
 
 	// In the rest frame of the mother particle
 	betabar = TwoBodyFunc::beta ( M_sqr, m_sqr[0], s23);
+	lambda  = TwoBodyFunc::lambda ( M_sqr, m_sqr[0], s23);
+	lambda_sqrt  = sqrt(lambda);
 	pmag    = M*betabar/2;
 	E1   = TwoBodyFunc::E ( M_sqr, m_sqr[0], s23);
 	E23  = M-E1;
 
 	// In the rest frame of 23
-	betabar23 = TwoBodyFunc::beta (s23, m_sqr[1], m_sqr[2]);
-	// betabar23 = 1.0;
+	betabar23 		= TwoBodyFunc::beta   (s23, m_sqr[1], m_sqr[2]);
+	// betabar23 		= 1.0;
+	lambda23  		= TwoBodyFunc::lambda (s23, m_sqr[1], m_sqr[2]);
+	lambda23_sqrt  = sqrt(lambda23);
 	p2mag_23  = s23_sqrt*betabar23/2;
 		E2_23 = TwoBodyFunc::E    (s23, m_sqr[1], m_sqr[2]);
 		E3_23 = s23_sqrt - E2_23;
@@ -162,12 +153,14 @@ void ThreeBodyDecay::SetPhaseSpace(double x1, double x2, double x3, double x4, d
 	printf("--- Calculated variables ---\n" );
 	printf("E1 = (M/2)*(1 + (m1_sqr/M_sqr) - (s23_sqr/M_sqr)) = %10.5f\n", E1 );
 	printf("betabar               %10.5f\n", betabar );
+	printf("lambda_sqrt/M/M    %10.5f\n", (lambda_sqrt/M/M));
 	printf("pmag = (M/2)*betabar  %10.5f\n", pmag );
 	printf("E2_23: %10.5f\n", E2_23 );
 	printf("E3_23: %10.5f\n", E3_23 );
 
 	std::cerr << "--- 2-3 rest frame ---\n";
 	printf("betabar23               %10.5f\n", betabar23 );
+	printf("lambda23_sqrt/s23       %10.5f\n", (lambda23_sqrt/s23) );
 
 	std::cerr << "p[1]:";
 	displayTLorentzVector(p[1]);

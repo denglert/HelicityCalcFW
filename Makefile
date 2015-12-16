@@ -25,7 +25,13 @@ test_cuba : build
 	@ ./bin/test_cuba
 
 test_PhaseSpaceIntegration : build
-	@ ./bin/test_PhaseSpaceIntegration
+	@ ./bin/test_PhaseSpaceIntegration | tee ./log/test_PhaseSpaceIntegration
+
+test_PhaseSpaceIntegration2 : build
+	@ ./bin/test_PhaseSpaceIntegration2 | tee ./log/test_PhaseSpaceIntegration2
+
+test_PhaseSpaceIntegration3 : build
+	@ ./bin/test_PhaseSpaceIntegration3 | tee ./log/test_PhaseSpaceIntegration3
 
 ####################
 

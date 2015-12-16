@@ -42,7 +42,6 @@ class ThreeBodyDecay
 {
 
 	public:
-	ThreeBodyDecay();
 	ThreeBodyDecay(double M, double m1, double m2, double m3);
 	~ThreeBodyDecay();
 
@@ -63,8 +62,8 @@ class ThreeBodyDecay
 	TLorentzVector *P;
 	TLorentzVector **p;
 
-	//
 	///////
+	
 	private:
 	double M;
 	double m[3];
@@ -76,20 +75,26 @@ class ThreeBodyDecay
 	double PSWeight;
 	double PSConst;
 
-	double    betabar;        
-	double  betabar23;        
-	double   s23_sqrt;        
-	double        s23;        
-	double  costheta1;  
-	double  sintheta1;  
-	double       phi1;  
-	double    cosphi1;  
-	double    sinphi1;  
-	double costheta23; 
-	double sintheta23; 
-	double      phi23;
-	double   cosphi23;  
-	double   sinphi23;  
+	double 	    betabar;        
+	double 	     lambda;        
+	double 	lambda_sqrt;        
+	double 	  betabar23;        
+	double 	   lambda23;        
+	double lambda23_sqrt;        
+	double 	        s23;        
+	double 	   s23_sqrt;        
+	double 	    s23_min;        
+	double    s23_length;        
+	double 	  costheta1;  
+	double 	  sintheta1;  
+	double 	       phi1;  
+	double 	    cosphi1;  
+	double 	    sinphi1;  
+	double 	 costheta23; 
+	double 	 sintheta23; 
+	double 	      phi23;
+	double 	   cosphi23;  
+	double 	   sinphi23;  
 
 	// In the rest frame of the mother particle
 	double E1;

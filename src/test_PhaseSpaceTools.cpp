@@ -15,10 +15,10 @@ int main( int argc, const char *argv[] )
 	double 	    m2  = 0.0000;
 	double 	    m3  = 0.0000;
 
-	double x1 = 0.50;
-	double x2 = 0.0;
-	double x3 = 0.0;
-	double x4 = 1.0;
+	double x1 = 0.999;
+	double x2 = 0.23;
+	double x3 = 0.83;
+	double x4 = 0.3342;
 	double x5 = 0.75;
 
 	{
