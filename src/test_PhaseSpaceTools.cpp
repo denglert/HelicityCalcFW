@@ -9,6 +9,19 @@
 
 int main( int argc, const char *argv[] )
 {
+
+	double 	     M  = 1.0;
+	double 	    m1  = 0.0000;
+	double 	    m2  = 0.0000;
+	double 	    m3  = 0.0000;
+
+	double x1 = 0.50;
+	double x2 = 0.0;
+	double x3 = 0.0;
+	double x4 = 1.0;
+	double x5 = 0.75;
+
+	{
 	std::cout << "test_PhaseSpaceTools " << std::endl;
 
 	TLorentzVector p1;
@@ -16,17 +29,6 @@ int main( int argc, const char *argv[] )
 	TLorentzVector p3;
 
 	TVector3 v1;
-
-	double 	     M  = 1.77682;
-	double 	    m1  = 0.00051;
-	double 	    m2  = 0.00000;
-	double 	    m3  = 0.00000;
-
-	double x1 = 0.3;
-	double x2 = 1.0;
-	double x3 = 0.1;
-	double x4 = 0.1;
-	double x5 = 0.1;
 
 	double costheta1 = 1-2*x2;
 	double sintheta1 = sqrt(1-costheta1*costheta1);
@@ -54,13 +56,12 @@ int main( int argc, const char *argv[] )
 	v = -p1.Vect();
 	v.SetMag(v.Mag()/E23);
 
-
 	double    p2mag  = TwoBodyFunc::p    (s23, m2_sqr, m3_sqr);
 	double    	 E2  = TwoBodyFunc::E    (s23, m2_sqr, m3_sqr);
 	double    	 E3  = TwoBodyFunc::E    (s23, m3_sqr, m2_sqr);
 
-	p2.SetPxPyPzE(p2mag*sintheta23*cos(phi23),p2mag*sintheta1*sin(phi23),p2mag*costheta23,E2);
-	p3.SetPxPyPzE(-p2mag*sintheta23*cos(phi23),-p2mag*sintheta1*sin(phi23),-p2mag*costheta23,E3);
+	p2.SetPxPyPzE(p2mag*sintheta23*cos(phi23),p2mag*sintheta23*sin(phi23),p2mag*costheta23,E2);
+	p3.SetPxPyPzE(-p2mag*sintheta23*cos(phi23),-p2mag*sintheta23*sin(phi23),-p2mag*costheta23,E3);
 
 	std::cout << "p1:" << std::endl;
 	displayTLorentzVector(&p1);
@@ -94,19 +95,31 @@ int main( int argc, const char *argv[] )
 	std::cout << "sum in the lab frame:" << std::endl;
 	displayTLorentzVector(&sum);
 
+	}
 
+	{
 	// ThreeBodyDecay class
-	ThreeBodyDecay tau;
-	tau.SetMotherMass(M);
-	tau.SetDecayMass(0, m1);
-	tau.SetDecayMass(1, m2);
-	tau.SetDecayMass(2, m3);
+   ThreeBodyDecay tau(M, m1, m2, m3);
 
 	tau.SetPhaseSpace(x1, x2, x3, x4, x5);
+	TLorentzVector *P = tau.P;
+	TLorentzVector *p1 = tau.p[0];
+	TLorentzVector *p2 = tau.p[1];
+	TLorentzVector *p3 = tau.p[2];
+   P->SetPxPyPzE(0.0,0.0,0.0,M);
+  	double amp = P->Dot( (*p3) ) * p1->Dot( (*p2) );
 	tau.DisplayAll();
 
 	double weight = tau.GetPhaseSpaceWeight(x1, x2, x3, x4, x5);
 	std::cout << "PSWeight: " << weight << std::endl;
+	std::cout << "amp: " << amp << std::endl;
 
+	std::cout << "p1:" << std::endl;
+	displayTLorentzVector(p1);
+	std::cout << "p2:" << std::endl;
+	displayTLorentzVector(p2);
+	std::cout << "p3:" << std::endl;
+	displayTLorentzVector(p3);
+	}
 
 }

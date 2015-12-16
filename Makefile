@@ -21,8 +21,11 @@ test_FortranUtils : build
 test_PhaseSpaceTools : build
 	@ ./bin/test_PhaseSpaceTools
 
-cuba : build
-	@ ./bin/main_cuba_test
+test_cuba : build
+	@ ./bin/test_cuba
+
+test_PhaseSpaceIntegration : build
+	@ ./bin/test_PhaseSpaceIntegration
 
 ####################
 

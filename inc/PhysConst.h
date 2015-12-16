@@ -5,6 +5,17 @@
 // --- Particle masses in [GeV] --- //
 //////////////////////////////////////
 
+const double hbar_c = 0.1973269718; // GeV*fm
+
+const double c_tau_tau = 87.03*1E9; // fm
+const double c_tau_muon = 658.6384*1E15; // fm
+
+const double G_Fermi = 1.16*1E-5; // GeV^{-2}
+
+//////////////////////////////////////
+// --- Particle masses in [GeV] --- //
+//////////////////////////////////////
+
 // -- Scalars -- //
 const double m_higgs = 125.0; 
 

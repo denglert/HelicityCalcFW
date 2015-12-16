@@ -3,16 +3,20 @@
 
 #include <cmath>
 #include <iostream>
+#include <stdio.h>
 #include "UtilFunctions.h"
 #include <TLorentzVector.h>
 
-////////////////////
+#define DEBUG 0
+
+
 // Two-body decay //
 namespace TwoBodyFunc
 {
 	double beta(double s, double m1_sqr, double m2_sqr);
 	double p   (double s, double m1_sqr, double m2_sqr);
 	double E   (double s, double  m_sqr, double m_other_sqr);
+
 }
 
 //////////////////////
@@ -40,12 +44,15 @@ class ThreeBodyDecay
 	public:
 	ThreeBodyDecay();
 	ThreeBodyDecay(double M, double m1, double m2, double m3);
-	~ThreeBodyDecay(){};
+	~ThreeBodyDecay();
+
 
 	void SetMotherMass(double mass);
 	void SetDecayMass (int i, double mass);
 	void SetMotherp(double E, double px, double py, double pz);
 	double GetPhaseSpaceWeight(double x1, double x2, double x3, double x4, double x5);
+	double GetJacobian();
+	double GetPSConst();
 	void SetPhaseSpace(double x1, double x2, double x3, double x4, double x5);
 
 	void DisplayAll();
@@ -53,6 +60,11 @@ class ThreeBodyDecay
 	void DisplayMomenta();
 	void DisplayMasses();
 
+	TLorentzVector *P;
+	TLorentzVector **p;
+
+	//
+	///////
 	private:
 	double M;
 	double m[3];
@@ -62,6 +74,7 @@ class ThreeBodyDecay
 	double Jacobian;
 	double PSFactor;
 	double PSWeight;
+	double PSConst;
 
 	double    betabar;        
 	double  betabar23;        
@@ -88,8 +101,6 @@ class ThreeBodyDecay
 	double E2_23;
 	double E3_23;
 
-	TLorentzVector P;
-	TLorentzVector p[3];
 	TLorentzVector sum;
 	TVector3 Beta23;
 

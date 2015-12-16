@@ -53,7 +53,7 @@ static int Integrand(const int *ndim, const cubareal xx[],
 
 #if FUN == 1
   // f = sin(x)*cos(y)*exp(z);
-  f = 7;
+  f = 6;
 #elif FUN == 2
   f = 1/(Sq(x + y) + .003)*cos(y)*exp(z);
 #elif FUN == 3
