@@ -222,9 +222,9 @@ int main()
 
   printf("\n");
   printf("hbar:    %12.6e [GeV s]\n", hbar);
-  printf("c:       %12.6f [m/s]\n", G_Fermi);
-  printf("hbar*c:  %12.6f [GeV fm]\n", hbar_c);
-  printf("G_Fermi: %12.6f [GeV^{-2}]\n", G_Fermi);
+  printf("c:       %12.6e [m/s]\n", c);
+  printf("hbar*c:  %12.6e [GeV fm]\n", hbar_c);
+  printf("G_Fermi: %12.6e [GeV^{-2}]\n", G_Fermi);
 
   printf("\n");
   printf("Muon constants:\n");

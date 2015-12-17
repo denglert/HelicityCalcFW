@@ -65,9 +65,9 @@ VEGAS RESULT:	0.00033258 +- 0.00000062	p = 0.000
 --------------------------
 
 hbar:    6.582119e-25 [GeV s]
-c:           0.000012 [m/s]
-hbar*c:      0.197327 [GeV fm]
-G_Fermi:     0.000012 [GeV^{-2}]
+c:       2.997925e+08 [m/s]
+hbar*c:  1.973270e-01 [GeV fm]
+G_Fermi: 1.160000e-05 [GeV^{-2}]
 
 Muon constants:
 m (muon):                      0.105658 [GeV]
