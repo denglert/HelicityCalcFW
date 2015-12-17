@@ -1,0 +1,147 @@
+###############################################
+### --- Muon decay lifetime calculation --- ###
+###############################################
+-------------------- Vegas test --------------------
+Vegas input parameters:
+  ndim 5
+  ncomp 1
+  nvec 1
+  epsrel 0.001
+  epsabs 1e-12
+  flags 2
+  seed 0
+  mineval 0
+  maxeval 50000
+  nstart 1000
+  nincrease 500
+  nbatch 1000
+  gridno 0
+  statefile "(null)"
+
+Iteration 1:  1000 integrand evaluations so far
+[1] 0.000333654 +- 8.80712e-06  	chisq 0 (0 df)
+
+Iteration 2:  2500 integrand evaluations so far
+[1] 0.000331687 +- 4.01945e-06  	chisq 0.0630303 (1 df)
+
+Iteration 3:  4500 integrand evaluations so far
+[1] 0.00033219 +- 2.54744e-06  	chisq 0.0892398 (2 df)
+
+Iteration 4:  7000 integrand evaluations so far
+[1] 0.000332444 +- 1.89443e-06  	chisq 0.111521 (3 df)
+
+Iteration 5:  10000 integrand evaluations so far
+[1] 0.000332492 +- 1.51618e-06  	chisq 0.113287 (4 df)
+
+Iteration 6:  13500 integrand evaluations so far
+[1] 0.000332469 +- 1.27494e-06  	chisq 0.114067 (5 df)
+
+Iteration 7:  17500 integrand evaluations so far
+[1] 0.0003327 +- 1.10208e-06  	chisq 0.244459 (6 df)
+
+Iteration 8:  22000 integrand evaluations so far
+[1] 0.000332437 +- 9.73449e-07  	chisq 0.503576 (7 df)
+
+Iteration 9:  27000 integrand evaluations so far
+[1] 0.000332498 +- 8.72243e-07  	chisq 0.523211 (8 df)
+
+Iteration 10:  32500 integrand evaluations so far
+[1] 0.000332527 +- 7.89911e-07  	chisq 0.529288 (9 df)
+
+Iteration 11:  38500 integrand evaluations so far
+[1] 0.000332436 +- 7.22457e-07  	chisq 0.610633 (10 df)
+
+Iteration 12:  45000 integrand evaluations so far
+[1] 0.000332513 +- 6.6601e-07  	chisq 0.686749 (11 df)
+
+Iteration 13:  52000 integrand evaluations so far
+[1] 0.000332579 +- 6.18367e-07  	chisq 0.757673 (12 df)
+VEGAS RESULT:	neval 52000	fail 1
+VEGAS RESULT:	0.00033258 +- 0.00000062	p = 0.000
+
+
+--------------------------
+--- Physical constants ---
+--------------------------
+
+hbar:    6.582119e-25 [GeV s]
+c:           0.000012 [m/s]
+hbar*c:      0.197327 [GeV fm]
+G_Fermi:     0.000012 [GeV^{-2}]
+
+Muon constants:
+m (muon):                      0.105658 [GeV]
+c_tau:                     6.586384e+17  [fm]
+Gamma(PDG) = hbarc/c_tau = 2.995983e-19 [GeV]
+
+Other masses:
+m (elec):           0.000000 [GeV]
+m (nu_e):           0.000000 [GeV]
+m (nu_m):           0.000000 [GeV]
+
+-------------------------
+---   Decay process   ---
+-------------------------
+
+(muon)- ---> (electron)- (nu_mu) (nu_electronbar)
+  p     --->      q        k1           k2 
+
+Initial Muon Configuration:
+|pvec|:     0.500000 [GeV/c]
+theta:      0.735133 
+phi:        2.899690 
+gamma:      4.836737 
+beta:       0.978394 
+Four-momentum (p):
+(E,px,py,pz): (   0.51104177,   -0.32557893,    0.08033146,    0.37087089)
+
+Auxiliary vector k0
+(E,px,py,pz): (   1.00000000,    0.00000000,    0.00000000,    1.00000000)
+
+Spin polarization vector
+s^{mu} = ( |pvec|^2 , p0 pvec) / (m |pvec|))
+(E,px,py,pz): (   4.73223269,   -3.14947944,    0.77708435,    3.58760999)
+
+Unpolarized amplitude:
+(general form)
+128*G_Fermi^{2}*(p k2)*(q k1)
+(in the rest frame of muon)
+128*G_Fermi^{2}*M*E2*(q k1)
+Polarized amplitude:
++/- M*(s k2) (q k1)
+
+Other factors:
+- From normalization:
+  1.0/(2*E) = 1.0/2*M (in the rest frame)
+- Spin averaging for the muon:
+  1.0/2.0
+
+ThreeBodyDecay class
+PSConstant (formula)  s23_length/pow(M_PI,3.0)/128.0
+PSConstant  (numval): 2.812861e-06 
+
+Gamma(formula): G_Fermi^{2}*m_mu^{5}/(192*pi^{3})
+tau(our result): hbar/Gamma(our result)
+
+-------------------------
+--- Numerical results ---
+-------------------------
+Note: our result are quoted in the LAB frame, while the PDG
+      and the formula are calculated in the muon rest frame!
+
+Gamma(PDG):        2.995983e-19 [GeV] (note: this is the total gamma!)
+Gamma(formula):    2.976355e-19 [GeV]
+Gamma(our result): 6.158038e-20 [GeV]
+
+ tau(our result):  1.068866e-05 s
+ctau(our result):  3.204381e+03 m
+ctau(PDG):         6.586384e+02 m
+
+Muon
+beta:                                0.978394
+gamma:                               4.836737
+ctau ratio(our result)/rest_PDG:     4.865159
+!!! COMPARE THE ABOVE !!! gamma vs. ctau ratio
+
+(our result)/gamma_formula:     0.206899 
+(our result)/gamma_PDG:         0.205543 

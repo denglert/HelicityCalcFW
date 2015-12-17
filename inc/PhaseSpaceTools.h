@@ -46,9 +46,12 @@ class ThreeBodyDecay
 	~ThreeBodyDecay();
 
 
-	void SetMotherMass(double mass);
-	void SetDecayMass (int i, double mass);
-	void SetMotherp(double E, double px, double py, double pz);
+	// OBSOLETE
+	//void SetMotherMass(double mass);
+	//void SetDecayMass (int i, double mass);
+	void SetMotherEPxPyPz(double E, double px, double py, double pz);
+	void SetMotherMPThetaPhi(double M, double mom, double theta, double phi);
+	void SetBitBoostBack(bool flag);
 	double GetPhaseSpaceWeight(double x1, double x2, double x3, double x4, double x5);
 	double GetJacobian();
 	double GetPSConst();
@@ -65,6 +68,8 @@ class ThreeBodyDecay
 	///////
 	
 	private:
+
+
 	double M;
 	double m[3];
 	double M_sqr;
@@ -74,6 +79,8 @@ class ThreeBodyDecay
 	double PSFactor;
 	double PSWeight;
 	double PSConst;
+
+	bool BitBoostBack;
 
 	double 	    betabar;        
 	double 	     lambda;        
@@ -108,6 +115,7 @@ class ThreeBodyDecay
 
 	TLorentzVector sum;
 	TVector3 Beta23;
+	TVector3 BetaVec;
 
 };
 

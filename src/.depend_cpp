@@ -1,4 +1,4 @@
-../lib/test_PhaseSpaceIntegration.cpp.o: test_PhaseSpaceIntegration.cpp \
+../lib/LifeTime_Muon_Polarized.cpp.o: LifeTime_Muon_Polarized.cpp \
  /home/de3u14/lib/build/hep/root/include/TH3D.h \
  /home/de3u14/lib/build/hep/root/include/TH3.h \
  /home/de3u14/lib/build/hep/root/include/TH1.h \

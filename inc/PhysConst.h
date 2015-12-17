@@ -1,11 +1,13 @@
 #ifndef PHYSCONS_H
 #define PHYSCONS_H
 
-//////////////////////////////////////
-// --- Particle masses in [GeV] --- //
-//////////////////////////////////////
+///////////////////////////////
+// --- Physical constans --- //
+///////////////////////////////
 
-const double hbar_c = 0.1973269718; // GeV*fm
+const double hbar_c  = 0.1973269718; // GeV*fm
+const double hbar    = 6.58211927*1E-25; // GeV*s
+const double c = 299792458.0; // m/s
 
 const double c_tau_tau = 87.03*1E9; // fm
 const double c_tau_muon = 658.6384*1E15; // fm

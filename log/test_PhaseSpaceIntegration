@@ -84,9 +84,16 @@ m (nu_m):           0.000000 [GeV]
 (muon)- ---> (electron)- (nu_mu) (nu_electronbar)
 
 Amplitude:
-128*(p k2)*(q k1)
-From PhaseSpace:
-1.0/(2*M)
+(general form)
+128*G_Fermi^{2}*(p k2)*(q k1)
+(in the rest frame of muon)
+128*G_Fermi^{2}*M*E2*(q k1)
+
+Other factors:
+- From normalization:
+  1.0/(2*E) = 1.0/2*M (in the rest frame)
+- Spin averaging for the muon:
+  1.0/2.0
 
 ThreeBodyDecay class
 PSConstant (formula)  s23_length/pow(M_PI,3.0)/128.0

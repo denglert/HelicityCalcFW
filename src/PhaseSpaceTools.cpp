@@ -58,6 +58,8 @@ ThreeBodyDecay::ThreeBodyDecay(double M_, double m1_, double m2_, double m3_)
 	s23_min    = (m[1]+m[2])*(m[1]+m[2]);
 	s23_length = (M-m[0])*(M-m[0]) - s23_min;
 	PSConst = s23_length/pow(M_PI,3.0)/128.0;
+
+	BitBoostBack = false;
 }
 
 ThreeBodyDecay::~ThreeBodyDecay()
@@ -68,17 +70,58 @@ ThreeBodyDecay::~ThreeBodyDecay()
 	delete p[2];
 }
 
-void ThreeBodyDecay::SetDecayMass (int i, double mass)
-{
-	m[i]     = mass;
-	m_sqr[i] = mass*mass;
-};
 
-void ThreeBodyDecay::SetMotherMass (double mass)
+void ThreeBodyDecay::SetBitBoostBack(bool flag)
 {
-	M     = mass;
-	M_sqr = mass*mass;
-};
+	BitBoostBack = flag;
+}
+
+// OBSOLETE
+//void ThreeBodyDecay::SetDecayMass (int i, double mass)
+//{
+//	m[i]     = mass;
+//	m_sqr[i] = mass*mass;
+//};
+//
+//void ThreeBodyDecay::SetMotherMass (double mass)
+//{
+//	M     = mass;
+//	M_sqr = mass*mass;
+//};
+//
+//
+void ThreeBodyDecay::SetMotherEPxPyPz(double E, double px, double py, double pz)
+{
+	P->SetPxPyPzE(px,py,pz,E);
+	BetaVec = P->BoostVector();
+
+	# if DEBUG
+	printf("\n\nSTART DEBUG INFO\n");
+	printf("BetaVec:\n");
+	printf("bx = %12.6e\n", BetaVec.x());
+	printf("by = %12.6e\n", BetaVec.y());
+	printf("bz = %12.6e\n", BetaVec.z());
+	printf("END DEBUG INFO\n\n");
+	# endif
+}
+
+void ThreeBodyDecay::SetMotherMPThetaPhi(double M, double mom, double theta, double phi)
+{
+
+	P->SetPxPyPzE(mom,0.0,0.0,sqrt(mom*mom+M*M));
+	P->SetTheta(theta);
+	P->SetPhi(phi);
+	BetaVec = P->BoostVector();
+
+	# if DEBUG
+	printf("\n\nSTART DEBUG INFO\n");
+	printf("BetaVec:\n");
+	printf("bx = %12.6e\n", BetaVec.x());
+	printf("by = %12.6e\n", BetaVec.y());
+	printf("bz = %12.6e\n", BetaVec.z());
+	printf("END DEBUG INFO\n\n");
+	# endif
+}
 
 
 void ThreeBodyDecay::SetPhaseSpace(double x1, double x2, double x3, double x4, double x5)
@@ -123,7 +166,7 @@ void ThreeBodyDecay::SetPhaseSpace(double x1, double x2, double x3, double x4, d
 	p[2]->SetPxPyPzE(-(*p[1])[0], -(*p[1])[1], -(*p[1])[2], E3_23);
 
 	# if DEBUG
-	std::cerr << "\n\nStart of DEBUG information.\n";
+	std::cerr << "\n\nSTART DEBUG INFO.\n";
 
 	printf("--- INPUT ---\n" );
 	printf("x1:   %10.5f\n", x1 );
@@ -157,6 +200,11 @@ void ThreeBodyDecay::SetPhaseSpace(double x1, double x2, double x3, double x4, d
 	printf("pmag = (M/2)*betabar  %10.5f\n", pmag );
 	printf("E2_23: %10.5f\n", E2_23 );
 	printf("E3_23: %10.5f\n", E3_23 );
+	printf("Beta23:\n");
+	printf("b23x = %12.6e\n", Beta23.x());
+	printf("b23y = %12.6e\n", Beta23.y());
+	printf("b23z = %12.6e\n", Beta23.z());
+
 
 	std::cerr << "--- 2-3 rest frame ---\n";
 	printf("betabar23               %10.5f\n", betabar23 );
@@ -206,7 +254,27 @@ void ThreeBodyDecay::SetPhaseSpace(double x1, double x2, double x3, double x4, d
 	printf("p[2]->Phi()):      %10.5f\n", p[2]->Phi() );
 
 	printf("PSWeight = betabar*betabar23 = %10.5f\n", PSWeight);
+	std::cerr << "END DEBUG INFO.\n\n";
 	# endif
+
+	if( BitBoostBack )
+	{
+	# if DEBUG
+	printf("BetaVec:\n");
+	printf("bx = %12.6e\n", BetaVec.x());
+	printf("by = %12.6e\n", BetaVec.y());
+	printf("bz = %12.6e\n", BetaVec.z());
+	printf("END DEBUG INFO\n\n");
+	# endif
+
+	p[0]->Boost(BetaVec);
+	p[1]->Boost(BetaVec);
+	p[2]->Boost(BetaVec);
+
+
+	}
+
+
 
 }
 

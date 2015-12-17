@@ -24,6 +24,9 @@ test_PhaseSpaceTools : build
 test_cuba : build
 	@ ./bin/test_cuba
 
+LifeTime_Muon_Polarized : build
+	@ ./bin/LifeTime_Muon_Polarized | tee ./log/LifeTime_Muon_Polarized
+
 test_PhaseSpaceIntegration : build
 	@ ./bin/test_PhaseSpaceIntegration | tee ./log/test_PhaseSpaceIntegration
 

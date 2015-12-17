@@ -10,7 +10,11 @@
 int main( int argc, const char *argv[] )
 {
 
+	double momentum  = 10.0;
+	double theta 	  = 0.0;
+	double phi  	  = 0.0;
 	double 	     M  = 1.0;
+	double 	Energy  = sqrt(momentum*momentum+M*M);
 	double 	    m1  = 0.0000;
 	double 	    m2  = 0.0000;
 	double 	    m3  = 0.0000;
@@ -98,15 +102,17 @@ int main( int argc, const char *argv[] )
 	}
 
 	{
+	printf("\n\nThreeBodyDecayClass TEST\n");
 	// ThreeBodyDecay class
    ThreeBodyDecay tau(M, m1, m2, m3);
+	tau.SetMotherMPThetaPhi(M,momentum,theta,phi);
+	tau.SetBitBoostBack(true);
 
 	tau.SetPhaseSpace(x1, x2, x3, x4, x5);
 	TLorentzVector *P = tau.P;
 	TLorentzVector *p1 = tau.p[0];
 	TLorentzVector *p2 = tau.p[1];
 	TLorentzVector *p3 = tau.p[2];
-   P->SetPxPyPzE(0.0,0.0,0.0,M);
   	double amp = P->Dot( (*p3) ) * p1->Dot( (*p2) );
 	tau.DisplayAll();
 
