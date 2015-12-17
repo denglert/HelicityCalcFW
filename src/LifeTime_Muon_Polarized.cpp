@@ -76,7 +76,7 @@ const double gamma_formula = pow(M,5.0) * G_Fermi * G_Fermi / 192.0 / pow(M_PI,3
 
 // Flags and bits
 const int k0_flag           = 1; 	// 1 - custom, 2 - physical
-const int polvec_flag       = 2; 	// 1 - custom, 2 - physical
+const int polvec_flag       = 1; 	// 1 - custom, 2 - physical
 const bool bit_addpolarized = true;
 
 static int Integrand(const int *ndim, const cubareal xx[],
@@ -148,7 +148,7 @@ static int Integrand(const int *ndim, const cubareal xx[],
 	///////////////////////////////////////////////
 	double weight = muon.GetPhaseSpaceWeight(x1,x2,x3,x4,x5);
   	double amp_unpolarized = 128*P->Dot( (*p3) )  * p1->Dot( (*p2) );
-  	double amp_polarized   = M*(polvec*(*p3)) * ( (*p1) * (*p2) );
+  	double amp_polarized   = 128*M*(polvec*(*p3)) * ( (*p1) * (*p2) );
 	//double amp = amp_unpolarized + amp_polarized;
 	
 	double amp;
@@ -373,9 +373,10 @@ int main()
   printf("ctau(PDG):         %12.6e m\n", c_tau_muon*1e-15);
   printf("\n");
   printf("Muon\n");
-  printf("beta:                            %12.6f\n", P->Beta());
-  printf("gamma:                           %12.6f\n", P->Gamma());
-  printf("ctau ratio(our result)/rest_PDG: %12.6f\n", ctau/c_tau_muon/1e-15);
+  printf("beta:                              %12.6f\n", P->Beta());
+  printf("gamma:                             %12.6f\n", P->Gamma());
+  printf("ctau ratio(our result)/rest_PDG:   %12.6f\n", ctau/c_tau_muon/1e-15);
+  printf("ratio of the above two values:     %12.6f\n", P->Gamma()/(ctau/c_tau_muon/1e-15));
   printf("!!! COMPARE THE ABOVE !!! gamma vs. ctau ratio\n");
 
   //printf("\n");

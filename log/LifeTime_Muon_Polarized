@@ -19,45 +19,45 @@ Vegas input parameters:
   statefile "(null)"
 
 Iteration 1:  1000 integrand evaluations so far
-[1] 0.000333654 +- 8.80712e-06  	chisq 0 (0 df)
+[1] 0.000333317 +- 1.18923e-05  	chisq 0 (0 df)
 
 Iteration 2:  2500 integrand evaluations so far
-[1] 0.000331687 +- 4.01945e-06  	chisq 0.0630303 (1 df)
+[1] 0.000331282 +- 5.50213e-06  	chisq 0.0372505 (1 df)
 
 Iteration 3:  4500 integrand evaluations so far
-[1] 0.00033219 +- 2.54744e-06  	chisq 0.0892398 (2 df)
+[1] 0.000332469 +- 3.52122e-06  	chisq 0.11605 (2 df)
 
 Iteration 4:  7000 integrand evaluations so far
-[1] 0.000332444 +- 1.89443e-06  	chisq 0.111521 (3 df)
+[1] 0.000332273 +- 2.60614e-06  	chisq 0.122876 (3 df)
 
 Iteration 5:  10000 integrand evaluations so far
-[1] 0.000332492 +- 1.51618e-06  	chisq 0.113287 (4 df)
+[1] 0.000332931 +- 2.09048e-06  	chisq 0.301487 (4 df)
 
 Iteration 6:  13500 integrand evaluations so far
-[1] 0.000332469 +- 1.27494e-06  	chisq 0.114067 (5 df)
+[1] 0.000332731 +- 1.75016e-06  	chisq 0.332114 (5 df)
 
 Iteration 7:  17500 integrand evaluations so far
-[1] 0.0003327 +- 1.10208e-06  	chisq 0.244459 (6 df)
+[1] 0.000332785 +- 1.51226e-06  	chisq 0.335963 (6 df)
 
 Iteration 8:  22000 integrand evaluations so far
-[1] 0.000332437 +- 9.73449e-07  	chisq 0.503576 (7 df)
+[1] 0.000332535 +- 1.33329e-06  	chisq 0.458671 (7 df)
 
 Iteration 9:  27000 integrand evaluations so far
-[1] 0.000332498 +- 8.72243e-07  	chisq 0.523211 (8 df)
+[1] 0.000332585 +- 1.19449e-06  	chisq 0.465793 (8 df)
 
 Iteration 10:  32500 integrand evaluations so far
-[1] 0.000332527 +- 7.89911e-07  	chisq 0.529288 (9 df)
+[1] 0.000332585 +- 1.08118e-06  	chisq 0.465793 (9 df)
 
 Iteration 11:  38500 integrand evaluations so far
-[1] 0.000332436 +- 7.22457e-07  	chisq 0.610633 (10 df)
+[1] 0.000332512 +- 9.86796e-07  	chisq 0.493404 (10 df)
 
 Iteration 12:  45000 integrand evaluations so far
-[1] 0.000332513 +- 6.6601e-07  	chisq 0.686749 (11 df)
+[1] 0.000332563 +- 9.10251e-07  	chisq 0.511633 (11 df)
 
 Iteration 13:  52000 integrand evaluations so far
-[1] 0.000332579 +- 6.18367e-07  	chisq 0.757673 (12 df)
+[1] 0.000332627 +- 8.45402e-07  	chisq 0.547251 (12 df)
 VEGAS RESULT:	neval 52000	fail 1
-VEGAS RESULT:	0.00033258 +- 0.00000062	p = 0.000
+VEGAS RESULT:	0.00033263 +- 0.00000085	p = 0.000
 
 
 --------------------------
@@ -99,8 +99,8 @@ Auxiliary vector k0
 (E,px,py,pz): (   1.00000000,    0.00000000,    0.00000000,    1.00000000)
 
 Spin polarization vector
-s^{mu} = ( |pvec|^2 , p0 pvec) / (m |pvec|))
-(E,px,py,pz): (   0.61519025,   -0.76451010,    0.18863080,    0.87086266)
+s^{mu} = P^{mu}/M - (m/Pk0)*k0^{mu}
+(E,px,py,pz): (  -0.21913444,   -0.40058597,    0.09883827,   -0.93690009)
 
 Unpolarized amplitude:
 (general form)
@@ -131,19 +131,20 @@ Note: our result are quoted in the LAB frame, while the PDG
 
 Important flags:
 k0_type:                    1 (1 = custom (see above), 2 = physical)
-spin_polarization:          2 (1 = computed with k0,   2 = helicity)
+spin_polarization:          1 (1 = computed with k0,   2 = helicity)
 Polarized component added?: 1 (0 = no, 1 = yes)
 
 Gamma(PDG):        2.995983e-19 [GeV] (note: this is the total gamma!)
 Gamma(formula):    2.976355e-19 [GeV]
-Gamma(our result): 2.536868e-19 [GeV]
+Gamma(our result): 2.537234e-19 [GeV]
 
- tau(our result):  2.594585e-06 s
-ctau(our result):  7.778369e+02 m
+ tau(our result):  2.594210e-06 s
+ctau(our result):  7.777246e+02 m
 ctau(PDG):         6.586384e+02 m
 
 Muon
-beta:                                0.523977
-gamma:                               1.174078
-ctau ratio(our result)/rest_PDG:     1.180977
+beta:                                  0.523977
+gamma:                                 1.174078
+ctau ratio(our result)/rest_PDG:       1.180807
+ratio of the above two values:         0.994302
 !!! COMPARE THE ABOVE !!! gamma vs. ctau ratio
