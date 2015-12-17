@@ -87,20 +87,20 @@ m (nu_m):           0.000000 [GeV]
   p     --->      q        k1           k2 
 
 Initial Muon Configuration:
-|pvec|:     0.500000 [GeV/c]
+|pvec|:     0.065000 [GeV/c]
 theta:      0.735133 
 phi:        2.899690 
-gamma:      4.836737 
-beta:       0.978394 
+gamma:      1.174078 
+beta:       0.523977 
 Four-momentum (p):
-(E,px,py,pz): (   0.51104177,   -0.32557893,    0.08033146,    0.37087089)
+(E,px,py,pz): (   0.12405116,   -0.04232526,    0.01044309,    0.04821322)
 
 Auxiliary vector k0
 (E,px,py,pz): (   1.00000000,    0.00000000,    0.00000000,    1.00000000)
 
 Spin polarization vector
 s^{mu} = ( |pvec|^2 , p0 pvec) / (m |pvec|))
-(E,px,py,pz): (   4.73223269,   -3.14947944,    0.77708435,    3.58760999)
+(E,px,py,pz): (   0.61519025,   -0.76451010,    0.18863080,    0.87086266)
 
 Unpolarized amplitude:
 (general form)
@@ -129,19 +129,24 @@ tau(our result): hbar/Gamma(our result)
 Note: our result are quoted in the LAB frame, while the PDG
       and the formula are calculated in the muon rest frame!
 
+Important flags:
+k0_type:                    1 (1 = custom (see above), 2 = physical)
+spin_polarization:          2 (1 = computed with k0,   2 = helicity)
+Polarized component added?: 1 (0 = no, 1 = yes)
+
 Gamma(PDG):        2.995983e-19 [GeV] (note: this is the total gamma!)
 Gamma(formula):    2.976355e-19 [GeV]
-Gamma(our result): 6.158038e-20 [GeV]
+Gamma(our result): 2.536868e-19 [GeV]
 
- tau(our result):  1.068866e-05 s
-ctau(our result):  3.204381e+03 m
+ tau(our result):  2.594585e-06 s
+ctau(our result):  7.778369e+02 m
 ctau(PDG):         6.586384e+02 m
 
 Muon
-beta:                                0.978394
-gamma:                               4.836737
-ctau ratio(our result)/rest_PDG:     4.865159
+beta:                                0.523977
+gamma:                               1.174078
+ctau ratio(our result)/rest_PDG:     1.180977
 !!! COMPARE THE ABOVE !!! gamma vs. ctau ratio
 
-(our result)/gamma_formula:     0.206899 
-(our result)/gamma_PDG:         0.205543 
+(our result)/gamma_formula:     0.852341 
+(our result)/gamma_PDG:         0.846756 

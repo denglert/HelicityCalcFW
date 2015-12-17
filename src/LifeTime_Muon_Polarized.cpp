@@ -67,7 +67,7 @@ const double m3  = 0.00000;
 
 const double BR  = 1.00000;
 
-const double muon_p     = 0.5;
+const double muon_p     = 0.065;
 const double muon_theta = 0.234*M_PI;
 const double muon_phi   = 0.923*M_PI;
 
@@ -355,6 +355,12 @@ int main()
 
   printf("Note: our result are quoted in the LAB frame, while the PDG\n");
   printf("      and the formula are calculated in the muon rest frame!\n");
+  printf("\n");
+
+  printf("Important flags:\n", bit_addpolarized);
+  printf("k0_type:                    %d (1 = custom (see above), 2 = physical)\n", k0_flag);
+  printf("spin_polarization:          %d (1 = computed with k0,   2 = helicity)\n", polvec_flag);
+  printf("Polarized component added?: %d (0 = no, 1 = yes)\n", bit_addpolarized);
   printf("\n");
 
   printf("Gamma(PDG):        %12.6e [GeV] (note: this is the total gamma!)\n", gamma_PDG);
