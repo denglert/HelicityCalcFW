@@ -378,9 +378,9 @@ int main()
   printf("ctau ratio(our result)/rest_PDG: %12.6f\n", ctau/c_tau_muon/1e-15);
   printf("!!! COMPARE THE ABOVE !!! gamma vs. ctau ratio\n");
 
-  printf("\n");
-  printf("(our result)/gamma_formula: %12.6f \n", ratio_formula);
-  printf("(our result)/gamma_PDG:     %12.6f \n", ratio_PDG);
+  //printf("\n");
+  //printf("(our result)/Gamma(formula): %12.6f \n", ratio_formula);
+  //printf("(our result)/Gamma(PDG):     %12.6f \n", ratio_PDG);
 
 
 #if 0
