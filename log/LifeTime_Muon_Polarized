@@ -11,7 +11,7 @@ Vegas input parameters:
   flags 2
   seed 0
   mineval 0
-  maxeval 50000
+  maxeval 100000
   nstart 1000
   nincrease 500
   nbatch 1000
@@ -19,45 +19,63 @@ Vegas input parameters:
   statefile "(null)"
 
 Iteration 1:  1000 integrand evaluations so far
-[1] 0.000333317 +- 1.18923e-05  	chisq 0 (0 df)
+[1] 0.000398501 +- 1.40423e-05  	chisq 0 (0 df)
 
 Iteration 2:  2500 integrand evaluations so far
-[1] 0.000331282 +- 5.50213e-06  	chisq 0.0372505 (1 df)
+[1] 0.000396612 +- 6.60755e-06  	chisq 0.0232448 (1 df)
 
 Iteration 3:  4500 integrand evaluations so far
-[1] 0.000332469 +- 3.52122e-06  	chisq 0.11605 (2 df)
+[1] 0.00039643 +- 4.17092e-06  	chisq 0.0245168 (2 df)
 
 Iteration 4:  7000 integrand evaluations so far
-[1] 0.000332273 +- 2.60614e-06  	chisq 0.122876 (3 df)
+[1] 0.00039654 +- 3.07067e-06  	chisq 0.0260542 (3 df)
 
 Iteration 5:  10000 integrand evaluations so far
-[1] 0.000332931 +- 2.09048e-06  	chisq 0.301487 (4 df)
+[1] 0.000396901 +- 2.46751e-06  	chisq 0.0650807 (4 df)
 
 Iteration 6:  13500 integrand evaluations so far
-[1] 0.000332731 +- 1.75016e-06  	chisq 0.332114 (5 df)
+[1] 0.000396461 +- 2.06552e-06  	chisq 0.171292 (5 df)
 
 Iteration 7:  17500 integrand evaluations so far
-[1] 0.000332785 +- 1.51226e-06  	chisq 0.335963 (6 df)
+[1] 0.000396859 +- 1.78905e-06  	chisq 0.319478 (6 df)
 
 Iteration 8:  22000 integrand evaluations so far
-[1] 0.000332535 +- 1.33329e-06  	chisq 0.458671 (7 df)
+[1] 0.000396664 +- 1.58073e-06  	chisq 0.373652 (7 df)
 
 Iteration 9:  27000 integrand evaluations so far
-[1] 0.000332585 +- 1.19449e-06  	chisq 0.465793 (8 df)
+[1] 0.000396632 +- 1.41767e-06  	chisq 0.375655 (8 df)
 
 Iteration 10:  32500 integrand evaluations so far
-[1] 0.000332585 +- 1.08118e-06  	chisq 0.465793 (9 df)
+[1] 0.00039669 +- 1.28213e-06  	chisq 0.384813 (9 df)
 
 Iteration 11:  38500 integrand evaluations so far
-[1] 0.000332512 +- 9.86796e-07  	chisq 0.493404 (10 df)
+[1] 0.000396648 +- 1.17341e-06  	chisq 0.391519 (10 df)
 
 Iteration 12:  45000 integrand evaluations so far
-[1] 0.000332563 +- 9.10251e-07  	chisq 0.511633 (11 df)
+[1] 0.000396708 +- 1.08102e-06  	chisq 0.408671 (11 df)
 
 Iteration 13:  52000 integrand evaluations so far
-[1] 0.000332627 +- 8.45402e-07  	chisq 0.547251 (12 df)
-VEGAS RESULT:	neval 52000	fail 1
-VEGAS RESULT:	0.00033263 +- 0.00000085	p = 0.000
+[1] 0.000396773 +- 1.00293e-06  	chisq 0.434941 (12 df)
+
+Iteration 14:  59500 integrand evaluations so far
+[1] 0.000396806 +- 9.34895e-07  	chisq 0.443266 (13 df)
+
+Iteration 15:  67500 integrand evaluations so far
+[1] 0.000396766 +- 8.74843e-07  	chisq 0.458239 (14 df)
+
+Iteration 16:  76000 integrand evaluations so far
+[1] 0.000396736 +- 8.22506e-07  	chisq 0.468115 (15 df)
+
+Iteration 17:  85000 integrand evaluations so far
+[1] 0.000396769 +- 7.77322e-07  	chisq 0.483272 (16 df)
+
+Iteration 18:  94500 integrand evaluations so far
+[1] 0.000396775 +- 7.36413e-07  	chisq 0.483688 (17 df)
+
+Iteration 19:  104500 integrand evaluations so far
+[1] 0.000396777 +- 6.99673e-07  	chisq 0.483849 (18 df)
+VEGAS RESULT:	neval 104500	fail 1
+VEGAS RESULT:	0.00039678 +- 0.00000070	p = 0.000
 
 
 --------------------------
@@ -87,21 +105,21 @@ m (nu_m):           0.000000 [GeV]
   p     --->      q        k1           k2 
 
 Initial Muon Configuration:
-|pvec|:     0.065000 [GeV/c]
+|pvec|:     0.050000 [GeV/c]
 theta:      0.735133 
 phi:        2.899690 
-gamma:      1.174078 
-beta:       0.523977 
+gamma:      1.106318 
+beta:       0.427746 
 Four-momentum (p):
-(E,px,py,pz): (   0.12405116,   -0.04232526,    0.01044309,    0.04821322)
+(E,px,py,pz): (   0.11689179,   -0.03255789,    0.00803315,    0.03708709)
 
 Auxiliary vector k0
 (E,px,py,pz): (   1.00000000,    0.00000000,    0.00000000,    1.00000000)
 
 Spin polarization vector
-s^{mu} = P^{mu}/M - (m/Pk0)*k0^{mu}
-(E,px,py,pz): (  -0.21913444,   -0.40058597,    0.09883827,   -0.93690009)
-
+s^{mu} = ( |pvec|^2 , p0 pvec) / (m |pvec|))
+(E,px,py,pz): (   0.47322327,   -0.72038789,    0.17774434,    0.82060252)
+polvec*P (orthogonality check): 6.938894e-18
 Unpolarized amplitude:
 (general form)
 128*G_Fermi^{2}*(p k2)*(q k1)
@@ -131,20 +149,23 @@ Note: our result are quoted in the LAB frame, while the PDG
 
 Important flags:
 k0_type:                    1 (1 = custom (see above), 2 = physical)
-spin_polarization:          1 (1 = computed with k0,   2 = helicity)
+spin_polarization:          2 (1 = computed with k0,   2 = helicity)
 Polarized component added?: 1 (0 = no, 1 = yes)
 
-Gamma(PDG):        2.995983e-19 [GeV] (note: this is the total gamma!)
-Gamma(formula):    2.976355e-19 [GeV]
-Gamma(our result): 2.537234e-19 [GeV]
+Gamma(PDG):                             2.995983e-19 [GeV] (note: this is the total gamma!)
+Gamma(formula):                         2.976355e-19 [GeV]
+Gamma(our result without gamma factor): 3.553426e-19 [GeV]
+Gamma(our result):                      3.211938e-19 [GeV]
 
- tau(our result):  2.594210e-06 s
-ctau(our result):  7.777246e+02 m
+ tau(our result):  2.049267e-06 s
+
 ctau(PDG):         6.586384e+02 m
+ctau(formula):     6.629820e+02 m
+ctau(our result):  6.143548e+02 m
 
 Muon
-beta:                                  0.523977
-gamma:                                 1.174078
-ctau ratio(our result)/rest_PDG:       1.180807
-ratio of the above two values:         0.994302
+beta:                                                          0.427746
+gamma:                                                         1.106318
+ctau ratio: (our result ctau)/(formula ctau rest frame)        0.926654
+ratio of the above two values:                                 1.193885
 !!! COMPARE THE ABOVE !!! gamma vs. ctau ratio

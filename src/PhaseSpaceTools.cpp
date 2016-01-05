@@ -12,6 +12,7 @@ namespace TwoBodyFunc
 		return beta;
 	};
 
+
 	double lambda(double a, double b, double c)
 	{
 		double value;
@@ -88,8 +89,8 @@ void ThreeBodyDecay::SetBitBoostBack(bool flag)
 //	M     = mass;
 //	M_sqr = mass*mass;
 //};
-//
-//
+
+
 void ThreeBodyDecay::SetMotherEPxPyPz(double E, double px, double py, double pz)
 {
 	P->SetPxPyPzE(px,py,pz,E);

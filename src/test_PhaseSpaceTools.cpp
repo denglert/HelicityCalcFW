@@ -10,18 +10,18 @@
 int main( int argc, const char *argv[] )
 {
 
-	double momentum  = 10.0;
-	double theta 	  = 0.0;
-	double phi  	  = 0.0;
-	double 	     M  = 1.0;
+	double momentum  = 2.0;
+	double theta 	  = 0.53;
+	double phi  	  = 1.34;
+	double 	     M  = 10.0;
 	double 	Energy  = sqrt(momentum*momentum+M*M);
 	double 	    m1  = 0.0000;
 	double 	    m2  = 0.0000;
 	double 	    m3  = 0.0000;
 
-	double x1 = 0.999;
-	double x2 = 0.23;
-	double x3 = 0.83;
+	double x1 = 0.5;
+	double x2 = 0.2;
+	double x3 = 0.4;
 	double x4 = 0.3342;
 	double x5 = 0.75;
 
@@ -120,12 +120,19 @@ int main( int argc, const char *argv[] )
 	std::cout << "PSWeight: " << weight << std::endl;
 	std::cout << "amp: " << amp << std::endl;
 
+	std::cout << "P:" << std::endl;
+	displayTLorentzVector(P);
+
 	std::cout << "p1:" << std::endl;
 	displayTLorentzVector(p1);
 	std::cout << "p2:" << std::endl;
 	displayTLorentzVector(p2);
 	std::cout << "p3:" << std::endl;
 	displayTLorentzVector(p3);
+
+	TLorentzVector sum = (*p1) + (*p2) + (*p3);
+	std::cout << "p1+p2+p3:" << std::endl;
+	displayTLorentzVector(&sum);
 	}
 
 }

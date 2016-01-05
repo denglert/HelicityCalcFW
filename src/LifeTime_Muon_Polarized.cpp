@@ -23,7 +23,7 @@
 #define LAST 4
 #define SEED 0
 #define MINEVAL 0
-#define MAXEVAL 50000
+#define MAXEVAL 100000
 
 #define NSTART 1000
 #define NINCREASE 500
@@ -57,8 +57,13 @@
 #define x5 xx[4]
 #define f ff[0]
 
+////////////////////////
+// -- Input values -- //
+////////////////////////
+
 //const double  M  = 1.77682;
 const double  M  = 0.1056583715;
+//const double  M  = 10.0;
 //const double  M  = 1.0;
 //const double m1  = 0.000510998928;
 const double m1  = 0.00000;
@@ -67,27 +72,33 @@ const double m3  = 0.00000;
 
 const double BR  = 1.00000;
 
-const double muon_p     = 0.065;
+const double muon_p     = 0.05;
 const double muon_theta = 0.234*M_PI;
 const double muon_phi   = 0.923*M_PI;
 
 const double gamma_PDG = hbar_c / c_tau_muon;
 const double gamma_formula = pow(M,5.0) * G_Fermi * G_Fermi / 192.0 / pow(M_PI,3.0);
+const double ctau_formula = hbar_c/gamma_formula;
 
 // Flags and bits
 const int k0_flag           = 1; 	// 1 - custom, 2 - physical
-const int polvec_flag       = 1; 	// 1 - custom, 2 - physical
+const int polvec_flag       = 2; 	// 1 - custom, 2 - physical
 const bool bit_addpolarized = true;
+const bool BitBoostBack     = true;
+
+
+/////////////////////
+// -- Integrand -- //
+/////////////////////
 
 static int Integrand(const int *ndim, const cubareal xx[],
   const int *ncomp, cubareal ff[], void *userdata)
 {
 	
-
    ThreeBodyDecay muon(M, m1, m2, m3);
 
 	muon.SetMotherMPThetaPhi(M,muon_p,muon_theta,muon_phi);
-	muon.SetBitBoostBack(true);
+	muon.SetBitBoostBack(BitBoostBack);
 	
 	TLorentzVector *P  = muon.P;
 	TLorentzVector *p1 = muon.p[0];
@@ -132,23 +143,74 @@ static int Integrand(const int *ndim, const cubareal xx[],
 	// Note:
 	// This should be equivalent to the custom pol. vector
 	// when choosing physical k0
+	//
+	
+// Default:
 	if (polvec_flag == 2)
 	{
-		polvec[3] = pmagnitude*pmagnitude;
 
-		for (int i = 0; i<3; i++)
-		{
-			polvec[i] = Energy*(*P)[i];
-		}
+		TVector3 phat(1.0,0.0,0.0);
+		phat.SetPhi(muon_phi);
+		phat.SetTheta(muon_theta);
+
+		double gamma = P->Gamma();
+
+		polvec = TLorentzVector(phat,P->Beta());
 
 		for(int nu = 0; nu<4; nu++)
-		{ polvec[nu] = polvec[nu]/M/pmagnitude; }
+		{ polvec[nu] = polvec[nu]*gamma; }
 	}
+
+// Custom:
+// Polarization vector defined in the rest frame
+//	if (polvec_flag == 2)
+//	{
+//
+//		TVector3 phat(1.0,0.0,0.0);
+//		phat.SetPhi(muon_phi);
+//		phat.SetTheta(muon_theta);
+//
+//		polvec = TLorentzVector(phat,0);
+//
+//	}
+
+//	if (polvec_flag == 2)
+//	{
+//		polvec[3] = pmagnitude*pmagnitude;
+//
+//		for (int i = 0; i<3; i++)
+//		{
+//			polvec[i] = Energy*(*P)[i];
+//		}
+//
+//		for(int nu = 0; nu<4; nu++)
+//		{ polvec[nu] = polvec[nu]/M/pmagnitude; }
+//	}
+//
+
+	//polvec[0] = 1/sqrt(2);
+	//polvec[1] = 1/sqrt(2);
+	//polvec[2] = 0;
+	//polvec[3] = 0;
 
 	///////////////////////////////////////////////
 	double weight = muon.GetPhaseSpaceWeight(x1,x2,x3,x4,x5);
-  	double amp_unpolarized = 128*P->Dot( (*p3) )  * p1->Dot( (*p2) );
-  	double amp_polarized   = 128*M*(polvec*(*p3)) * ( (*p1) * (*p2) );
+	// Default
+  	//double amp_unpolarized = 128*P->Dot( (*p3) )  * p1->Dot( (*p2) );
+  	//double amp_polarized   = 128*M*(polvec*(*p3)) * ( (*p1) * (*p2) );
+	//
+	//TVector3 phat(1.0,0.0,0.0);
+   //phat.SetPhi(0.12);
+   //phat.SetTheta(2.1);
+	//
+	//polvec = TLorentzVector(phat,0);
+
+	// Testing
+	double amp_unpolarized =  128*P->Dot( (*p3) )  * p1->Dot( (*p2) );
+  	double amp_polarized   = -128*M*(polvec*(*p3)) * ( (*p1) * (*p2) );
+	
+  	//double amp_polarized   = 128*M*(polvec*(*p3)) * ( (*p1) * (*p2) );
+  	//double amp_polarized   = 1e5*M*(polvec*(*p2));
 	//double amp = amp_unpolarized + amp_polarized;
 	
 	double amp;
@@ -163,17 +225,67 @@ static int Integrand(const int *ndim, const cubareal xx[],
 		amp = amp_unpolarized + amp_polarized;
 	}
 
-  	f = amp*weight;
-  	//f = weight;
+
+//	amp = (polvec*(*p3));
+//	amp = 128*M*(polvec[0]*(*p3)[0]+polvec[1]*(*p3)[1]+polvec[2]*(*p3)[2]);
+//
+//
+	TVector3 phat(1.0,0.0,0.0);
+   phat.SetPhi(0.0);
+   phat.SetTheta(0.0);
+	
+	polvec = TLorentzVector(phat,0);
+
+
+//	TVector3 phat(1.0,0.0,0.0);
+//   phat.SetPhi(0.34);
+//   phat.SetTheta(1.2);
+//	
+//	polvec = TLorentzVector(phat,0);
+
+	double amp_unpolarized1 =  64*P->Gamma()*(1-P->Beta())*M*p3->E()          *p1->Dot((*p2));
+	double amp_polarized1   = -64*P->Gamma()*(1-P->Beta())*M*polvec.Dot((*p3))*p1->Dot((*p2));
+
+	double amp_unpolarized2 =  64*P->Gamma()*(1+P->Beta())*M*p3->E()          *p1->Dot((*p2));
+	double amp_polarized2   = +64*P->Gamma()*(1+P->Beta())*M*polvec.Dot((*p3))*p1->Dot((*p2));
+	//amp_unpolarized2 = 0;
+	//amp_polarized2   = 0;
+
+	//double integrand = amp_unpolarized1 + amp_polarized1 + amp_unpolarized2 + amp_polarized2;
+	double integrand = 2*(amp_unpolarized2 + amp_polarized2);
+	//double integrand = amp_unpolarized2 + amp_polarized2;
+
+   f = integrand*weight;
+
+//	TVector3 Boostvec = P->BoostVector();
+//	p3->Boost(-Boostvec);
+   
+//	p1->Boost(-Boostvec);
+//	p2->Boost(-Boostvec);
+
+// Default
+//   f = amp*weight;
+//	amp_unpolarized =  128*P->Dot( (*p3))* p1->Dot( (*p2) );
+
+ //  f = amp_unpolarized*weight;
+
+// f = 128*M*(polvec*(*p2))*weight;
+
+// Without matrix element
+// f = weight;
   	return 0;
 
 };
 
 
-////////////////////////////
+////////////////////////
+// -- Main program -- //
+////////////////////////
 
 int main() 
 {
+
+ ////
 
   int comp, nregions, neval, fail;
   cubareal integral[NCOMP], error[NCOMP], prob[NCOMP];
@@ -203,9 +315,9 @@ int main()
       (double)integral[comp], (double)error[comp], (double)prob[comp]);
 #endif
 
-
   double result = (double)integral[comp];
 
+  double result_wogamma = result * PSConst * G_Fermi * G_Fermi / M / 2.0 / 2.0 ;
   result = result * PSConst * G_Fermi * G_Fermi / P->E() / 2.0 / 2.0 ;
 
   double ratio_formula = result/gamma_formula;
@@ -299,15 +411,19 @@ int main()
 	// when choosing physical k0
 	if (polvec_flag == 2)
 	{
-		polvec[3] = pmagnitude*pmagnitude;
 
-		for (int i = 0; i<3; i++)
-		{
-			polvec[i] = Energy*(*P)[i];
-		}
-
+	
+		TVector3 phat(1.0,0.0,0.0);
+		phat.SetPhi(muon_phi);
+		phat.SetTheta(muon_theta);
+	
+		double gamma = P->Gamma();
+	
+		polvec = TLorentzVector(phat,P->Beta());
+	
 		for(int nu = 0; nu<4; nu++)
-		{ polvec[nu] = polvec[nu]/M/pmagnitude; }
+		{ polvec[nu] = polvec[nu]*gamma; }
+
 	}
 
   printf("Spin polarization vector\n");
@@ -320,6 +436,7 @@ int main()
   printf("s^{mu} = ( |pvec|^2 , p0 pvec) / (m |pvec|))\n");
   }
   displayTLorentzVector(&polvec);
+  printf("polvec*P (orthogonality check): %12.6e", polvec*(*P));
 
   printf("\n");
   printf("Unpolarized amplitude:\n");
@@ -363,26 +480,23 @@ int main()
   printf("Polarized component added?: %d (0 = no, 1 = yes)\n", bit_addpolarized);
   printf("\n");
 
-  printf("Gamma(PDG):        %12.6e [GeV] (note: this is the total gamma!)\n", gamma_PDG);
-  printf("Gamma(formula):    %12.6e [GeV]\n", gamma_formula);
-  printf("Gamma(our result): %12.6e [GeV]\n", result);
+  printf("Gamma(PDG):                             %12.6e [GeV] (note: this is the total gamma!)\n", gamma_PDG);
+  printf("Gamma(formula):                         %12.6e [GeV]\n", gamma_formula);
+  printf("Gamma(our result without gamma factor): %12.6e [GeV]\n", result_wogamma);
+  printf("Gamma(our result):                      %12.6e [GeV]\n", result);
 
   printf("\n");
-  printf(" tau(our result):  %12.6e s\n", tau);
-  printf("ctau(our result):  %12.6e m\n", ctau);
+  printf(" tau(our result):  %12.6e s\n\n", tau);
   printf("ctau(PDG):         %12.6e m\n", c_tau_muon*1e-15);
+  printf("ctau(formula):     %12.6e m\n", ctau_formula*1e-15);
+  printf("ctau(our result):  %12.6e m\n", ctau);
   printf("\n");
   printf("Muon\n");
-  printf("beta:                              %12.6f\n", P->Beta());
-  printf("gamma:                             %12.6f\n", P->Gamma());
-  printf("ctau ratio(our result)/rest_PDG:   %12.6f\n", ctau/c_tau_muon/1e-15);
-  printf("ratio of the above two values:     %12.6f\n", P->Gamma()/(ctau/c_tau_muon/1e-15));
+  printf("beta:                                                      %12.6f\n", P->Beta());
+  printf("gamma:                                                     %12.6f\n", P->Gamma());
+  printf("ctau ratio: (our result ctau)/(formula ctau rest frame)    %12.6f\n", ctau/ctau_formula/1e-15);
+  printf("ratio of the above two values:                             %12.6f\n", P->Gamma()/(ctau/ctau_formula/1e-15));
   printf("!!! COMPARE THE ABOVE !!! gamma vs. ctau ratio\n");
-
-  //printf("\n");
-  //printf("(our result)/Gamma(formula): %12.6f \n", ratio_formula);
-  //printf("(our result)/Gamma(PDG):     %12.6f \n", ratio_PDG);
-
 
 #if 0
   printf("\n-------------------- Suave test --------------------\n");
