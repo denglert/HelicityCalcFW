@@ -1,3 +1,7 @@
+make[1]: Entering directory `/home/de3u14/lib/projects/helicity/HelicityFW/src'
+g++ `root-config --cflags` -I../inc/ -MMD -MF .depend_cpp -I/home/de3u14/lib/build/hep/Cuba/Cuba-4.2 -c LifeTime_Muon_Polarized.cpp -o ../lib/LifeTime_Muon_Polarized.cpp.o
+ifort -o ../bin/LifeTime_Muon_Polarized ../lib/UtilFunctions.cpp.o ../lib/LifeTime_Muon_Polarized.cpp.o ../lib/PhaseSpaceTools.cpp.o -cxxlib -nofor_main -L/home/de3u14/lib/build/hep/root/lib -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -limf -lm -ldl -L/home/de3u14/lib/build/hep/Cuba/Cuba-4.2 -lcuba
+make[1]: Leaving directory `/home/de3u14/lib/projects/helicity/HelicityFW/src'
 -------------------- Vegas test --------------------
 Vegas input parameters:
   ndim 5

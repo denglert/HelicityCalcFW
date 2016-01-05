@@ -1,3 +1,7 @@
+make[1]: Entering directory `/home/de3u14/lib/projects/helicity/HelicityFW/src'
+g++ `root-config --cflags` -I../inc/ -MMD -MF .depend_cpp -I/home/de3u14/lib/build/hep/Cuba/Cuba-4.2 -c LifeTime_Muon_Polarized.cpp -o ../lib/LifeTime_Muon_Polarized.cpp.o
+ifort -o ../bin/LifeTime_Muon_Polarized ../lib/UtilFunctions.cpp.o ../lib/LifeTime_Muon_Polarized.cpp.o ../lib/PhaseSpaceTools.cpp.o -cxxlib -nofor_main -L/home/de3u14/lib/build/hep/root/lib -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -limf -lm -ldl -L/home/de3u14/lib/build/hep/Cuba/Cuba-4.2 -lcuba
+make[1]: Leaving directory `/home/de3u14/lib/projects/helicity/HelicityFW/src'
 -------------------- Vegas test --------------------
 Vegas input parameters:
   ndim 5
@@ -16,63 +20,63 @@ Vegas input parameters:
   statefile "(null)"
 
 Iteration 1:  1000 integrand evaluations so far
-[1] 0.00044217 +- 1.35536e-05  	chisq 0 (0 df)
+[1] 0.000166659 +- 5.86424e-06  	chisq 0 (0 df)
 
 Iteration 2:  2500 integrand evaluations so far
-[1] 0.000441489 +- 6.319e-06  	chisq 0.00322338 (1 df)
+[1] 0.000166524 +- 2.82704e-06  	chisq 0.000692512 (1 df)
 
 Iteration 3:  4500 integrand evaluations so far
-[1] 0.000441179 +- 3.96942e-06  	chisq 0.00721303 (2 df)
+[1] 0.000166522 +- 1.8054e-06  	chisq 0.000693132 (2 df)
 
 Iteration 4:  7000 integrand evaluations so far
-[1] 0.000440479 +- 2.92977e-06  	chisq 0.0755899 (3 df)
+[1] 0.000166177 +- 1.33191e-06  	chisq 0.0808162 (3 df)
 
 Iteration 5:  10000 integrand evaluations so far
-[1] 0.000441029 +- 2.34839e-06  	chisq 0.174507 (4 df)
+[1] 0.0001663 +- 1.06909e-06  	chisq 0.104864 (4 df)
 
 Iteration 6:  13500 integrand evaluations so far
-[1] 0.000441 +- 1.97374e-06  	chisq 0.175042 (5 df)
+[1] 0.000166288 +- 9.00248e-07  	chisq 0.105337 (5 df)
 
 Iteration 7:  17500 integrand evaluations so far
-[1] 0.00044118 +- 1.70331e-06  	chisq 0.207643 (6 df)
+[1] 0.000166439 +- 7.77951e-07  	chisq 0.216551 (6 df)
 
 Iteration 8:  22000 integrand evaluations so far
-[1] 0.000440942 +- 1.50232e-06  	chisq 0.29558 (7 df)
+[1] 0.000166403 +- 6.85677e-07  	chisq 0.226116 (7 df)
 
 Iteration 9:  27000 integrand evaluations so far
-[1] 0.000440976 +- 1.34518e-06  	chisq 0.298171 (8 df)
+[1] 0.000166268 +- 6.13123e-07  	chisq 0.417714 (8 df)
 
 Iteration 10:  32500 integrand evaluations so far
-[1] 0.000440952 +- 1.21772e-06  	chisq 0.299974 (9 df)
+[1] 0.000166392 +- 5.56067e-07  	chisq 0.645734 (9 df)
 
 Iteration 11:  38500 integrand evaluations so far
-[1] 0.000440847 +- 1.11365e-06  	chisq 0.345086 (10 df)
+[1] 0.000166368 +- 5.07866e-07  	chisq 0.65711 (10 df)
 
 Iteration 12:  45000 integrand evaluations so far
-[1] 0.000440925 +- 1.02627e-06  	chisq 0.377755 (11 df)
+[1] 0.000166286 +- 4.67326e-07  	chisq 0.824712 (11 df)
 
 Iteration 13:  52000 integrand evaluations so far
-[1] 0.000441023 +- 9.51759e-07  	chisq 0.442195 (12 df)
+[1] 0.000166335 +- 4.33416e-07  	chisq 0.901444 (12 df)
 
 Iteration 14:  59500 integrand evaluations so far
-[1] 0.000440985 +- 8.86726e-07  	chisq 0.454278 (13 df)
+[1] 0.000166323 +- 4.04219e-07  	chisq 0.906978 (13 df)
 
 Iteration 15:  67500 integrand evaluations so far
-[1] 0.000440913 +- 8.30948e-07  	chisq 0.507546 (14 df)
+[1] 0.000166314 +- 3.78509e-07  	chisq 0.911131 (14 df)
 
 Iteration 16:  76000 integrand evaluations so far
-[1] 0.000440964 +- 7.81497e-07  	chisq 0.540027 (15 df)
+[1] 0.000166316 +- 3.55948e-07  	chisq 0.911535 (15 df)
 
 Iteration 17:  85000 integrand evaluations so far
-[1] 0.000440944 +- 7.37521e-07  	chisq 0.546273 (16 df)
+[1] 0.000166302 +- 3.35803e-07  	chisq 0.925697 (16 df)
 
 Iteration 18:  94500 integrand evaluations so far
-[1] 0.000440944 +- 6.98494e-07  	chisq 0.546274 (17 df)
+[1] 0.000166325 +- 3.18257e-07  	chisq 0.96942 (17 df)
 
 Iteration 19:  104500 integrand evaluations so far
-[1] 0.000440951 +- 6.63358e-07  	chisq 0.547556 (18 df)
+[1] 0.000166307 +- 3.02137e-07  	chisq 1.00128 (18 df)
 VEGAS RESULT:	neval 104500	fail 1
-VEGAS RESULT:	0.00044095 +- 0.00000066	p = 0.000
+VEGAS RESULT:	0.00016631 +- 0.00000030	p = 0.000
 
 ###############################################
 ### --- Muon decay lifetime calculation --- ###
@@ -123,27 +127,21 @@ beta:       0.427746
 Momentum:
 (E,px,py,pz): (   0.11689179,   -0.03255789,    0.00803315,    0.03708709)
 
-Unitvector pointing in the direction of momentum:
-x:    -0.651158
-y:     0.160663
-z:     0.160663
-
 ################################
 ### Spin Polarization vector ###
 ################################
 ### - Denoted by s^{mu}         
 
-Spin polarization vector defined in rest frame of the muon
-s^{mu} = (0,phat34)
+polvec_flag: 1
+Spin polarization defined with auxiliary vector k0:
+s^{mu} = P^{mu}/M - (m/Pk0)*k0^{mu}
 
-where the phat34 is pointing towards:
-phat34 theta:     1.743584
-phat34 phi:      -1.294336
+k0_flag: 1
+Custom k0:
+(E,px,py,pz): (   1.00000000,    1.00000000,    0.00000000,    0.00000000)
 
-phat34 components:
-x:     0.268887
-y:    -0.947702
-z:    -0.171929
+Spin polarization vector components:
+(E,px,py,pz): (   0.39933545,   -1.01512594,    0.07602944,    0.35100947)
 
 --------------------------
 --- Consistency checks ---
@@ -159,7 +157,7 @@ z:    -0.171929
 --- Ampltidude ---
 ------------------
 
-Amplitude formula chosen: --->  34  <--- 
+Amplitude formula chosen: --->  1  <--- 
 
 Amplitude formula list:
 (No):  ---------------------- Formula ---------------------------- (polarization)
@@ -209,30 +207,30 @@ Don't forget: our result are quoted in the LAB frame, while the PDG and
               the textbook formula are calculated in the muon rest frame!
 
 # Important flags:
-- k0_type:                    2 (see above at 'Spin polarization', 1 = custom, 2 = physical)
-- spin_polarization:          2 (see above at 'Spin polarization', 1 = computed with k0, 2 = helicity)
-- Amplitude formula chosen:   34 (see above at 'Amplitude' )
+- k0_type:                    1 (see above at 'Spin polarization', 1 = custom, 2 = physical)
+- spin_polarization:          1 (see above at 'Spin polarization', 1 = computed with k0, 2 = helicity)
+- Amplitude formula chosen:   1 (see above at 'Amplitude' )
 
 Note: Choosing (k0_type = 2) and (spin_polarization = 1) should give the same result as
       choosing (spin_polarization = 2) by definition
 
 Gamma(PDG):                             2.995983e-19 [GeV] (note: this is the total gamma!)
 Gamma(textbook):                        2.976355e-19 [GeV]
-Gamma(our result w/o gamma factor):     3.949036e-19 [GeV]
-Gamma(our result):                      3.569529e-19 [GeV]
+Gamma(our result w/o gamma factor):     2.978795e-19 [GeV]
+Gamma(our result):                      2.692530e-19 [GeV]
 
 ctau(PDG):                              6.586384e+02 [m]
 ctau(textbook):                         6.629820e+02 [m]
-ctau(our result w/o gamma factor):      4.996839e+02 [m]
-ctau(our result):                       5.528095e+02 [m]
+ctau(our result w/o gamma factor):      6.624388e+02 [m]
+ctau(our result):                       7.328682e+02 [m]
 
 # Muon configuration
 beta:                                                    0.427746
 gamma:                                                   1.106318 <-
 
 # Ratios
-ratio of ctau's: (our result)/(textbook rest frame)      0.833823 <-
-ratio of the above two values:                           1.326803
+ratio of ctau's: (our result)/(textbook rest frame)      1.105412 <-
+ratio of the above two values:                           1.000820
 
 Note: You should compare the values of 'gamma' with the 'ratio of ctau's',
       as they should be equal.
