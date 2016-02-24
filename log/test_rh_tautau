@@ -55,7 +55,6 @@ masses_.rmtau = 1.78
 TauMasses_mtau[0] = 1.78 
 TauMasses_mtau[1] = 1.78 
 The unpolarized amplitude should be:
-|M|^2 = 2*m_higgs^2 - 4*m_tau^2) = 31237.39
 |M|^2 = 2*m_higgs^2 - 8*m_tau^2) = 31224.77
 
 iEv: 0

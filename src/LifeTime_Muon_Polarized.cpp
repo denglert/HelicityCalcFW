@@ -74,15 +74,15 @@ const double m3  = 0.00000;
 const double BR  = 1.00000;
 
 //const double muon_p     = 0.05;
-const double muon_p     = 0.05;
+const double muon_p     = 0.00;
 const double muon_theta = 0.234*M_PI;
 const double muon_phi   = 0.923*M_PI;
 
 //const double phat_theta = muon_theta;
 //const double phat_phi   = muon_phi;
 
-const double phat_theta = 0.0*M_PI;
 const double phat_phi   = 0.3*M_PI;
+const double phat_theta = 0.123*M_PI;
 
 //const double phat34_theta = muon_theta;
 //const double phat34_phi   = muon_phi;
@@ -95,9 +95,9 @@ const double gamma_formula = pow(M,5.0) * G_Fermi * G_Fermi / 192.0 / pow(M_PI,3
 const double ctau_formula = hbar_c/gamma_formula;
 
 // -- Flags and bits
-const int k0_flag        = 2; 	// 1 - custom, 2 - physical
+const int k0_flag        = 1; 	// 1 - custom, 2 - physical
 const int polvec_flag    = 2; 	// 1 - custom, 2 - physical
-const int ampltiude      = 34;    // 0 - unpolarized, +1 polarized, -1 polarized, 3,4,34
+const int ampltiude      = 1;    // 0 - unpolarized, +1 polarized, -1 polarized, 3,4,34
 const bool BitBoostBack  = true;
 
 //////////////////////////////////////
@@ -173,6 +173,9 @@ static int Integrand(const int *ndim, const cubareal xx[],
 		case  34: amp = amp_unpolarized34;  break;
 	}
 
+	//amp =  64*M*(polvec*(*p3)) * ( (*p1) * (*p2) );
+	//amp =  64*M * ( (*p1) * (*p2) );
+	//amp =  64*M*(polvec*(*p3));
 	f = amp*weight;
 	//f = weight;
 	
@@ -248,8 +251,8 @@ int main()
 	{
 
 		TVector3 phat(1.0,0.0,0.0);
-		phat.SetPhi(muon_phi);
-		phat.SetTheta(muon_theta);
+		phat.SetPhi(phat_phi);
+		phat.SetTheta(phat_theta);
 
 		polvec = TLorentzVector(phat,P->Beta());
 
@@ -603,6 +606,11 @@ int main()
   printf("      The 'ratio of the above two values' gives a measure how well they agree.\n");
   printf("      It should be close to unity, but there could be some tiny deviation as\n");
   printf("      this is after all a numerical integration.\n");
+
+  printf("\n");
+  printf("VEGAS RESULT:\t%.8f +- %.8f\tp = %.3f\n",
+    (double)integral[comp], (double)error[comp], (double)prob[comp]);
+
 
   return 0;
 

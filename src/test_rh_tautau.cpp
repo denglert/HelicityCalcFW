@@ -26,6 +26,11 @@ int main( int argc, const char *argv[] )
 	// Event parameters
 	int nParticles = 2;
 	double E_cm = 125.; 					  // GeV
+
+	//
+	//double masses[2] = {m_tau, m_tau}; // GeV
+	//masses_.rmtau = m_tau;
+	//
 	double masses[2] = {m_tau, m_tau}; // GeV
 	masses_.rmtau = m_tau;
 
@@ -138,8 +143,8 @@ int main( int argc, const char *argv[] )
 	std::cout << Form("TauMasses_mtau[%d] = %.2f \n", 1, TauMasses_mtau[1]);
 
 	std::cout << Form("The unpolarized amplitude should be:\n");
-	std::cout << Form("|M|^2 = 2*m_higgs^2 - 4*m_tau^2) = %.2f\n",
-					 2*m_higgs*m_higgs-4*m_tau*m_tau );
+//	std::cout << Form("|M|^2 = 2*m_higgs^2 - 4*m_tau^2) = %.2f\n",
+//					 2*m_higgs*m_higgs-4*m_tau*m_tau );
 	std::cout << Form("|M|^2 = 2*m_higgs^2 - 8*m_tau^2) = %.2f\n",
 					 2*m_higgs*m_higgs-8*m_tau*m_tau );
 

@@ -1,6 +1,5 @@
-../lib/LifeTime_Muon_Polarized.cpp.o: LifeTime_Muon_Polarized.cpp \
- /home/de3u14/lib/build/hep/root/include/TH3D.h \
- /home/de3u14/lib/build/hep/root/include/TH3.h \
+../lib/test_rh_tautau.cpp.o: test_rh_tautau.cpp \
+ /home/de3u14/lib/build/hep/root/include/TH1D.h \
  /home/de3u14/lib/build/hep/root/include/TH1.h \
  /home/de3u14/lib/build/hep/root/include/TAxis.h \
  /home/de3u14/lib/build/hep/root/include/TNamed.h \
@@ -34,6 +33,12 @@
  /home/de3u14/lib/build/hep/root/include/TVectorFfwd.h \
  /home/de3u14/lib/build/hep/root/include/TVectorDfwd.h \
  /home/de3u14/lib/build/hep/root/include/TFitResultPtr.h \
+ /home/de3u14/lib/build/hep/root/include/TH2D.h \
+ /home/de3u14/lib/build/hep/root/include/TH2.h \
+ /home/de3u14/lib/build/hep/root/include/TMatrixFBasefwd.h \
+ /home/de3u14/lib/build/hep/root/include/TMatrixDBasefwd.h \
+ /home/de3u14/lib/build/hep/root/include/TH3D.h \
+ /home/de3u14/lib/build/hep/root/include/TH3.h \
  /home/de3u14/lib/build/hep/root/include/TAtt3D.h \
  /home/de3u14/lib/build/hep/root/include/TVector3.h \
  /home/de3u14/lib/build/hep/root/include/TError.h \
@@ -42,15 +47,27 @@
  /home/de3u14/lib/build/hep/root/include/TMatrixF.h \
  /home/de3u14/lib/build/hep/root/include/TMatrixT.h \
  /home/de3u14/lib/build/hep/root/include/TMatrixTBase.h \
- /home/de3u14/lib/build/hep/root/include/TMatrixFBasefwd.h \
- /home/de3u14/lib/build/hep/root/include/TMatrixDBasefwd.h \
  /home/de3u14/lib/build/hep/root/include/TMatrixTUtils.h \
  /home/de3u14/lib/build/hep/root/include/TMatrixFfwd.h \
  /home/de3u14/lib/build/hep/root/include/TMatrixFUtils.h \
  /home/de3u14/lib/build/hep/root/include/TMatrixFUtilsfwd.h \
  /home/de3u14/lib/build/hep/root/include/TLorentzVector.h \
  /home/de3u14/lib/build/hep/root/include/TMath.h \
- /home/de3u14/lib/build/hep/root/include/TRotation.h ../inc/HelicityFW.h \
+ /home/de3u14/lib/build/hep/root/include/TRotation.h \
+ /home/de3u14/lib/build/hep/root/include/TGenPhaseSpace.h \
+ /home/de3u14/lib/build/hep/root/include/TLorentzVector.h \
+ /home/de3u14/lib/build/hep/root/include/TCanvas.h \
+ /home/de3u14/lib/build/hep/root/include/TPad.h \
+ /home/de3u14/lib/build/hep/root/include/TVirtualPad.h \
+ /home/de3u14/lib/build/hep/root/include/TAttPad.h \
+ /home/de3u14/lib/build/hep/root/include/TVirtualX.h \
+ /home/de3u14/lib/build/hep/root/include/TAttText.h \
+ /home/de3u14/lib/build/hep/root/include/GuiTypes.h \
+ /home/de3u14/lib/build/hep/root/include/Buttons.h \
+ /home/de3u14/lib/build/hep/root/include/TQObject.h \
+ /home/de3u14/lib/build/hep/root/include/TAttBBox2D.h \
+ /home/de3u14/lib/build/hep/root/include/TPoint.h \
+ /home/de3u14/lib/build/hep/root/include/TAttCanvas.h \
+ /home/de3u14/lib/build/hep/root/include/TCanvasImp.h \
  ../inc/FortranInterface.h ../inc/PhysConst.h ../inc/UtilFunctions.h \
- ../inc/PhaseSpaceTools.h ../inc/UtilFunctions.h \
- /home/de3u14/lib/build/hep/Cuba/Cuba-4.2/cuba.h
+ ../inc/HelicityTools.h ../inc/FortranInterface.h

@@ -2,6 +2,8 @@
 
 ////////////////////
 // Two-body decay //
+////////////////////
+
 namespace TwoBodyFunc
 {
 
@@ -36,6 +38,10 @@ namespace TwoBodyFunc
 	}
 
 }
+
+//////////////////////
+// Three-body decay //
+//////////////////////
 
 ThreeBodyDecay::ThreeBodyDecay(double M_, double m1_, double m2_, double m3_)
 {
@@ -105,6 +111,7 @@ void ThreeBodyDecay::SetMotherEPxPyPz(double E, double px, double py, double pz)
 	printf("END DEBUG INFO\n\n");
 	# endif
 }
+
 
 void ThreeBodyDecay::SetMotherMPThetaPhi(double M, double mom, double theta, double phi)
 {
@@ -285,16 +292,19 @@ double ThreeBodyDecay::GetJacobian()
 	return Jacobian;
 }
 
+
 double ThreeBodyDecay::GetPSConst()
 {
 	return PSConst;
 }
+
 
 double ThreeBodyDecay::GetPhaseSpaceWeight(double x1, double x2, double x3, double x4, double x5)
 {
 	ThreeBodyDecay::SetPhaseSpace(x1,x2,x3,x4,x5);
 	return PSWeight;
 }
+
 
 void ThreeBodyDecay::DisplayAll()
 {
@@ -323,6 +333,7 @@ void ThreeBodyDecay::DisplayKinematics()
 	std::cout << "(*p[1]) + (*p[2]).M(): " << sum.M() << std::endl;
 }
 
+
 void ThreeBodyDecay::DisplayMasses()
 {
 	printf("M: %10.5f\n", M) ;
@@ -334,6 +345,7 @@ void ThreeBodyDecay::DisplayMasses()
 	printf("p[1]->M(): %10.5f\n", p[1]->M());
 	printf("p[2]->M(): %10.5f\n", p[2]->M());
 }
+
 
 void ThreeBodyDecay::DisplayMomenta()
 {
