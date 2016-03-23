@@ -22,7 +22,7 @@ extern "C"
 					double **xi, int *it, int *ndo, double *si, double *swgt, double *schi );
 
 	double rh_tautau_(double *p1, double *p2, CMatrix_2_2 &cth);
-	double rh_6f_(double *p3, double *p4, double *p5, double *p6, double *p7, double *p8, CMatrix_2_2 &cdec_taum, CMatrix_2_2 &cdec_taup, CMatrix_2_2 &cdec_tautau);
+	double rh_6f_(double *p3, double *p4, double *p5, double *p6, double *p7, double *p8);
 
    extern struct
 	{
@@ -47,6 +47,9 @@ extern "C"
 
    extern struct
 	{
+		CMatrix_2_2 ch_tautau;
+		CMatrix_2_2 cdec_taum;
+		CMatrix_2_2 cdec_taup;
 		CMatrix_2_2 c7_568;
    } taumatrices_;	
 

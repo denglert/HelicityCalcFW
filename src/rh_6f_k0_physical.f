@@ -3,8 +3,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 * Process and momenta convention:
 * H(p) -> e-(p3) vebar(p4) vmu(p5) mu+(p6) vtau(p7) vtaubar(p8)                 
 * Auxiliary vector 'k0' taken to be physical
-      real*8 function rh_6f(p3,p4,p5,p6,p7,p8,
-     &                      cdec_taum,cdec_taup,ch_tautau)
+      real*8 function rh_6f(p3,p4,p5,p6,p7,p8)
 
       implicit real*8 (a-b,d-h,o-z)
       implicit complex*16 (c)
@@ -27,6 +26,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 
       dimension cres(2,2),cdec_taum(2,2),cdec_taup(2,2),ch_tautau(2,2)
       dimension cres_test(2,2)
+      dimension c7_568(2,2)
 
       dimension cmatrix(2,2)
 
@@ -44,6 +44,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       COMMON/couplings/wcl,gh_tautau
       COMMON/amplitudes/rh_6f_tautau,rh_6f_taum,rh_6f_taup,
      &                  rh_6f_res_nwa,rh_6f_res,rh_6f_res_test
+      COMMON/taumatrices/ch_tautau,cdec_taum,cdec_taup,c7_568
 
       PARAMETER (czero=(0.d0,0.d0),cim=(0.d0,1.d0))
 

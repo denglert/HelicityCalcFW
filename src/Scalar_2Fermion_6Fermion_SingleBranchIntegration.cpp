@@ -182,7 +182,6 @@ int main()
   double PSWeight_B123 = decay.DecayB123->GetPhaseSpaceWeight(xB1, xB2, xB3, xB4, xB5);
   printf("PSWeight_B123 = %10.5e \n", PSWeight_B123);
 	
-
 #endif
 #if 0
   printf("\n-------------------- Suave test --------------------\n");

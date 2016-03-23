@@ -242,14 +242,13 @@ int main( int argc, const char *argv[] )
 		
 		std::cout << Form("\n# --- Helicity amplitude calculation --- #") << std::endl;
 
-		double rh_6f_val = rh_6f_(p3_,p4_,p5_,p6_,p7_,p8_,cdec_taum,cdec_taup,ch_tautau);
+		double rh_6f_val = rh_6f_(p3_,p4_,p5_,p6_,p7_,p8_);
 
 		// Read in tau matrices
-		h_tautau.ReadInCMatrix_2_2( ch_tautau );
-		taum.ReadInCMatrix_2_2(cdec_taum);
-		taup.ReadInCMatrix_2_2(cdec_taup);
-
-		c7_568.ReadInCMatrix_2_2(taumatrices_.c7_568);
+		h_tautau.ReadInCMatrix_2_2( taumatrices_.ch_tautau );
+		taum.ReadInCMatrix_2_2(     taumatrices_.cdec_taum );
+		taup.ReadInCMatrix_2_2(     taumatrices_.cdec_taup );
+		c7_568.ReadInCMatrix_2_2(   taumatrices_.c7_568    );
 
 		// Show tau matrices
 		h_tautau.Show();

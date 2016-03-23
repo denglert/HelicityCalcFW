@@ -1,4 +1,4 @@
-../lib/test_rh_6f_k0_1001.cpp.o: test_rh_6f_k0_1001.cpp \
+../lib/test_rh_6f_k0_physical.cpp.o: test_rh_6f_k0_physical.cpp \
  /home/de3u14/lib/build/hep/root/include/TH1D.h \
  /home/de3u14/lib/build/hep/root/include/TH1.h \
  /home/de3u14/lib/build/hep/root/include/TAxis.h \

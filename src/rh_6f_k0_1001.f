@@ -6,8 +6,7 @@
 * TLorentzVector k0 (1.0, 0.0, 0.0, 1.0);
 * which correspond to (1.0, 1.0, 0.0, 0.0) with the conv used here;
 
-      real*8 function rh_6f(p3,p4,p5,p6,p7,p8,
-     &                      cdec_taum,cdec_taup,ch_tautau)
+      real*8 function rh_6f(p3,p4,p5,p6,p7,p8)
 
       implicit real*8 (a-b,d-h,o-z)
       implicit complex*16 (c)
@@ -47,7 +46,7 @@
       COMMON/couplings/wcl,gh_tautau
       COMMON/amplitudes/rh_6f_tautau,rh_6f_taum,rh_6f_taup,
      &                  rh_6f_res_nwa,rh_6f_res,rh_6f_res_test
-      COMMON/taumatrices/c7_568
+      COMMON/taumatrices/ch_tautau,cdec_taum,cdec_taup,c7_568
 
       PARAMETER (czero=(0.d0,0.d0),cim=(0.d0,1.d0))
 

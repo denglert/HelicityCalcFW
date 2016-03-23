@@ -61,9 +61,11 @@ int main( int argc, const char *argv[] )
 	TauMatrix h_tautau;
 	TauMatrix taum;
 	TauMatrix taup;
+	TauMatrix c7_568;
 	h_tautau.SetName("H->tau- tau+");
 	taum.SetName("taum");
 	taup.SetName("taup");
+	c7_568.SetName("c7_568");
 
 	////////////////////////////////////////////////////
 	// -- Generate HiggsDecays with TGenPhaseSpace -- //
@@ -221,11 +223,12 @@ int main( int argc, const char *argv[] )
 //		std::cout << Form("rh_tautau: %.2f\n", rh_tautau_val) << std::endl;
 
 		std::cout << Form("\n# --- Helicity amplitude calculation --- #") << std::endl;
-		double rh_6f_val = rh_6f_(p3_,p4_,p5_,p6_,p7_,p8_,cdec_taum,cdec_taup,ch_tautau);
+		double rh_6f_val = rh_6f_(p3_,p4_,p5_,p6_,p7_,p8_);
 
-		h_tautau.ReadInCMatrix_2_2( ch_tautau );
-		taum.ReadInCMatrix_2_2(cdec_taum);
-		taup.ReadInCMatrix_2_2(cdec_taup);
+		h_tautau.ReadInCMatrix_2_2( taumatrices_.ch_tautau );
+		taum.ReadInCMatrix_2_2(     taumatrices_.cdec_taum );
+		taup.ReadInCMatrix_2_2(     taumatrices_.cdec_taup );
+		c7_568.ReadInCMatrix_2_2(   taumatrices_.c7_568    );
 
 		h_tautau.Show();
 		taum.Show();
