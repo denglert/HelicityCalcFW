@@ -31,20 +31,24 @@ c Make 'czero' and 'cim' two component variables wicth initialization
       PARAMETER (czero=(0.d0,0.d0),cim=(0.d0,1.d0))
 
 c     Check if rmtau is cthe tau mass
-c      print *,'Inside rh_tautau FORTRAN func., value of rmtau:', rmtau
+       print *,'Inside rh_tautau FORTRAN func., value of rmtau:', rmtau
 
-c      do i=0,3                          
-c         print *,'p1(i):',  p1(i), i
-c         print *,'p2(i):',  p2(i), i
-c      enddo
+c     Fortran momenta
+       do i=0,3                          
+          print *,'FORTRAN p1(i):',  p1(i), i
+       enddo
+
+       do i=0,3                          
+          print *,'FORTRAN p2(i):',  p2(i), i
+       enddo
 
 C ******************************************************************
 c The product of p1 and k0 and p2 and k0
 c where k0 = (1,1,0,0)
 
       factor = 1
-      p1k0=factor*(p1(0)-p1(2))
-      p2k0=factor*(p2(0)-p2(2))
+      p1k0=factor*(p1(0)-p1(1))
+      p2k0=factor*(p2(0)-p2(1))
 
 c subroutine TH(qu,qd,abc)
 c computes the coefficients a,b,c (d=0) for the insertion of a scalar particle
@@ -87,12 +91,16 @@ c the input must be the following: mline(i1?,&2,i2?,&1).
          enddo
        enddo
 
+
+      print *,'FORTRAN res:', res
 c Just one polarization
 
 c     cres=cth(i1,i2)                  
 c     res=res+dreal(cres)**2+dimag(cres)**2
 
       rh_tautau=res/p1k0/p2k0
+
+      print *,'FORTRAN rh_tautau:', rh_tautau
 
       RETURN
       END

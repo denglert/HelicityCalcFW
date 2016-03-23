@@ -1,0 +1,22 @@
+Testing spin polarization.
+p1: 
+(E,px,py,pz): (   2.50000000,    0.00000000,    0.00000000,    2.29128785)
+p2: 
+(E,px,py,pz): (   2.50000000,    0.00000000,    0.00000000,   -2.29128785)
+polvec1: 
+(E,px,py,pz): (   2.29128785,    0.00000000,    0.00000000,    2.50000000)
+polvec2: 
+(E,px,py,pz): (  -2.29128785,    0.00000000,    0.00000000,    2.50000000)
+
+Consistency checks: 
+polvec1*polvec1: -1
+polvec2*polvec2: -1
+p1*polvec1: 0
+p2*polvec2: 0
+
+polvec1*polvec2: -11.5
+p1*polvec2: -11.4564
+p2*polvec1: 11.4564
+Result
+[ (p1p2)-m^{2} ] [ 1 - (s1s2) ] - (p1s2)(p2s1)
+262.5

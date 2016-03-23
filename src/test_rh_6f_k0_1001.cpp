@@ -35,7 +35,7 @@ int main( int argc, const char *argv[] )
 	////////////////////////
 	
 
-	int nEvents = 3;
+	int nEvents = 1;
 
 	// Event parameters
 	int nParticles = 2;
@@ -54,36 +54,42 @@ int main( int argc, const char *argv[] )
 	amplitudes_.rh_6f_res_nwa = 0.0;
 
 	// Ampltiudes
-	//cval cdec_taum[2][2];
+	// CMatrix_2_2 = cval cdec_taum[2][2];
 	CMatrix_2_2 cdec_taum;
 	CMatrix_2_2 cdec_taup;
 	CMatrix_2_2 ch_tautau;
 
+	// TauMatrix
 	TauMatrix h_tautau;
 	TauMatrix taum;
 	TauMatrix taup;
-	h_tautau.SetName("H->tau- tau+");
+	TauMatrix c7_568;
+	h_tautau.SetName("H ---> tau- tau+");
 	taum.SetName("taum");
 	taup.SetName("taup");
+	c7_568.SetName("c7_568");
 
 	////////////////////////////////////////////////////
 	// -- Generate HiggsDecays with TGenPhaseSpace -- //
 	////////////////////////////////////////////////////
 	
-	TGenPhaseSpace HiggsDecay;
+	// Higgs
 	TLorentzVector Higgs(0.0, 0.0, 0.0, m_higgs);
 	
+	// Masses
 	double TauMasses[2] = {m_tau, m_tau};
+	double LeptonMasses1[3] = { m_nu_tau, m_ele, m_nu_ele };
+	double LeptonMasses2[3] = { m_nu_tau, m_muo, m_nu_muo };
+
+	// Phase spaces
+	TGenPhaseSpace HiggsDecay;
 	TGenPhaseSpace p568Decay;
 	TGenPhaseSpace p734Decay;
 
-	double LeptonMasses1[3] = {m_nu_tau, m_ele, m_nu_ele};
-	double LeptonMasses2[3] = {m_nu_tau, m_muo, m_nu_muo};
-
+	// Higgs decay
 	HiggsDecay.SetDecay(Higgs, 2, TauMasses);
 	
-	TH2F *h2 = new TH2F("h2","h2", 50,1.1,1.8, 50,1.1,1.8);
-
+	// Momenta
 	double p1_[4];
 	double p2_[4];
 	double p3_[4];
@@ -112,7 +118,7 @@ int main( int argc, const char *argv[] )
 
 		std::cout << Form("\n################\n### iEv: %3d ###\n################", iEv) << std::endl;
 
-		// Higgs Decay
+		// Generate Higgs Decay
 	   Double_t weight = HiggsDecay.Generate();
 
 		std::cout << "weight: " << weight << std::endl;
@@ -121,6 +127,8 @@ int main( int argc, const char *argv[] )
 	   TLorentzVector *p734 = HiggsDecay.GetDecay(1);
 	   TLorentzVector *p568 = HiggsDecay.GetDecay(0);
 
+
+		// Get BoostVector
 		TVector3 p734_BoostVector = p734->BoostVector();
 		TVector3 p568_BoostVector = p568->BoostVector();
 
@@ -134,6 +142,7 @@ int main( int argc, const char *argv[] )
 		std::cout << "weight1: " << weight1 << std::endl;
 		std::cout << "weight2: " << weight2 << std::endl;
 
+		// Get TLorentzVectors momenta
 	   TLorentzVector *p7 = p734Decay.GetDecay(0); // v_tau
 	   TLorentzVector *p3 = p734Decay.GetDecay(1); // ele-
 	   TLorentzVector *p4 = p734Decay.GetDecay(2); // v_ele_bar
@@ -141,15 +150,17 @@ int main( int argc, const char *argv[] )
 	   TLorentzVector *p6 = p568Decay.GetDecay(1); // mu+
 	   TLorentzVector *p5 = p568Decay.GetDecay(2); // v_muo
  
+		// Creating (p k0) scalar products
  		double p568k0 = k0 * (*p568);
  		double p734k0 = k0 * (*p734);
- 		double p3k0 = k0 * (*p3);
- 		double p4k0 = k0 * (*p4); 
- 		double p5k0 = k0 * (*p5);
- 		double p6k0 = k0 * (*p6);
-		double p7k0 = k0 * (*p7);
-		double p8k0 = k0 * (*p8);
+ 		double p3k0   = k0 * (*p3);
+ 		double p4k0   = k0 * (*p4); 
+ 		double p5k0   = k0 * (*p5);
+ 		double p6k0   = k0 * (*p6);
+		double p7k0   = k0 * (*p7);
+		double p8k0   = k0 * (*p8);
 
+		// Sum of momenta
 	   TLorentzVector *sum = new TLorentzVector;
 		(*sum) = (*p8) + (*p6) + (*p5) + (*p7) + (*p3) + (*p4);
 
@@ -164,6 +175,10 @@ int main( int argc, const char *argv[] )
 		std::cout << "- p6    (muon+)"; displayTLorentzVector(p6);
 		std::cout << "- p5     (v_mu)"; displayTLorentzVector(p5);
 
+
+		////////////////////////////////
+		// -- Standard calculation -- //
+		////////////////////////////////
 
 		// -- Unpolarized term -- //
 		double taum_amp = p734->Dot((*p4)) * p3->Dot((*p7));
@@ -221,22 +236,41 @@ int main( int argc, const char *argv[] )
 //		double rh_tautau_val = rh_tautau_(p1_,p2_);
 //		std::cout << Form("rh_tautau: %.2f\n", rh_tautau_val) << std::endl;
 
+		//////////////////////////////////////////
+		// -- Helicity amplitude calculation -- //
+		//////////////////////////////////////////
+		
 		std::cout << Form("\n# --- Helicity amplitude calculation --- #") << std::endl;
+
 		double rh_6f_val = rh_6f_(p3_,p4_,p5_,p6_,p7_,p8_,cdec_taum,cdec_taup,ch_tautau);
 
+		// Read in tau matrices
 		h_tautau.ReadInCMatrix_2_2( ch_tautau );
 		taum.ReadInCMatrix_2_2(cdec_taum);
 		taup.ReadInCMatrix_2_2(cdec_taup);
 
-		h_tautau.Show();
-		taum.Show();
-		taup.Show();
+		c7_568.ReadInCMatrix_2_2(taumatrices_.c7_568);
 
+		// Show tau matrices
+		h_tautau.Show();
+		h_tautau.ShowSum();
+		taum.Show();
+		taum.ShowSum();
+		taup.Show();
+		taup.ShowSum();
+		c7_568.Show();
+
+		std::cout << std::endl;
+
+		// Calculate polarized terms
 		double taum_rh_6f_pol_1 = std::abs(taum.m[1][0])*std::abs(taum.m[1][0]);
 		double taum_rh_6f_pol_2 = std::abs(taum.m[1][1])*std::abs(taum.m[1][1]);
 
 		double taup_rh_6f_pol_1 = std::abs(taup.m[0][1])*std::abs(taup.m[0][1]);
 		double taup_rh_6f_pol_2 = std::abs(taup.m[1][1])*std::abs(taup.m[1][1]);
+
+		double c7_568_pol_1 = std::abs(c7_568.m[1][0])*std::abs(c7_568.m[1][0]);
+		double c7_568_pol_2 = std::abs(c7_568.m[1][1])*std::abs(c7_568.m[1][1]);
 
 		taum_rh_6f_pol_1 = taum_rh_6f_pol_1/p3k0/p4k0/p7k0/p734k0;
 		taum_rh_6f_pol_2 = taum_rh_6f_pol_2/p3k0/p4k0/p7k0/p734k0;
@@ -244,8 +278,9 @@ int main( int argc, const char *argv[] )
 		taup_rh_6f_pol_1 = taup_rh_6f_pol_1/p5k0/p6k0/p8k0/p568k0;
 		taup_rh_6f_pol_2 = taup_rh_6f_pol_2/p5k0/p6k0/p8k0/p568k0;
 
-		taum.ShowSum();
-		taup.ShowSum();
+		c7_568_pol_1 = c7_568_pol_1/p3k0/p4k0/p7k0/p568k0;
+		c7_568_pol_2 = c7_568_pol_2/p3k0/p4k0/p7k0/p568k0;
+
 //		for (int i=0; i<2; i++)
 //		for (int j=0; j<2; j++)
 //		{
@@ -259,6 +294,7 @@ int main( int argc, const char *argv[] )
 //		  std::cout << Form("rh_6f_tau+[%d][%d].r: %.4f \n",i,j,cdec_taup[i][j].r);
 //		  std::cout << Form("rh_6f_tau+[%d][%d].i: %.4f \n",i,j,cdec_taup[i][j].i);
 //		}
+
 		double taum_unpol = taum.CalcSum();
 		double taup_unpol = taup.CalcSum();
 
@@ -272,6 +308,8 @@ int main( int argc, const char *argv[] )
 		std::cout << Form("- taum_rh_6f_pol_2 (calc via square): %.4f", taum_rh_6f_pol_2) << std::endl;
 		std::cout << Form("- taup_rh_6f_pol_1 (calc via square): %.4f", taup_rh_6f_pol_1) << std::endl;
 		std::cout << Form("- taup_rh_6f_pol_2 (calc via square): %.4f", taup_rh_6f_pol_2) << std::endl;
+		std::cout << Form("- c7_568_rh_6f_pol_1 (calc via square): %.4f", c7_568_pol_1) << std::endl;
+		std::cout << Form("- c7_568_rh_6f_pol_2 (calc via square): %.4f", c7_568_pol_2) << std::endl;
 
 		std::cout << Form("- (taum_rh_6f_pol_1-taum_rh_6f_pol_2) (calc via square): %.4f", taum_rh_6f_pol_1-taum_rh_6f_pol_2) << std::endl;
 		std::cout << Form("- (taup_rh_6f_pol_1-taup_rh_6f_pol_2) (calc via square): %.4f", taup_rh_6f_pol_1-taup_rh_6f_pol_2) << std::endl;

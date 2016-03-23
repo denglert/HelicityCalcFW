@@ -49,12 +49,19 @@
 
 #define KEY 0
 
-#define NDIM 5
+#define NDIM 12
 #define x1 xx[0]
 #define x2 xx[1]
 #define x3 xx[2]
 #define x4 xx[3]
 #define x5 xx[4]
+#define x6 xx[5]
+#define x7 xx[6]
+#define x8 xx[7]
+#define x9 xx[8]
+#define x10 xx[9]
+#define x11 xx[10]
+#define x12 xx[11]
 #define f ff[0]
 
 ////////////////////////
@@ -62,42 +69,20 @@
 ////////////////////////
 
 // -- Physical constansts and computation
-//const double  M  = 1.77682;
-const double  M  = 0.1056583715;
-//const double  M  = 10.0;
-//const double  M  = 1.0;
-//const double m1  = 0.000510998928;
-const double m1  = 0.00000;
-const double m2  = 0.00000;
-const double m3  = 0.00000;
-
-const double BR  = 1.00000;
-
-//const double muon_p     = 0.05;
-const double muon_p     = 0.10;
-const double muon_theta = 0.234*M_PI;
-const double muon_phi   = 0.923*M_PI;
-
-//const double phat_theta = muon_theta;
-//const double phat_phi   = muon_phi;
-
-const double phat_phi   = 0.3*M_PI;
-const double phat_theta = 0.123*M_PI;
-
-//const double phat34_theta = muon_theta;
-//const double phat34_phi   = muon_phi;
-
-const double phat34_theta =  0.555*M_PI;
-const double phat34_phi   = -0.412*M_PI;
-
-const double gamma_PDG = hbar_c / c_tau_muon;
-const double gamma_formula = pow(M,5.0) * G_Fermi * G_Fermi / 192.0 / pow(M_PI,3.0);
-const double ctau_formula = hbar_c/gamma_formula;
+const double M    = m_higgs;
+const double mA   = m_tau;
+const double mB   = m_tau;
+const double mA1  = 0.0;
+const double mA2  = 0.0;
+const double mA3  = 0.0;
+const double mB1  = 0.0;
+const double mB2  = 0.0;
+const double mB3  = 0.0;
 
 // -- Flags and bits
 const int k0_flag        = 1; 	// 1 - custom, 2 - physical
-const int polvec_flag    = 1; 	// 1 - custom, 2 - physical
-const int ampltiude      = 0;    // 0 - unpolarized, +1 polarized, -1 polarized, 3,4,34
+const int polvec_flag    = 2; 	// 1 - custom, 2 - physical
+const int ampltiude      = 1;    // 0 - unpolarized, +1 polarized, -1 polarized, 3,4,34
 const bool BitBoostBack  = true;
 
 //////////////////////////////////////
@@ -107,7 +92,8 @@ const bool BitBoostBack  = true;
 // -- and functions that are accessible from both
 
 // Declaring global ThreeBodyDecay class
-ThreeBodyDecay muon(M, m1, m2, m3);
+ThreeBodyDecay DecayA(mA, mA1, mA2, mA3);
+ThreeBodyDecay DecayB(mB, mB1, mB2, mB3);
 
 // Auxiliary vector
 TLorentzVector k0;           // Final auxiliary vector used
@@ -115,10 +101,15 @@ TLorentzVector k0_custom;    // Arbitrary auxiliary vector
 TLorentzVector k0_physical;  // Physical auxiliary vector
 
 // Pointers to the momenta
-TLorentzVector *P;   // Muon    p
-TLorentzVector *p1;  // e-      q
-TLorentzVector *p2;  // v_mu    k
-TLorentzVector *p3;  // v_ebar  k'
+TLorentzVector *P;    // Higgs   p
+TLorentzVector *pA;   // tauA    
+TLorentzVector *pA1;  // tauA daughter 1    
+TLorentzVector *pA2;  // tauA daughter 2   
+TLorentzVector *pA3;  // tauA daughter 3   
+TLorentzVector *pB;   // tauB    
+TLorentzVector *pB1;  // tauB daughter 1       
+TLorentzVector *pB2;  // tauB daughter 2       
+TLorentzVector *pB3;  // tauB daughter 3       
 
 // Spin ampltiude vector
 TLorentzVector polvec;
@@ -594,11 +585,11 @@ int main()
   printf("\n");
   printf("# Muon configuration\n");
   printf("beta:                                                %12.6f\n", P->Beta());
-  printf("gamma:                                               %12.6f <- compare this value\n", P->Gamma());
+  printf("gamma:                                               %12.6f <-\n", P->Gamma());
 
   printf("\n");
   printf("# Ratios\n");
-  printf("ratio of ctau's: (our result)/(textbook rest frame)  %12.6f <- with this\n", ctau/ctau_formula/1e-15);
+  printf("ratio of ctau's: (our result)/(textbook rest frame)  %12.6f <-\n", ctau/ctau_formula/1e-15);
   printf("ratio of the above two values:                       %12.6f\n", P->Gamma()/(ctau/ctau_formula/1e-15));
   printf("\n");
   printf("Note: You should compare the values of 'gamma' with the 'ratio of ctau's',\n");

@@ -44,6 +44,12 @@ extern "C"
 		double rh_6f_res;
 		double rh_6f_res_test;
 	} amplitudes_;
+
+   extern struct
+	{
+		CMatrix_2_2 c7_568;
+   } taumatrices_;	
+
 }
 
 #endif

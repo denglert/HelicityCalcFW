@@ -1,0 +1,53 @@
+
+##################################
+### --- DecayChain126 test --- ###
+##################################
+
+
+Boost back: yes
+
+-------------------- Vegas test --------------------
+Vegas input parameters:
+  ndim 12
+  ncomp 1
+  nvec 1
+  epsrel 0.001
+  epsabs 1e-12
+  flags 2
+  seed 0
+  mineval 0
+  maxeval 50000
+  nstart 1000
+  nincrease 500
+  nbatch 1000
+  gridno 0
+  statefile "(null)"
+
+Iteration 1:  1000 integrand evaluations so far
+[1] 0.249096 +- 0.00696054  	chisq 0 (0 df)
+
+Iteration 2:  2500 integrand evaluations so far
+[1] 0.250363 +- 0.0025296  	chisq 0.0382104 (1 df)
+
+Iteration 3:  4500 integrand evaluations so far
+[1] 0.249306 +- 0.00112276  	chisq 0.255649 (2 df)
+
+Iteration 4:  7000 integrand evaluations so far
+[1] 0.250458 +- 0.000750225  	chisq 2.15818 (3 df)
+
+Iteration 5:  10000 integrand evaluations so far
+[1] 0.249911 +- 0.000412543  	chisq 2.91998 (4 df)
+
+Iteration 6:  13500 integrand evaluations so far
+[1] 0.250074 +- 0.000297017  	chisq 3.2411 (5 df)
+
+Iteration 7:  17500 integrand evaluations so far
+[1] 0.250055 +- 0.000237252  	chisq 3.25207 (6 df)
+VEGAS RESULT:	neval 17500	fail 0
+VEGAS RESULT:	0.25005496 +- 0.00023725	p = 0.223
+VEGAS numerical result:    0.25005
+
+                                           final result: 3.9280233491e-07
+Expexted result in massless (m1 = m2 = m3 = 0) scenario: 3.9271599326e-07
+                                            their ratio: 1.0002198577
+

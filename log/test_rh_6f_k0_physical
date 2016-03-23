@@ -66,15 +66,21 @@ Polarized case:
  i:            1 j:            2 (538.637569587511,253.271247890597)
  i:            2 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
  i:            2 j:            2 (444.883215877405,400.611965131395)
+
 H->tau- tau+ matrix: 
     (3.71,0) (-7805,214.3) 
 (7805,214.3)     (3.71,0) 
+
+
 taum matrix: 
        (0,0)        (0,0) 
 (-1745,903.2) (61.11,-1124) 
+
+
 taup matrix: 
        (0,0) (538.6,253.3) 
        (0,0) (444.9,400.6) 
+
 taum sum of squared matrix elements:     5.13e+06
 taup sum of squared matrix elements:    7.127e+05
 - taum_unpolarized (calc via sum of square of tau elements): 9.8288
@@ -151,15 +157,21 @@ Polarized case:
  i:            1 j:            2 (-1941.20415165516,-1205.33814725660)
  i:            2 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
  i:            2 j:            2 (-848.951116479536,449.071697757710)
+
 H->tau- tau+ matrix: 
    (69.14,0) (2879,-6839) 
 (-2879,-6839)    (69.14,0) 
+
+
 taum matrix: 
        (0,0)        (0,0) 
 (178.2,54.58) (-80.42,16.87) 
+
+
 taup matrix: 
        (0,0) (-1941,-1205) 
        (0,0) (-849,449.1) 
+
 taum sum of squared matrix elements:    4.149e+04
 taup sum of squared matrix elements:    6.143e+06
 - taum_unpolarized (calc via sum of square of tau elements): 1.7258
@@ -236,15 +248,21 @@ Polarized case:
  i:            1 j:            2 (-4438.03196261943,4721.24644903765)
  i:            2 j:            1 (0.000000000000000E+000,0.000000000000000E+000)
  i:            2 j:            2 (-226.296633420622,2671.08782701242)
+
 H->tau- tau+ matrix: 
    (175.8,0) (-1248,-4597) 
 (1248,-4597)    (175.8,0) 
+
+
 taum matrix: 
        (0,0)        (0,0) 
 (5.41,-8.541) (-7.816,-4.912) 
+
+
 taup matrix: 
        (0,0) (-4438,4721) 
        (0,0) (-226.3,2671) 
+
 taum sum of squared matrix elements:        187.4
 taup sum of squared matrix elements:    4.917e+07
 - taum_unpolarized (calc via sum of square of tau elements): 0.5408

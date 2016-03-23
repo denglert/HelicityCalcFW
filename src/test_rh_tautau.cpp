@@ -21,27 +21,32 @@ int main( int argc, const char *argv[] )
 	// 				       //
 	////////////////////////
 	
-	int nEvents = 3;
+	int nEvents = 1;
 
 	// Event parameters
 	int nParticles = 2;
 	double E_cm = 125.; 					  // GeV
 
-	//
+	double theta1 = M_PI/2;
+	double theta2 = M_PI/2;
+
+	double phi1 = M_PI/2;
+	double phi2 = 0;
+
 	//double masses[2] = {m_tau, m_tau}; // GeV
 	//masses_.rmtau = m_tau;
 	//
 	double masses[2] = {m_tau, m_tau}; // GeV
 	masses_.rmtau = m_tau;
 
-
 	CMatrix_2_2 cth;
 	TauMatrix taumatrix;
 
 	taumatrix.SetName("H->tau+ tau- taumatrix");
 	taumatrix.SetnParts(2);
-	taumatrix.Setk0(1.0,1.0,0.0,0.0);
 
+	taumatrix.Setk0(1.0,1.0,0.0,0.0);
+	TLorentzVector k0(1.0, 0.0, 0.0, 1.0);
 
 	////////////////////////////////////////////////////
 	// -- Generate HiggsDecays with TGenPhaseSpace -- //
@@ -94,6 +99,16 @@ int main( int argc, const char *argv[] )
 		// Get tau+ and tau-
 	   TLorentzVector *TauPos = HiggsDecay_mtau_zero.GetDecay(0);
 	   TLorentzVector *TauNeg = HiggsDecay_mtau_zero.GetDecay(1);
+
+		// Setting momenta directions manually
+		TauPos->SetTheta(theta1);
+		TauPos->SetPhi(phi1);
+
+		TauNeg->SetTheta(theta2);
+		TauNeg->SetPhi(phi2);
+		
+		displayTLorentzVector(TauPos);
+		displayTLorentzVector(TauNeg);
 
 		for (int i = 0; i < 4; i++)
 		{
@@ -159,6 +174,16 @@ int main( int argc, const char *argv[] )
 		// Get tau+ and tau-
 	   TLorentzVector *TauPos = HiggsDecay_mtau_mtau.GetDecay(0);
 	   TLorentzVector *TauNeg = HiggsDecay_mtau_mtau.GetDecay(1);
+
+		// Setting momenta directions manually
+		TauPos->SetTheta(theta1);
+		TauPos->SetPhi(phi1);
+
+		TauNeg->SetTheta(theta2);
+		TauNeg->SetPhi(phi2);
+
+		displayTLorentzVector(TauPos);
+		displayTLorentzVector(TauNeg);
 
 		for (int i = 0; i < 4; i++)
 		{

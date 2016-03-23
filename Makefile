@@ -21,11 +21,20 @@ test_FortranUtils : build
 test_PhaseSpaceTools : build
 	@ ./bin/test_PhaseSpaceTools
 
+test_PhaseSpaceTools2 : build
+	@ ./bin/test_PhaseSpaceTools2
+
+test_PhaseSpaceTools3 : build
+	@ ./bin/test_PhaseSpaceTools3
+
 test_cuba : build
 	@ ./bin/test_cuba
 
 LifeTime_Muon_Polarized : build
 	@ ./bin/LifeTime_Muon_Polarized | tee ./log/LifeTime_Muon_Polarized
+
+SpinPolarization : build
+	@ ./bin/SpinPolarization | tee ./log/SpinPolarization
 
 test_PhaseSpaceIntegration : build
 	@ ./bin/test_PhaseSpaceIntegration | tee ./log/test_PhaseSpaceIntegration
@@ -35,6 +44,13 @@ test_PhaseSpaceIntegration2 : build
 
 test_PhaseSpaceIntegration3 : build
 	@ ./bin/test_PhaseSpaceIntegration3 | tee ./log/test_PhaseSpaceIntegration3
+
+test_PhaseSpaceIntegration4 : build
+	@ ./bin/test_PhaseSpaceIntegration4 | tee ./log/test_PhaseSpaceIntegration4
+
+Scalar_2Fermion_6Fermion_SingleBranchIntegration : build
+	@ ./bin/Scalar_2Fermion_6Fermion_SingleBranchIntegration | tee ./log/Scalar_2Fermion_6Fermion_SingleBranchIntegration
+
 
 ####################
 

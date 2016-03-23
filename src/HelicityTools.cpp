@@ -32,7 +32,7 @@ double TauMatrix::CalcSum()
 
 void TauMatrix::Show()
 {
-	std::cout << name << " matrix: " << std::endl;
+	std::cout << std::endl << name << " matrix: " << std::endl;
 	for (int i=0; i<2; i++)
 	{
 		for (int j=0; j<2; j++)
@@ -41,6 +41,8 @@ void TauMatrix::Show()
 		}
 		std::cout << std::endl;
 	}
+
+	std::cout << std::endl;
 };
 
 void TauMatrix::ShowSum()

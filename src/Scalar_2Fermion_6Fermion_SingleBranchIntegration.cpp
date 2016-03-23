@@ -49,31 +49,74 @@
 
 #define KEY 0
 
-#define NDIM 1
-#define x1 xx[0]
-//#define x2 xx[1]
-//#define x3 xx[2]
-//#define x4 xx[3]
-//#define x5 xx[4]
+#define NDIM 5
+#define xA1 xx[0]
+#define xA2 xx[1]
+#define xA3 xx[2]
+#define xA4 xx[3]
+#define xA5 xx[4]
 #define f ff[0]
 
-const double sqrt_s  = 1.0;
-const double m1      = 0.00000;
-const double m2      = 0.00000;
 
-const bool BoostBack = true;
+// -- Masses -- //
+const double M   = 100.00;
+const double mA  = 5.00;
+const double mB  = 5.00;
+const double mA1 = 0.00;
+const double mA2 = 0.00;
+const double mA3 = 0.00;
+const double mB1 = 0.00;
+const double mB2 = 0.00;
+const double mB3 = 0.00;
 
-TwoBodyDecay twobody(sqrt_s, m1, m2);
+// -- Mother particle momentum -- //
+const double Px = 0.00;
+const double Py = 0.00;
+const double Pz = 0.00;
+const double E  = sqrt( Px*Px + Py*Py + Pz*Pz + M*M );
 
-const double px = 0.50;
-const double py = 0.00;
-const double pz = 0.00;
+const double xAB1 = 0.50;
+const double xAB2 = 0.50;
+const double  xB1 = 0.50;
+const double  xB2 = 0.50;
+const double  xB3 = 0.50;
+const double  xB4 = 0.50;
+const double  xB5 = 0.50;
+
+// -- BoostBack flag -- //
+const bool BitBoostBack = true;
+
+DecayChain126 decay(M, mA,  mB,
+					 	     mA1, mA2, mA3,
+							  mB1, mB2, mB3);
+
+
+// -- Defining pointers to momenta
+TLorentzVector *P; 
+TLorentzVector *pA;
+TLorentzVector *pB;
+TLorentzVector *pA1;
+TLorentzVector *pA2;
+TLorentzVector *pA3;
+TLorentzVector *pB1;
+TLorentzVector *pB2;
+TLorentzVector *pB3;
+
 
 static int Integrand(const int *ndim, const cubareal xx[],
   const int *ncomp, cubareal ff[], void *userdata)
 {
 	
-  	f = 1;
+
+  decay.SetPhaseSpace( xAB1, xAB2,
+						 	   xA1, xA2, xA3, xA4, xA5,
+							   xB1, xB2, xB3, xB4, xB5);
+
+   double PSWeight_A123 = decay.DecayA123->GetPhaseSpaceWeight(xA1, xA2, xA3, xA4, xA5);
+
+	decay.DisplayAllInfo();
+
+  	f = PSWeight_A123;
   	return 0;
 
 }
@@ -84,10 +127,20 @@ static int Integrand(const int *ndim, const cubareal xx[],
 int main() 
 {
 
-  printf("#################################\n");
-  printf("### --- Two-Body integral --- ###\n");
-  printf("#################################\n");
+  printf("\n");
+  printf("##########################################################\n");
+  printf("### --- Phi -> 2f -> 6f, single branch integration --- ###\n");
+  printf("##########################################################\n");
+  printf("\n");
 
+
+  P = decay.P;
+  P->SetPxPyPzE(Px,Py,Pz,E);
+  decay.SetBitBoostBack( BitBoostBack );
+  printf("\n");
+  decay.SetTag("DecayChain126");
+
+  
   int comp, nregions, neval, fail;
   cubareal integral[NCOMP], error[NCOMP], prob[NCOMP];
 
@@ -107,6 +160,28 @@ int main()
     printf("VEGAS RESULT:\t%.8f +- %.8f\tp = %.3f\n",
       (double)integral[comp], (double)error[comp], (double)prob[comp]);
 
+	 double num_result = (double)integral[comp];
+	 printf("VEGAS numerical result: %10.5f\n", num_result);
+
+
+  // Get phase space constant from the DecayChain126 class
+  double PSConst = decay.DecayA123->GetPSConst();
+  // Final result 
+  double result = num_result * PSConst;
+
+  // Expected value in the massless scenario:
+  double threebodyA123 = mA*mA/(256.0*M_PI*M_PI*M_PI);
+  double expected_result = threebodyA123 ;
+
+  printf("\n");
+  printf("                                           final result: %10.10e\n", result);
+  printf("Expexted result in massless (m1 = m2 = m3 = 0) scenario: %10.10e\n", expected_result);
+  printf("                                            their ratio: %10.10f\n", result/expected_result);
+  printf("\n");
+
+  double PSWeight_B123 = decay.DecayB123->GetPhaseSpaceWeight(xB1, xB2, xB3, xB4, xB5);
+  printf("PSWeight_B123 = %10.5e \n", PSWeight_B123);
+	
 
 #endif
 #if 0

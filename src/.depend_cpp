@@ -1,4 +1,4 @@
-../lib/test_rh_tautau.cpp.o: test_rh_tautau.cpp \
+../lib/test_rh_6f_k0_1001.cpp.o: test_rh_6f_k0_1001.cpp \
  /home/de3u14/lib/build/hep/root/include/TH1D.h \
  /home/de3u14/lib/build/hep/root/include/TH1.h \
  /home/de3u14/lib/build/hep/root/include/TAxis.h \
@@ -68,6 +68,6 @@
  /home/de3u14/lib/build/hep/root/include/TAttBBox2D.h \
  /home/de3u14/lib/build/hep/root/include/TPoint.h \
  /home/de3u14/lib/build/hep/root/include/TAttCanvas.h \
- /home/de3u14/lib/build/hep/root/include/TCanvasImp.h \
+ /home/de3u14/lib/build/hep/root/include/TCanvasImp.h ../inc/HelicityFW.h \
  ../inc/FortranInterface.h ../inc/PhysConst.h ../inc/UtilFunctions.h \
  ../inc/HelicityTools.h ../inc/FortranInterface.h

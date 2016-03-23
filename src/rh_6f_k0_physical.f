@@ -56,6 +56,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 
 * Computing k0 polarization vectors
 
+* Initialization to 0 for every component
       do mu=0,3
       k0_p3(mu)=0
       k0_p4(mu)=0
@@ -69,6 +70,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       k0_cw56(mu)=0
       enddo
 
+* Define k0 to be (1,1,0,0) auxilary vector
       k0_p3(0)=1
       k0_p4(0)=1
       k0_p5(0)=1
@@ -93,6 +95,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 
       factor = 1
 
+* Define k0 to be physical auxilary vector
 *     call Constructk0(k0_p3,p734)
 *     call Constructk0(k0_p4,p734)
 *     call Constructk0(k0_p5,p568)

@@ -1,10 +1,11 @@
 * Function rh_6f
-c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
+* Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 * Process and momenta convention:
 * H(p) -> e-(p3) vebar(p4) vmu(p5) mu+(p6) vtau(p7) vtaubar(p8)                 
 * Auxiliary vector 'k0' taken as:
 * TLorentzVector k0 (1.0, 0.0, 0.0, 1.0);
 * which correspond to (1.0, 1.0, 0.0, 0.0) with the conv used here;
+
       real*8 function rh_6f(p3,p4,p5,p6,p7,p8,
      &                      cdec_taum,cdec_taup,ch_tautau)
 
@@ -16,6 +17,7 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
 
       dimension cres(2,2),cdec_taum(2,2),cdec_taup(2,2),ch_tautau(2,2)
       dimension cres_test(2,2)
+      dimension c7_568(2,2)
 
       dimension cmatrix(2,2)
 
@@ -29,21 +31,35 @@ c Input 'p3', 'p4', 'p5', 'p6', 'p7' and 'p8'
       end structure
       record/tc/tw7_734,th734_568,tw568_8,t7_568,t568_8
 
+
+* Fortran COMMON blocks can be accessed from C/C++ when they are defined by
+* e.g.
+* extern "C"
+* {
+*   extern struct
+*	 {
+*		double rmtau;		
+*   } masses_;	
+* }
+* See more at ../inc/FortranInterface.h
+
       COMMON/masses/rmtau
       COMMON/couplings/wcl,gh_tautau
       COMMON/amplitudes/rh_6f_tautau,rh_6f_taum,rh_6f_taup,
      &                  rh_6f_res_nwa,rh_6f_res,rh_6f_res_test
+      COMMON/taumatrices/c7_568
 
       PARAMETER (czero=(0.d0,0.d0),cim=(0.d0,1.d0))
 
 **********************************************************************
 
+* Calculating sum of momenta
       do mu=0,3
       p734(mu)=p7(mu)+p3(mu)+p4(mu)
       p568(mu)=p5(mu)+p6(mu)+p8(mu)
       enddo
 
-*pk0                                                                            
+* Calculating (p k0) products
       p3k0=p3(0)-p3(1)
       p4k0=p4(0)-p4(1)
       p5k0=p5(0)-p5(1)
@@ -58,6 +74,7 @@ c e-(p3) and vu_e_bar(p4)
 
       cden34=1.d0
 * quqd -- p=p3,q=p4                                                             
+* Scalar product of p3 and p4
       quqd=p3(0)*p4(0)-p3(1)*p4(1)-p3(2)*p4(2)-p3(3)*p4(3)
       ccl=wcl/cden34
 
@@ -124,6 +141,7 @@ c this is the e-, vebar W line
 
 
 **********************************************************************
+c e-(p3) and vu_e_bar(p4)
 
       cden56=1.d0
 * quqd -- p=p5,q=p6                                                             
@@ -302,14 +320,14 @@ c cr coupling.
       print*,'tw568_8.a(iut,jut)'
       do iut=1,2
       do jut=1,2
-      print*,'i: ',i,'j: ', j, tw568_8.a(iut,jut)
+      print*,'i: ',iut,'j: ', jut, tw568_8.a(iut,jut)
       enddo
       enddo
 
       print*,'tw568_8.b(iut,jut)'
       do iut=1,2
       do jut=1,2
-      print*,'i: ',i,'j: ', j, tw568_8.b(iut,jut)
+      print*,'i: ',iut,'j: ', jut, tw568_8.b(iut,jut)
       enddo
       enddo
 
@@ -332,6 +350,15 @@ c cr coupling.
       enddo
       res=res/p3k0/p4k0/p5k0/p6k0/p7k0/p8k0
       rh_6f_res=res
+
+* mline -- res=c7_568(&1,&2),abcd=t7_568.,m1=0,m2=-rmtau,den=0,nsum=0
+       print*,'c7_568 amplitudes (inside FORTRAN):'
+       do iut=1,2
+       do jut=1,2
+       c7_568(iut,jut)=t7_568.a(iut,jut)-rmtau*t7_568.c(iut,jut)
+       print*,'i: ',iut, 'j: ', jut, c7_568(iut,jut)
+       enddo
+       enddo
 
 **********************************************************************
 * H->tau+tau- amplitude
@@ -362,7 +389,7 @@ c     print*,''
       do j=1,2
       cval = cdec_taum(i,j)
       res_taum=res_taum+cdec_taum(i,j)*conjg(cdec_taum(i,j))
-      print*,'i: ',i,'j: ',j, cval
+      print*,'i: ',i, 'j: ',j, cval
       enddo
       enddo
       res_taum=res_taum/p3k0/p4k0/p7k0/p734k0
