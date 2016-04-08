@@ -17,6 +17,8 @@
       dimension cres(2,2),cdec_taum(2,2),cdec_taup(2,2),ch_tautau(2,2)
       dimension cres_test(2,2)
       dimension c7_568(2,2)
+      dimension c_amp_res(2,2), c_amp_htautau(2,2), c_amp_dec_taum(2,2)
+      dimension c_amp_dec_taup(2,2), c_amp_7_568(2,2)
 
       dimension cmatrix(2,2)
 
@@ -47,6 +49,8 @@
       COMMON/amplitudes/rh_6f_tautau,rh_6f_taum,rh_6f_taup,
      &                  rh_6f_res_nwa,rh_6f_res,rh_6f_res_test
       COMMON/taumatrices/ch_tautau,cdec_taum,cdec_taup,c7_568
+      COMMON/tau_amplitudes/c_amp_res,c_amp_htautau,c_amp_dec_taum,
+     &                      c_amp_dec_taup,c_amp_7_568
 
       PARAMETER (czero=(0.d0,0.d0),cim=(0.d0,1.d0))
 
@@ -57,7 +61,31 @@
       p734(mu)=p7(mu)+p3(mu)+p4(mu)
       p568(mu)=p5(mu)+p6(mu)+p8(mu)
       enddo
+c     do mu=0,3
+c     print*, "p3 component:", mu, "value", p3(mu)
+c     enddo
+c     do mu=0,3
+c     print*, "p4 component:", mu, "value", p4(mu)
+c     enddo
+c     do mu=0,3
+c     print*, "p5 component:", mu, "value", p5(mu)
+c     enddo
+c     do mu=0,3
+c     print*, "p734 component:", mu, "value", p734(mu)
+c     enddo
 
+c     print*, "p3"
+c     call PrintLorentzVector(p3)
+c     print*, "p4"
+c     call PrintLorentzVector(p4)
+c     print*, "p5"
+c     call PrintLorentzVector(p5)
+c     print*, "p6"
+c     call PrintLorentzVector(p6)
+c     print*, "p7"
+c     call PrintLorentzVector(p7)
+c     print*, "p8"
+c     call PrintLorentzVector(p8)
 * Calculating (p k0) products
       p3k0=p3(0)-p3(1)
       p4k0=p4(0)-p4(1)
@@ -137,6 +165,10 @@ c this is the e-, vebar W line
       auxa=p3k0*p4(3)+p4k0*p3(3)
       cw34.e(3)=ccl*(auxa-ceps_0)
       cw34.ek0=cw34.e(0)-cw34.e(1)
+
+c     do i=0,3
+c     print*,'cw34.(i) ', i, cw34.e(i)
+c     enddo
 
 
 **********************************************************************
@@ -316,17 +348,17 @@ c cr coupling.
       enddo
       enddo
 
-      print*,'tw568_8.a(iut,jut)'
+c      print*,'tw568_8.a(iut,jut)'
       do iut=1,2
       do jut=1,2
-      print*,'i: ',iut,'j: ', jut, tw568_8.a(iut,jut)
+c      print*,'i: ',iut,'j: ', jut, tw568_8.a(iut,jut)
       enddo
       enddo
 
-      print*,'tw568_8.b(iut,jut)'
+c     print*,'tw568_8.b(iut,jut)'
       do iut=1,2
       do jut=1,2
-      print*,'i: ',iut,'j: ', jut, tw568_8.b(iut,jut)
+c      print*,'i: ',iut,'j: ', jut, tw568_8.b(iut,jut)
       enddo
       enddo
 
@@ -350,14 +382,31 @@ c cr coupling.
       res=res/p3k0/p4k0/p5k0/p6k0/p7k0/p8k0
       rh_6f_res=res
 
+c c_amp_res
+      do i=1,2
+      do j=1,2
+      c_amp_res(i,j)=cres(i,j)*conjg(cres(i,j))
+     & /p3k0/p4k0/p5k0/p6k0/p7k0/p8k0
+      enddo
+      enddo
+
+**********************************************************************
 * mline -- res=c7_568(&1,&2),abcd=t7_568.,m1=0,m2=-rmtau,den=0,nsum=0
-       print*,'c7_568 amplitudes (inside FORTRAN):'
+c       print*,'c7_568 amplitudes (inside FORTRAN):'
        do iut=1,2
        do jut=1,2
        c7_568(iut,jut)=t7_568.a(iut,jut)-rmtau*t7_568.c(iut,jut)
-       print*,'i: ',iut, 'j: ', jut, c7_568(iut,jut)
+c       print*,'i: ',iut, 'j: ', jut, c7_568(iut,jut)
        enddo
        enddo
+
+c c_amp_7_568
+      do i=1,2
+      do j=1,2
+      c_amp_7_568(i,j)=c7_568(i,j)*conjg(c7_568(i,j))
+     & /p568k0/p3k0/p4k0/p7k0
+      enddo
+      enddo
 
 **********************************************************************
 * H->tau+tau- amplitude
@@ -369,6 +418,14 @@ c cr coupling.
       enddo
       res_htautau=res_htautau/p734k0/p568k0
       rh_6f_tautau=res_htautau
+
+c c_amp_htautau
+      do i=1,2
+      do j=1,2
+      c_amp_htautau(i,j)=ch_tautau(i,j)*conjg(ch_tautau(i,j))
+     & /p734k0/p568k0
+      enddo
+      enddo
 
 c     do i=1,2
 c     do j=1,2
@@ -383,31 +440,47 @@ c     print*,''
 **********************************************************************
 * tau- amplitude
       res_taum=0.d0
-      print*,'tau- amplitudes (inside FORTRAN):'
+c      print*,'tau- amplitudes (inside FORTRAN):'
       do i=1,2
       do j=1,2
       cval = cdec_taum(i,j)
       res_taum=res_taum+cdec_taum(i,j)*conjg(cdec_taum(i,j))
-      print*,'i: ',i, 'j: ',j, cval
+c      print*,'i: ',i, 'j: ',j, cval
       enddo
       enddo
       res_taum=res_taum/p3k0/p4k0/p7k0/p734k0
       rh_6f_taum=res_taum
 
+c c_amp_dec_taum
+      do i=1,2
+      do j=1,2
+      c_amp_dec_taum(i,j)=cdec_taum(i,j)*conjg(cdec_taum(i,j))
+     & /p3k0/p4k0/p7k0/p734k0
+      enddo
+      enddo
+
 **********************************************************************
 * tau+ amplitude
       res_taup=0.d0
-      print*,'tau+ amplitudes (inside FORTRAN):'
+c      print*,'tau+ amplitudes (inside FORTRAN):'
       do i=1,2
       do j=1,2
       res_taup=res_taup+cdec_taup(i,j)*conjg(cdec_taup(i,j))     
       cval = cdec_taup(i,j)
       res_taum=res_taum+cdec_taum(i,j)*conjg(cdec_taum(i,j))
-      print*,'i: ',i,'j: ',j, cval
+c      print*,'i: ',i,'j: ',j, cval
       enddo
       enddo
       res_taup=res_taup/p5k0/p6k0/p8k0/p568k0
       rh_6f_taup=res_taup
+
+c c_amp_dec_taup
+      do i=1,2
+      do j=1,2
+      c_amp_dec_taup(i,j)=cdec_taup(i,j)*conjg(cdec_taup(i,j))
+     & /p5k0/p6k0/p8k0/p568k0
+      enddo
+      enddo
 
       res_nwa=res_htautau*res_taum*res_taup
       rh_6f_res_nwa=res_nwa

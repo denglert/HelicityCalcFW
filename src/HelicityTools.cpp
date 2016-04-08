@@ -19,7 +19,18 @@
 // --- TauMatrix class --- //
 /////////////////////////////
 
-double TauMatrix::CalcSum()
+double TauMatrix::CalcSumOfMagnitudes()
+{
+	double sum = 0;
+	for (int i=0; i<2; i++)
+	for (int j=0; j<2; j++)
+	{
+		sum = sum + std::abs(m[i][j]);
+	}
+	return sum;
+}
+
+double TauMatrix::CalcSumOfSquares()
 {
 	double sum = 0;
 	for (int i=0; i<2; i++)
@@ -45,9 +56,9 @@ void TauMatrix::Show()
 	std::cout << std::endl;
 };
 
-void TauMatrix::ShowSum()
+void TauMatrix::ShowSumOfSquares()
 {
-	std::cout << name << " sum of squared matrix elements: " << std::setw(12) << std::setprecision(4) << TauMatrix::CalcSum() << std::endl ;
+	std::cout << name << " sum of squared matrix elements: " << std::setw(12) << std::setprecision(4) << TauMatrix::CalcSumOfSquares() << std::endl ;
 };
 
 
@@ -100,7 +111,7 @@ void TauMatrix::Setpi(int i, double p_0, double p_1, double p_2, double p_3)
 
 void TauMatrix::CalcUnpolarizedAmp()
 {
-	double sum = TauMatrix::CalcSum();
+	double sum = TauMatrix::CalcSumOfSquares();
 	double factor = 1.0;
 
 	for(int iPart = 0; iPart < nParticles; iPart++)

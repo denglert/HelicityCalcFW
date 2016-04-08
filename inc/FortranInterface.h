@@ -53,6 +53,15 @@ extern "C"
 		CMatrix_2_2 c7_568;
    } taumatrices_;	
 
+   extern struct
+	{
+		CMatrix_2_2 c_amp_res;
+		CMatrix_2_2 c_amp_htautau;
+		CMatrix_2_2 c_amp_dec_taum;
+		CMatrix_2_2 c_amp_dec_taup;
+		CMatrix_2_2 c_amp_7_568;
+   } tau_amplitudes_;	
+
 }
 
 #endif

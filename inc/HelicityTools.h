@@ -29,9 +29,10 @@ class TauMatrix
 	public:
 	compv m[2][2];
 	int indeces;
-	double CalcSum();
+	double CalcSumOfSquares();
+	double CalcSumOfMagnitudes();
 	void Show();
-	void ShowSum();
+	void ShowSumOfSquares();
 	void ShowUnpolarizedAmp();
 	void Showk0();
 	void Showpi(int i);

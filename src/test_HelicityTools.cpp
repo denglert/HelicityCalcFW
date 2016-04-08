@@ -15,7 +15,7 @@ int main( int argc, const char *argv[] )
 	std::cout << "tau.m[1][1].real(): " << tau.m[1][1].real() << std::endl;
 	std::cout << "tau.m[1][1].real(): " << tau.m[1][1].imag() << std::endl;
 
-	std::cout << "Sum of the matrix elements squared: " << tau.CalcSum() <<
+	std::cout << "Sum of the matrix elements squared: " << tau.CalcSumOfSquares() <<
 			  std::endl;
 
 	tau.Show();

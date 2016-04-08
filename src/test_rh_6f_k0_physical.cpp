@@ -246,8 +246,8 @@ int main( int argc, const char *argv[] )
 		taup_rh_6f_pol_1 = taup_rh_6f_pol_1/p5k0/p6k0/p8k0/p568k0;
 		taup_rh_6f_pol_2 = taup_rh_6f_pol_2/p5k0/p6k0/p8k0/p568k0;
 
-		taum.ShowSum();
-		taup.ShowSum();
+		taum.ShowSumOfSquares();
+		taup.ShowSumOfSquares();
 //		for (int i=0; i<2; i++)
 //		for (int j=0; j<2; j++)
 //		{
@@ -261,8 +261,8 @@ int main( int argc, const char *argv[] )
 //		  std::cout << Form("rh_6f_tau+[%d][%d].r: %.4f \n",i,j,cdec_taup[i][j].r);
 //		  std::cout << Form("rh_6f_tau+[%d][%d].i: %.4f \n",i,j,cdec_taup[i][j].i);
 //		}
-		double taum_unpol = taum.CalcSum();
-		double taup_unpol = taup.CalcSum();
+		double taum_unpol = taum.CalcSumOfSquares();
+		double taup_unpol = taup.CalcSumOfSquares();
 
 		taum_unpol = taum_unpol/p3k0/p4k0/p7k0/p734k0;
 		taup_unpol = taup_unpol/p5k0/p6k0/p8k0/p568k0;

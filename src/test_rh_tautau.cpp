@@ -124,7 +124,7 @@ int main( int argc, const char *argv[] )
 		taumatrix.Setpi(1,p2_[0],p2_[1],p2_[2],p2_[3]);
 
 		taumatrix.Show();
-		taumatrix.ShowSum();
+		taumatrix.ShowSumOfSquares();
 		taumatrix.CalcUnpolarizedAmp();
 		taumatrix.ShowUnpolarizedAmp();
 
@@ -200,7 +200,7 @@ int main( int argc, const char *argv[] )
 
 		taumatrix.Show();
 		taumatrix.Showk0();
-		taumatrix.ShowSum();
+		taumatrix.ShowSumOfSquares();
 		taumatrix.CalcUnpolarizedAmp();
 		taumatrix.ShowUnpolarizedAmp();
 

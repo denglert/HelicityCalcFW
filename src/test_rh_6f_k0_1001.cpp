@@ -55,9 +55,9 @@ int main( int argc, const char *argv[] )
 
 	// Ampltiudes
 	// CMatrix_2_2 = cval cdec_taum[2][2];
-	CMatrix_2_2 cdec_taum;
-	CMatrix_2_2 cdec_taup;
-	CMatrix_2_2 ch_tautau;
+	//CMatrix_2_2 cdec_taum;
+	//CMatrix_2_2 cdec_taup;
+	//CMatrix_2_2 ch_tautau;
 
 	// TauMatrix
 	TauMatrix h_tautau;
@@ -68,6 +68,18 @@ int main( int argc, const char *argv[] )
 	taum.SetName("taum");
 	taup.SetName("taup");
 	c7_568.SetName("c7_568");
+
+	TauMatrix c_amp_res;
+	TauMatrix c_amp_htautau;
+	TauMatrix c_amp_dec_taum;
+	TauMatrix c_amp_dec_taup;
+	TauMatrix c_amp_7_568;
+
+	c_amp_res.SetName("c_amp_res");
+	c_amp_htautau.SetName("c_amp_htautau");
+	c_amp_dec_taum.SetName("c_amp_dec_taum");
+	c_amp_dec_taup.SetName("c_amp_dec_taup");
+	c_amp_7_568.SetName("c_amp_7_568");
 
 	////////////////////////////////////////////////////
 	// -- Generate HiggsDecays with TGenPhaseSpace -- //
@@ -250,14 +262,26 @@ int main( int argc, const char *argv[] )
 		taup.ReadInCMatrix_2_2(     taumatrices_.cdec_taup );
 		c7_568.ReadInCMatrix_2_2(   taumatrices_.c7_568    );
 
+		     c_amp_res.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_res      );
+		 c_amp_htautau.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_htautau  );
+		c_amp_dec_taum.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_dec_taum );
+		c_amp_dec_taup.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_dec_taup );
+		   c_amp_7_568.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_7_568    );
+		
+
 		// Show tau matrices
 		h_tautau.Show();
-		h_tautau.ShowSum();
+		h_tautau.ShowSumOfSquares();
 		taum.Show();
-		taum.ShowSum();
+		taum.ShowSumOfSquares();
 		taup.Show();
-		taup.ShowSum();
+		taup.ShowSumOfSquares();
 		c7_568.Show();
+
+		c_amp_htautau.Show();
+		c_amp_dec_taum.Show();
+		c_amp_dec_taup.Show();
+		c_amp_7_568.Show();
 
 		std::cout << std::endl;
 
@@ -294,8 +318,8 @@ int main( int argc, const char *argv[] )
 //		  std::cout << Form("rh_6f_tau+[%d][%d].i: %.4f \n",i,j,cdec_taup[i][j].i);
 //		}
 
-		double taum_unpol = taum.CalcSum();
-		double taup_unpol = taup.CalcSum();
+		double taum_unpol = taum.CalcSumOfSquares();
+		double taup_unpol = taup.CalcSumOfSquares();
 
 		taum_unpol = taum_unpol/p3k0/p4k0/p7k0/p734k0;
 		taup_unpol = taup_unpol/p5k0/p6k0/p8k0/p568k0;

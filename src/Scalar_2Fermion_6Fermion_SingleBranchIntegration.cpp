@@ -8,6 +8,7 @@
 #include "PhysConst.h"
 #include "UtilFunctions.h"
 #include "PhaseSpaceTools.h"
+#include "HelicityTools.h"
 #include "cuba.h"
 
 //////////////////////////////
@@ -15,7 +16,7 @@
 //////////////////////////////
 
 #define USERDATA NULL
-#define NCOMP 1
+#define NCOMP 3
 #define NVEC 1
 #define EPSREL 1e-3
 #define EPSABS 1e-12
@@ -24,6 +25,7 @@
 #define SEED 0
 #define MINEVAL 0
 #define MAXEVAL 50000
+//#define MAXEVAL 50
 
 #define NSTART 1000
 #define NINCREASE 500
@@ -55,13 +57,15 @@
 #define xA3 xx[2]
 #define xA4 xx[3]
 #define xA5 xx[4]
-#define f ff[0]
+#define f_combined ff[0]
+#define f_h_tautau ff[1]
+#define f_taudecay ff[2]
 
 
 // -- Masses -- //
-const double M   = 100.00;
-const double mA  = 5.00;
-const double mB  = 5.00;
+const double M   = m_higgs;
+const double mA  = m_tau;
+const double mB  = m_tau;
 const double mA1 = 0.00;
 const double mA2 = 0.00;
 const double mA3 = 0.00;
@@ -75,13 +79,21 @@ const double Py = 0.00;
 const double Pz = 0.00;
 const double E  = sqrt( Px*Px + Py*Py + Pz*Pz + M*M );
 
-const double xAB1 = 0.50;
-const double xAB2 = 0.50;
-const double  xB1 = 0.50;
-const double  xB2 = 0.50;
-const double  xB3 = 0.50;
-const double  xB4 = 0.50;
-const double  xB5 = 0.50;
+//const double xAB1 = 0.50;
+//const double xAB2 = 0.50;
+//const double  xB1 = 0.50;
+//const double  xB2 = 0.50;
+//const double  xB3 = 0.50;
+//const double  xB4 = 0.50;
+//const double  xB5 = 0.50;
+//
+const double xAB1 = 0.28;
+const double xAB2 = 0.81;
+const double  xB1 = 0.73;
+const double  xB2 = 0.12;
+const double  xB3 = 0.71;
+const double  xB4 = 0.23;
+const double  xB5 = 0.12;
 
 // -- BoostBack flag -- //
 const bool BitBoostBack = true;
@@ -102,6 +114,48 @@ TLorentzVector *pB1;
 TLorentzVector *pB2;
 TLorentzVector *pB3;
 
+double pA_[4];
+double pB_[4];
+double pA1_[4];
+double pA2_[4];
+double pA3_[4];
+double pB1_[4];
+double pB2_[4];
+double pB3_[4];
+
+// Eucledian to Minkowski indeces mapping
+int e2m[4] = {1, 2, 3, 0};
+
+
+// -- Tau matrices
+TauMatrix h_tautau;
+TauMatrix taum;
+TauMatrix taup;
+TauMatrix c7_568;
+
+// -- Tau matrices, normalized by (pik0)
+// -- Matrix elements correspond to actual physical amplitudes
+// -- Might be missing a factor of '8' or '16'
+TauMatrix c_amp_res;
+TauMatrix c_amp_htautau;
+TauMatrix c_amp_dec_taum;
+TauMatrix c_amp_dec_taup;
+TauMatrix c_amp_7_568;
+
+// Tau decay formula
+// const double gamma_PDG = hbar_c / c_tau_muon;
+const double Gamma_formula = pow(mA,5.0) * G_Fermi * G_Fermi / 192.0 / pow(M_PI,3.0);
+const double ctau_formula = hbar_c/Gamma_formula;
+
+// Integrated values
+double integral_combined;
+double integral_htautau;
+double integral_taudecay;
+
+
+/////////////////////////
+//// -- Integrand -- //// 
+/////////////////////////
 
 static int Integrand(const int *ndim, const cubareal xx[],
   const int *ncomp, cubareal ff[], void *userdata)
@@ -112,20 +166,61 @@ static int Integrand(const int *ndim, const cubareal xx[],
 						 	   xA1, xA2, xA3, xA4, xA5,
 							   xB1, xB2, xB3, xB4, xB5);
 
+
+  // Convert to Minkowski metric
+	for (int i = 0; i < 4; i++)
+	{
+		pA_[e2m[i]]  = (*pA)[i];
+		pB_[e2m[i]]  = (*pB)[i];
+		pA1_[e2m[i]] = (*pA1)[i];
+		pA2_[e2m[i]] = (*pA2)[i];
+		pA3_[e2m[i]] = (*pA3)[i];
+		pB1_[e2m[i]] = (*pB1)[i];
+		pB2_[e2m[i]] = (*pB2)[i];
+		pB3_[e2m[i]] = (*pB3)[i];
+	}
+
+
+	rh_6f_(pA1_,pA2_,pB2_,pB1_,pA3_,pB3_);
+
+	     c_amp_res.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_res      );
+	 c_amp_htautau.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_htautau  );
+	c_amp_dec_taum.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_dec_taum );
+	c_amp_dec_taup.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_dec_taup );
+	   c_amp_7_568.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_7_568    );
+
+
    double PSWeight_A123 = decay.DecayA123->GetPhaseSpaceWeight(xA1, xA2, xA3, xA4, xA5);
 
-	decay.DisplayAllInfo();
+//	c_amp_res.Show();
+//	c_amp_htautau.Show();
+//	c_amp_dec_taum.Show();
 
-  	f = PSWeight_A123;
+//	f_combined = PSWeight_A123;
+//	f_h_tautau = PSWeight_A123;
+//	f_taudecay = PSWeight_A123;
+
+//	f_combined = PSWeight_A123 * std::abs(  c_amp_7_568.m[1][0] );                                    // spinB is fixed, spinA is summed
+	f_combined = PSWeight_A123 * std::abs(  c_amp_7_568.m[1][1] );                                    // spinB is fixed, spinA is summed
+	f_h_tautau = std::abs(c_amp_htautau.m[0][0]) + std::abs(c_amp_htautau.m[0][1]);   // spinB is fixed, spinA is summed
+	f_taudecay = PSWeight_A123 * (std::abs(c_amp_dec_taum.m[1][0]) + std::abs(c_amp_dec_taum.m[1][1])); // unpolarized amplitude for 
+
+//	printf("c_amp_res: %.2e\n", std::abs(c_amp_res.m[1][1]));
+//	printf("c_amp_res: %.2e\n", std::abs(c_amp_res.m[1][1]));
+	
+//	taum.Show();
+//	decay.DisplayAllInfo();
+
   	return 0;
 
 }
 
-
-////////////////////////////
-
+/////////////////////////////
+//// -- Main Function -- //// 
+/////////////////////////////
 int main() 
 {
+
 
   printf("\n");
   printf("##########################################################\n");
@@ -133,21 +228,117 @@ int main()
   printf("##########################################################\n");
   printf("\n");
 
-
   P = decay.P;
   P->SetPxPyPzE(Px,Py,Pz,E);
   decay.SetBitBoostBack( BitBoostBack );
   printf("\n");
   decay.SetTag("DecayChain126");
 
-  
+  pA = decay.pA;
+  pB = decay.pB;
+  pA1 = decay.pA1;
+  pA2 = decay.pA2;
+  pA3 = decay.pA3;
+  pB1 = decay.pB1;
+  pB2 = decay.pB2;
+  pB3 = decay.pB3;
+
+  h_tautau.SetName("h_tautau");
+  taum.SetName("taum");
+  taup.SetName("taup");
+  c7_568.SetName("c7_568");
+
+  c_amp_dec_taum.SetName("c_amp_dec_taum");
+  c_amp_dec_taup.SetName("c_amp_dec_taup");
+
+
+	// Fortran COMMON blocks
+	masses_.rmtau             = m_tau;
+	couplings_.wcl            = 1.0;
+	couplings_.gh_tautau      = 1.0;
+	amplitudes_.rh_6f_tautau  = 0.0;
+	amplitudes_.rh_6f_taum    = 0.0;
+	amplitudes_.rh_6f_taup    = 0.0;
+	amplitudes_.rh_6f_res     = 0.0;
+	amplitudes_.rh_6f_res_nwa = 0.0;
+
   int comp, nregions, neval, fail;
   cubareal integral[NCOMP], error[NCOMP], prob[NCOMP];
+
+// Test suite
+#if 0
+
+
+  const double xAB1_ = 0.00;
+  const double xAB2_ = 0.50;
+  const double xA1_  = 0.50;
+  const double xA2_  = 0.50;
+  const double xA3_  = 0.50;
+  const double xA4_  = 0.50;
+  const double xA5_  = 0.50;
+  const double xB1_  = 0.50;
+  const double xB2_  = 0.50;
+  const double xB3_  = 0.50;
+  const double xB4_  = 0.50;
+  const double xB5_  = 0.50;
+
+  decay.SetPhaseSpace( xAB1_, xAB2_,
+						 	   xA1_, xA2_, xA3_, xA4_, xA5_,
+							   xB1_, xB2_, xB3_, xB4_, xB5_);
+
+
+  // Convert to Minkowski metric
+	for (int i = 0; i < 4; i++)
+	{
+		pA_[e2m[i]]  = (*pA)[i];
+		pB_[e2m[i]]  = (*pB)[i];
+		pA1_[e2m[i]] = (*pA1)[i];
+		pA2_[e2m[i]] = (*pA2)[i];
+		pA3_[e2m[i]] = (*pA3)[i];
+		pB1_[e2m[i]] = (*pB1)[i];
+		pB2_[e2m[i]] = (*pB2)[i];
+		pB3_[e2m[i]] = (*pB3)[i];
+
+	}
+
+	displayTLorentzVector(pA1);
+	for (int i = 0; i < 4; i++)
+	{
+		printf("(*pA1)[%d]: %.2f\n", (*pA1)[i]);
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		printf("pA1_[%d]: %.2f\n", pA1_[i]);
+	}
+
+   double PSWeight_A123 = decay.DecayA123->GetPhaseSpaceWeight(xA1_, xA2_, xA3_, xA4_, xA5_);
+
+	// H(p) -> e-(p3) vebar(p4) vmu(p5) mu+(p6) vtau(p7) vtaubar(p8)                 
+	// double rh_6f_val = rh_6f_(p3_,p4_,p5_,p6_,p7_,p8_);
+	//
+	rh_6f_(pA1_,pA2_,pB2_,pB1_,pA3_,pB3_);
+
+	h_tautau.ReadInCMatrix_2_2(taumatrices_.ch_tautau);
+	taum.ReadInCMatrix_2_2(    taumatrices_.cdec_taum);
+	taup.ReadInCMatrix_2_2(    taumatrices_.cdec_taup);
+	c7_568.ReadInCMatrix_2_2(  taumatrices_.c7_568);
+
+	printf("cdec_taum[0][0]: %2.f", taumatrices_.cdec_taum[0][0]);
+	printf("cdec_taum[0][0]: %2.f", taumatrices_.cdec_taum[0][1]);
+
+   taum.Show();
+   taup.Show();
+//	decay.DisplayAllInfo();
+	decay.DisplayMomenta();
+
+
+#endif
 
 #if 1
 
   printf("-------------------- Vegas test --------------------\n");
 
+  // Calling Vegas
   Vegas(NDIM, NCOMP, Integrand, USERDATA, NVEC,
     EPSREL, EPSABS, VERBOSE, SEED,
     MINEVAL, MAXEVAL, NSTART, NINCREASE, NBATCH,
@@ -156,31 +347,99 @@ int main()
 
   printf("VEGAS RESULT:\tneval %d\tfail %d\n",
     neval, fail);
-  comp = 0;
+
+  	 printf("Component 0:\n");
     printf("VEGAS RESULT:\t%.8f +- %.8f\tp = %.3f\n",
-      (double)integral[comp], (double)error[comp], (double)prob[comp]);
+      (double)integral[0], (double)error[0], (double)prob[0]);
+  	 printf("Component 1:\n");
+    printf("VEGAS RESULT:\t%.8f +- %.8f\tp = %.3f\n",
+      (double)integral[1], (double)error[1], (double)prob[1]);
+  	 printf("Component 2:\n");
+    printf("VEGAS RESULT:\t%.8f +- %.8f\tp = %.3f\n",
+      (double)integral[2], (double)error[2], (double)prob[2]);
 
-	 double num_result = (double)integral[comp];
-	 printf("VEGAS numerical result: %10.5f\n", num_result);
+	// Get the results of the integrals
+	integral_combined = integral[0];
+	integral_htautau  = integral[1];
+	integral_taudecay = integral[2];
 
-
-  // Get phase space constant from the DecayChain126 class
-  double PSConst = decay.DecayA123->GetPSConst();
-  // Final result 
-  double result = num_result * PSConst;
-
-  // Expected value in the massless scenario:
-  double threebodyA123 = mA*mA/(256.0*M_PI*M_PI*M_PI);
-  double expected_result = threebodyA123 ;
+  ////////////////////////////////////////////////////////////////////////////
+  // -- Cross-checking the Gamma(tau) value result with the textbook formula
+  // (similar to the case of muon decay)
+  double DecayA123_PSConst = decay.DecayA123->GetPSConst();
+  double Gamma_tau_woutgamma = 4*integral_taudecay * DecayA123_PSConst * G_Fermi * G_Fermi / mA / 2.0  ;
+  double ratio_Gamma_tau_woutgamma_result_per_expected = Gamma_tau_woutgamma/Gamma_formula;
 
   printf("\n");
-  printf("                                           final result: %10.10e\n", result);
-  printf("Expexted result in massless (m1 = m2 = m3 = 0) scenario: %10.10e\n", expected_result);
-  printf("                                            their ratio: %10.10f\n", result/expected_result);
+  printf("\n");
+  printf("############################################\n");
+  printf("### --- Gamma(tau) consistency check --- ###\n");
+  printf("# Comparing 'Gamma(tau) numerical int. result' with\n");
+  printf("#       the 'Gamma(tau)      textbook formula'.\n");
+
+  printf("\n");
+  printf("integral_taudecay: %12.6f\n", integral_taudecay);
+  printf("G_Fermi:           %12.6e [GeV^-2]\n", G_Fermi);
+  printf("mA:                %12.6f [GeV]\n", mA);
+  printf("\n");
+  printf("Textbook result of the integration:\n");
+  printf("Gamma(tau): G_Fermi^{2}*m_tau^{5}/(192*pi^{3})\n");
+  printf("\n");
+  printf("Our result of the integration:\n");
+  printf("Gamma(tau): 4*integral_taudecay * G_Fermi * G_Fermi / mA / 2.0\n");
   printf("\n");
 
-  double PSWeight_B123 = decay.DecayB123->GetPhaseSpaceWeight(xB1, xB2, xB3, xB4, xB5);
-  printf("PSWeight_B123 = %10.5e \n", PSWeight_B123);
+  printf("Gamma(tau) textbook:                        %12.6e [GeV]\n", Gamma_formula);
+  printf("Gamma(tau) our result w/o gamma factor:     %12.6e [GeV]\n", Gamma_tau_woutgamma);
+
+  printf("ratio [Gamma(tau)_result_woutgamma / Gamma(tau)_expected]: %.2e\n", ratio_Gamma_tau_woutgamma_result_per_expected);
+
+  printf("############################################\n");
+  printf("\n");
+  printf("\n");
+
+  ////////////////////////////////////////////////////////////////////////////
+  // -- 
+  // -- 
+  
+  // Note: These Gamma's are not weighted with the appropriate couplings
+  //       and several other factors might be missing
+  double Gamma_Combined_NWA = integral_combined*(M_PI/(mA*integral_taudecay));
+  //double Gamma_Combined_NWA = integral_combined*(1.0/(integral_taudecay));
+  double Gamma_Prod_BR      = integral_htautau*1.0;
+
+  printf("##############################################################\n");
+  printf("### --- Comparison of 'Combined NWA' and 'Prod BR NWA' --- ###\n");
+
+  printf("\n");
+  printf("integral_combined: %12.6f\n", integral_combined);
+  printf("integral_htautau:  %12.6f\n", integral_htautau);
+  printf("integral_taudecay: %12.6f\n", integral_taudecay);
+  printf("mA:                %12.6f [GeV]\n", mA);
+
+  printf("\n");
+  printf("Gamma_Combined_NWA = integral_combined*(M_PI/(mA*integral_taudecay))\n");
+  printf("Gamma_Prod_BR      = integral_htautau*1.0\n");
+  printf("\n");
+  printf("Gamma_Combined_NWA:     %12.6f\n", Gamma_Combined_NWA);
+  printf("Gamma_Prod_BR:          %12.6f\n", Gamma_Prod_BR);
+
+// --- Expected result if the weight is only PSWeight --- ///
+//// Get phase space constant from the DecayChain126 class
+////double PSConst = decay.DecayA123->GetPSConst();
+//
+//// Expected value in the massless scenario:
+//double threebodyA123 = mA*mA/(256.0*M_PI*M_PI*M_PI);
+//double expected_result = threebodyA123 ;
+//
+//  printf("\n");
+//  printf("                                           final result: %10.10e\n", result);
+//  printf("Expexted result in massless (m1 = m2 = m3 = 0) scenario: %10.10e\n", expected_result);
+//  printf("                                            their ratio: %10.10f\n", result/expected_result);
+//  printf("\n");
+
+//  double PSWeight_B123 = decay.DecayB123->GetPhaseSpaceWeight(xB1, xB2, xB3, xB4, xB5);
+//  printf("PSWeight_B123 = %10.5e \n", PSWeight_B123);
 	
 #endif
 #if 0

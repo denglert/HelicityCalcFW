@@ -16,31 +16,44 @@ int main( int argc, const char *argv[] )
 	std::cout << "##################################" << std::endl;
 	std::cout <<  std::endl;
 
-
 	const double mA     = 5.00;
 	const double mB     = 5.00;
-	const double mA1    = 1.00;
+	const double mA1    = 0.00;
 	const double mA2    = 0.00;
 	const double mA3    = 0.00;
-	const double mB1    = 1.00;
+	const double mB1    = 0.00;
 	const double mB2    = 0.00;
 	const double mB3    = 0.00;
 
-	const double x1   = 0.500; //    costheta = 2*x1 - 1
-	const double x2   = 0.250; //         phi = 2*pi*x2
-	const double x3   = 0.9999; //        sA23 = x3 * sA23_length + sA23_min
-	const double x4   = 1.000; //   costhetaA = 2*x4 - 1
-	const double x5   = 0.000; //        phiA = 2*pi*x5
-	const double x6   = 0.000; // costhetaA23 = 2*x6 - 1
-	const double x7   = 0.000; //      phiA23 = 2*pi*x7
-	const double x8   = 0.050; //        sB23 = x8 * sB23_length + sB23_min
-	const double x9   = 0.000; //   costhetaB = 2*x9 - 1
-	const double x10  = 0.000; //        phiB = 2*pi*x10
-	const double x11  = 0.000; // costhetaB23 = 2*x11 - 1
-	const double x12  = 0.000; //      phiB23 = 2*pi*x12
+//	const double x1   = 0.500; //    costheta = 2*x1 - 1
+//	const double x2   = 0.250; //         phi = 2*pi*x2
+//	const double x3   = 0.9999; //        sA23 = x3 * sA23_length + sA23_min
+//	const double x4   = 1.000; //   costhetaA = 2*x4 - 1
+//	const double x5   = 0.000; //        phiA = 2*pi*x5
+//	const double x6   = 0.000; // costhetaA23 = 2*x6 - 1
+//	const double x7   = 0.000; //      phiA23 = 2*pi*x7
+//	const double x8   = 0.050; //        sB23 = x8 * sB23_length + sB23_min
+//	const double x9   = 0.000; //   costhetaB = 2*x9 - 1
+//	const double x10  = 0.000; //        phiB = 2*pi*x10
+//	const double x11  = 0.000; // costhetaB23 = 2*x11 - 1
+//	const double x12  = 0.000; //      phiB23 = 2*pi*x12
+
+	const double x1   = 0.000; //    costheta = 2*x1 - 1
+	const double x2   = 0.500; //         phi = 2*pi*x2
+	const double x3   = 0.500; //        sA23 = x3 * sA23_length + sA23_min
+	const double x4   = 0.500; //   costhetaA = 2*x4 - 1
+	const double x5   = 0.500; //        phiA = 2*pi*x5
+	const double x6   = 0.500; // costhetaA23 = 2*x6 - 1
+	const double x7   = 0.500; //      phiA23 = 2*pi*x7
+	const double x8   = 0.500; //        sB23 = x8 * sB23_length + sB23_min
+	const double x9   = 0.500; //   costhetaB = 2*x9 - 1
+	const double x10  = 0.500; //        phiB = 2*pi*x10
+	const double x11  = 0.500; // costhetaB23 = 2*x11 - 1
+	const double x12  = 0.500; //      phiB23 = 2*pi*x12
+
 
 	const double M = 100.00;
-	const double Px = 5.00;
+	const double Px = 0.00;
 	const double Py = 0.00;
 	const double Pz = 0.00;
 	const double E  = sqrt( Px*Px + Py*Py + Pz*Pz + M*M );

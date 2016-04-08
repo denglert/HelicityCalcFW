@@ -6,7 +6,7 @@ OBJ_rh_tautau = $(CMN) ../lib/test_rh_tautau.cpp.o ../lib/HelicityTools.cpp.o ..
 OBJ_rh_6f_k0_1001     = $(CMN) ../lib/HelicityTools.cpp.o ../lib/FortranUtils.f.o ../lib/test_rh_6f_k0_1001.cpp.o     ../lib/rh_6f_k0_1001.f.o
 OBJ_rh_6f_k0_physical = $(CMN) ../lib/HelicityTools.cpp.o ../lib/FortranUtils.f.o ../lib/test_rh_6f_k0_physical.cpp.o ../lib/rh_6f_k0_physical.f.o
 
-OBJ_test = $(CMN) ../lib/HelicityTools.cpp.o ../lib/main_test.cpp.o ../lib/rh_tautau.f.o ../lib/rambo.f.o ../lib/ranmar.f.o ../lib/vegas.f.o ../lib/rh_6f_k0_1001.f.o
+OBJ_test = $(CMN) ../lib/HelicityTools.cpp.o ../lib/main_test.cpp.o ../lib/rh_tautau.f.o ../lib/rambo.f.o ../lib/ranmar.f.o ../lib/vegas.f.o ../lib/rh_6f_k0_1001.f.o ../lib/FortranUtils.f.o
 
 OBJ_CUBA = $(CMN) ../lib/test_cuba.cpp.o ../lib/vegas.f.o
 
@@ -23,7 +23,7 @@ OBJ_test_PhaseSpaceIntegration2 = $(CMN) ../lib/test_PhaseSpaceIntegration2.cpp.
 OBJ_test_PhaseSpaceIntegration3 = $(CMN) ../lib/test_PhaseSpaceIntegration3.cpp.o ../lib/PhaseSpaceTools.cpp.o
 OBJ_test_PhaseSpaceIntegration4 = $(CMN) ../lib/test_PhaseSpaceIntegration4.cpp.o ../lib/PhaseSpaceTools.cpp.o
 
-OBJ_Scalar_2Fermion_6Fermion_SingleBranchIntegration = $(CMN) ../lib/Scalar_2Fermion_6Fermion_SingleBranchIntegration.cpp.o ../lib/PhaseSpaceTools.cpp.o
+OBJ_Scalar_2Fermion_6Fermion_SingleBranchIntegration = $(CMN)  ../lib/PhaseSpaceTools.cpp.o ../lib/rh_6f_k0_1001.f.o ../lib/HelicityTools.cpp.o ../lib/FortranUtils.f.o ../lib/Scalar_2Fermion_6Fermion_SingleBranchIntegration.cpp.o
 
 OBJ_LifeTime_Muon_Polarized = $(CMN) ../lib/LifeTime_Muon_Polarized.cpp.o ../lib/PhaseSpaceTools.cpp.o
 
