@@ -100,12 +100,13 @@ int main( int argc, const char *argv[] )
 	   TLorentzVector *TauPos = HiggsDecay_mtau_zero.GetDecay(0);
 	   TLorentzVector *TauNeg = HiggsDecay_mtau_zero.GetDecay(1);
 
+		// Warning!!!
 		// Setting momenta directions manually
-		TauPos->SetTheta(theta1);
-		TauPos->SetPhi(phi1);
-
-		TauNeg->SetTheta(theta2);
-		TauNeg->SetPhi(phi2);
+//		TauPos->SetTheta(theta1);
+//		TauPos->SetPhi(phi1);
+//
+//		TauNeg->SetTheta(theta2);
+//		TauNeg->SetPhi(phi2);
 		
 		displayTLorentzVector(TauPos);
 		displayTLorentzVector(TauNeg);
@@ -175,12 +176,13 @@ int main( int argc, const char *argv[] )
 	   TLorentzVector *TauPos = HiggsDecay_mtau_mtau.GetDecay(0);
 	   TLorentzVector *TauNeg = HiggsDecay_mtau_mtau.GetDecay(1);
 
+		// Warning!
 		// Setting momenta directions manually
-		TauPos->SetTheta(theta1);
-		TauPos->SetPhi(phi1);
-
-		TauNeg->SetTheta(theta2);
-		TauNeg->SetPhi(phi2);
+//		TauPos->SetTheta(theta1);
+//		TauPos->SetPhi(phi1);
+//
+//		TauNeg->SetTheta(theta2);
+//		TauNeg->SetPhi(phi2);
 
 		displayTLorentzVector(TauPos);
 		displayTLorentzVector(TauNeg);

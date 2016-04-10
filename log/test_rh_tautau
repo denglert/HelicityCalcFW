@@ -20,25 +20,27 @@ The unpolarized amplitude should be:
 iEv: 0
  Inside rh_tautau FORTRAN func., value of rmtau:  0.000000000000000E+000
  FORTRAN p1(i):   62.5000000000000                0
- FORTRAN p1(i):  3.827021247335479E-015           1
- FORTRAN p1(i):   62.5000000000000                2
- FORTRAN p1(i):  3.827021247335479E-015           3
+ FORTRAN p1(i):  -1.04503222113381                1
+ FORTRAN p1(i):   62.4677186133340                2
+ FORTRAN p1(i):  -1.71523727283343                3
  FORTRAN p2(i):   62.5000000000000                0
- FORTRAN p2(i):   62.5000000000000                1
- FORTRAN p2(i):  0.000000000000000E+000           2
- FORTRAN p2(i):  3.827021247335479E-015           3
- FORTRAN res:  1.144225908402906E-025
- FORTRAN rh_tautau:                Infinity
-(E,px,py,pz): (  62.50000000,    0.00000000,   62.50000000,    0.00000000)
-(E,px,py,pz): (  62.50000000,   62.50000000,    0.00000000,    0.00000000)
+ FORTRAN p2(i):   1.04503222113381                1
+ FORTRAN p2(i):  -62.4677186133340                2
+ FORTRAN p2(i):   1.71523727283343                3
+ FORTRAN res:   122036184.614275     
+ FORTRAN rh_tautau:   31250.0000000000     
+(E,px,py,pz): (  62.50000000,   -1.04503222,   62.46771861,   -1.71523727)
+(E,px,py,pz): (  62.50000000,    1.04503222,  -62.46771861,    1.71523727)
 CPP TauMatrix class:
+
 H->tau+ tau- taumatrix matrix: 
-       (0,0) (0,-2.392e-13) 
-(0,-2.392e-13)        (0,0) 
-H->tau+ tau- taumatrix sum of squared matrix elements:    1.144e-25
-H->tau+ tau- taumatrix unpolarized amplitude:          inf
+       (0,0) (7808,-214.4) 
+(-7808,-214.4)        (0,0) 
+
+H->tau+ tau- taumatrix sum of squared matrix elements:     1.22e+08
+H->tau+ tau- taumatrix unpolarized amplitude:        31250
 Fortran rh_tautau:
-unpolarized amplitude (computed directly in rh_tautau): inf
+unpolarized amplitude (computed directly in rh_tautau): 31250.0000
 
 ########################
 ### Massive scenario ###
@@ -53,26 +55,28 @@ The unpolarized amplitude should be:
 iEv: 0
  Inside rh_tautau FORTRAN func., value of rmtau:   1.77582000000000     
  FORTRAN p1(i):   62.5000000000000                0
- FORTRAN p1(i):  3.825476147994021E-015           1
- FORTRAN p1(i):   62.4747666128302                2
- FORTRAN p1(i):  3.825476147994021E-015           3
+ FORTRAN p1(i):  -53.1936623910988                1
+ FORTRAN p1(i):  -27.1618037602305                2
+ FORTRAN p1(i):   18.3239504812725                3
  FORTRAN p2(i):   62.5000000000000                0
- FORTRAN p2(i):   62.4747666128302                1
- FORTRAN p2(i):  0.000000000000000E+000           2
- FORTRAN p2(i):  3.825476147994021E-015           3
- FORTRAN res:   24622.0860550795     
- FORTRAN rh_tautau:   15612.3858533089     
-(E,px,py,pz): (  62.50000000,    0.00000000,   62.47476661,    0.00000000)
-(E,px,py,pz): (  62.50000000,   62.47476661,    0.00000000,    0.00000000)
+ FORTRAN p2(i):   53.1936623910988                1
+ FORTRAN p2(i):   27.1618037602305                2
+ FORTRAN p2(i):  -18.3239504812725                3
+ FORTRAN res:   33619220.8875028     
+ FORTRAN rh_tautau:   31224.7717066208     
+(E,px,py,pz): (  62.50000000,  -53.19366239,  -27.16180376,   18.32395048)
+(E,px,py,pz): (  62.50000000,   53.19366239,   27.16180376,  -18.32395048)
 CPP TauMatrix class:
+
 H->tau+ tau- taumatrix matrix: 
-  (-110.9,0) (1.576,-2.39e-13) 
-(-1.576,-2.39e-13)   (-110.9,0) 
+  (-188.9,0) (-3395,2290) 
+ (3395,2290)   (-188.9,0) 
+
 k0[0] 1
 k0[1] 1
 k0[2] 0
 k0[3] 0
-H->tau+ tau- taumatrix sum of squared matrix elements:    2.462e+04
-H->tau+ tau- taumatrix unpolarized amplitude:     15612.39
+H->tau+ tau- taumatrix sum of squared matrix elements:    3.362e+07
+H->tau+ tau- taumatrix unpolarized amplitude:     31224.77
 Fortran rh_tautau:
-unpolarized amplitude (computed directly in rh_tautau): 15612.3859
+unpolarized amplitude (computed directly in rh_tautau): 31224.7717
