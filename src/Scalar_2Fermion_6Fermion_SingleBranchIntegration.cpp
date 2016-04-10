@@ -526,7 +526,7 @@ int main()
   printf("#   (Formula A) = |M_{combined}|^2 * (pi)/(Gamma(tau)*m(tau))\n");
   printf("#   where Gamma(tau) is the numerical integration result.\n");
   printf("# o B) '(Production) x (BR)'\n");
-  printf("#   (Formula B) = |M_{prod}|^2 * BR(tau->3f)\n");
+  printf("#   (Formula B) = 2.0*pi |M_{prod}|^2 * BR(tau->3f)\n");
   printf("#   Both of them use NWA.\n");
   printf("#   These two formulae are integrated over the phase space\n");
   printf("#   of the daughter particle of A (a1, a2 and a3).\n");
@@ -545,6 +545,7 @@ int main()
   printf("  no normalization to Gamma(tau) and |M| with\n");
   printf("  coupling constants, phase space constants, etc.\n");
   printf("  i.e taking directly the 'integral_taudecay' value\n");
+  printf("  Note: The ratios should be equal to the 'full calculation' case!\n");
   printf("\n");
   printf("Gamma_Combined_redu_pol_1 value:     %12.6e [a.u.]\n", Gamma_Combined_redu_pol_1);
   printf("Gamma_Combined_redu_pol_2 value:     %12.6e [a.u.]\n", Gamma_Combined_redu_pol_2);
@@ -562,6 +563,9 @@ int main()
   printf("  all normalization to Gamma(tau) and |M| with\n");
   printf("  coupling constants, phase space constants, etc.\n");
   printf("  i.e taking directly the 'Gamma(tau)' value\n");
+  printf("  Note: The ratios should be equal to the 'reduced calculation' case!\n");
+
+  printf("\n");
   printf("Gamma_Combined_full_pol_1 value:     %12.6e [a.u.]\n", Gamma_Combined_full_pol_1);
   printf("Gamma_Combined_full_pol_2 value:     %12.6e [a.u.]\n", Gamma_Combined_full_pol_2);
   printf("Gamma_Prod_BR_full value:            %12.6e [a.u.]\n", Gamma_Prod_BR_full);

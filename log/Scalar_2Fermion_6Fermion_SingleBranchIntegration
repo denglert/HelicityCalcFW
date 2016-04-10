@@ -234,7 +234,7 @@ ratio [Gamma(tau)_result_woutgamma / Gamma(tau)_expected]: 1.00e+00
 #   (Formula A) = |M_{combined}|^2 * (pi)/(Gamma(tau)*m(tau))
 #   where Gamma(tau) is the numerical integration result.
 # o B) '(Production) x (BR)'
-#   (Formula B) = |M_{prod}|^2 * BR(tau->3f)
+#   (Formula B) = 2.0*pi |M_{prod}|^2 * BR(tau->3f)
 #   Both of them use NWA.
 #   These two formulae are integrated over the phase space
 #   of the daughter particle of A (a1, a2 and a3).
@@ -251,6 +251,7 @@ mA:                          1.775820 [GeV]
   no normalization to Gamma(tau) and |M| with
   coupling constants, phase space constants, etc.
   i.e taking directly the 'integral_taudecay' value
+  Note: The ratios should be equal to the 'full calculation' case!
 
 Gamma_Combined_redu_pol_1 value:     1.422549e+04 [a.u.]
 Gamma_Combined_redu_pol_2 value:     1.333598e+04 [a.u.]
@@ -267,6 +268,8 @@ ratios:
   all normalization to Gamma(tau) and |M| with
   coupling constants, phase space constants, etc.
   i.e taking directly the 'Gamma(tau)' value
+  Note: The ratios should be equal to the 'reduced calculation' case!
+
 Gamma_Combined_full_pol_1 value:     5.052383e+04 [a.u.]
 Gamma_Combined_full_pol_2 value:     4.736461e+04 [a.u.]
 Gamma_Prod_BR_full value:            9.809551e+04 [a.u.]
