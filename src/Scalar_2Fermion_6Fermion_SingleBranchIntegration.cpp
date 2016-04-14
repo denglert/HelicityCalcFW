@@ -89,8 +89,8 @@ const double E  = sqrt( Px*Px + Py*Py + Pz*Pz + M*M );
 //const double  xB4 = 0.50;
 //const double  xB5 = 0.50;
 //
-const double xAB1 = 0.28;
-const double xAB2 = 0.81;
+const double xAB1 = 0.29;
+const double xAB2 = 0.77;
 const double  xB1 = 0.73;
 const double  xB2 = 0.12;
 const double  xB3 = 0.71;
@@ -279,7 +279,7 @@ int main()
   printf("###########################################################\n");
   printf("\n");
 
-  const double xAB1_ = 0.31;
+  const double xAB1_ = 0.80;
   const double xAB2_ = 0.91;
   const double xA1_  = 0.50;
   const double xA2_  = 0.50;
@@ -374,6 +374,10 @@ int main()
   	 printf("Component 2:\n");
     printf("VEGAS RESULT:\t%.8f +- %.8f\tp = %.3f\n",
       (double)integral[2], (double)error[2], (double)prob[2]);
+  	 printf("Component 3:\n");
+    printf("VEGAS RESULT:\t%.8f +- %.8f\tp = %.3f\n",
+      (double)integral[3], (double)error[3], (double)prob[3]);
+
 
 #endif
 
@@ -388,9 +392,19 @@ int main()
 
   printf("SUAVE RESULT:\tnregions %d\tneval %d\tfail %d\n",
     nregions, neval, fail);
-  for( comp = 0; comp < NCOMP; ++comp )
+
+  	 printf("Component 0:\n");
     printf("SUAVE RESULT:\t%.8f +- %.8f\tp = %.3f\n",
-      (double)integral[comp], (double)error[comp], (double)prob[comp]);
+      (double)integral[0], (double)error[0], (double)prob[0]);
+  	 printf("Component 1:\n");
+    printf("SUAVE RESULT:\t%.8f +- %.8f\tp = %.3f\n",
+      (double)integral[1], (double)error[1], (double)prob[1]);
+  	 printf("Component 2:\n");
+    printf("SUAVE RESULT:\t%.8f +- %.8f\tp = %.3f\n",
+      (double)integral[2], (double)error[2], (double)prob[2]);
+  	 printf("Component 3:\n");
+    printf("SUAVE RESULT:\t%.8f +- %.8f\tp = %.3f\n",
+      (double)integral[3], (double)error[3], (double)prob[3]);
 #endif
 
 #if 0
