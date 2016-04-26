@@ -73,8 +73,8 @@ const double m3  = 0.00000;
 
 const double BR  = 1.00000;
 
-//const double muon_p     = 0.05;
-const double muon_p     = 0.10;
+const double muon_p     = 0.05;
+//const double muon_p     = 0.10;
 const double muon_theta = 0.234*M_PI;
 const double muon_phi   = 0.923*M_PI;
 
@@ -97,7 +97,7 @@ const double ctau_formula = hbar_c/gamma_formula;
 // -- Flags and bits
 const int k0_flag        = 1; 	// 1 - custom, 2 - physical
 const int polvec_flag    = 1; 	// 1 - custom, 2 - physical
-const int ampltiude      = 0;    // 0 - unpolarized, +1 polarized, -1 polarized, 3,4,34
+const int ampltiude      = +1;    // 0 - unpolarized, +1 polarized, -1 polarized, 3,4,34
 const bool BitBoostBack  = true;
 
 //////////////////////////////////////
@@ -144,9 +144,9 @@ static int Integrand(const int *ndim, const cubareal xx[],
 	double weight = muon.GetPhaseSpaceWeight(x1,x2,x3,x4,x5);
 	
 	// -- Default case -- //
-	double amp_unpolarized = 128*P->Dot( (*p3) )  * p1->Dot( (*p2) );
 	double amp_polarized1  =  64*P->Dot( (*p3) )  * p1->Dot( (*p2) ) - 64*M*(polvec*(*p3)) * ( (*p1) * (*p2) );
 	double amp_polarized2  =  64*P->Dot( (*p3) )  * p1->Dot( (*p2) ) + 64*M*(polvec*(*p3)) * ( (*p1) * (*p2) );
+	double amp_unpolarized = amp_polarized1 + amp_polarized2;
 	
 	// -- Custom case -- //
 	double lambda3 =  1.0;

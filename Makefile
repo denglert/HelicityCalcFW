@@ -1,7 +1,5 @@
 all : build 
-
-test_rh_tautau : build 
-	@ ./bin/test_rh_tautau | tee ./log/test_rh_tautau
+test_rh_tautau : build @ ./bin/test_rh_tautau | tee ./log/test_rh_tautau
 
 test : build
 	@ ./bin/main_test
@@ -50,6 +48,10 @@ test_PhaseSpaceIntegration4 : build
 
 Scalar_2Fermion_6Fermion_SingleBranchIntegration : build
 	@ ./bin/Scalar_2Fermion_6Fermion_SingleBranchIntegration | tee ./log/Scalar_2Fermion_6Fermion_SingleBranchIntegration
+
+Scalar_2Fermion_6Fermion_FullIntegration : build
+	@ ./bin/Scalar_2Fermion_6Fermion_FullIntegration | tee ./log/Scalar_2Fermion_6Fermion_FullIntegration
+
 
 
 ####################

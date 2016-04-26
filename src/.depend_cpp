@@ -1,5 +1,4 @@
-../lib/Scalar_2Fermion_6Fermion_SingleBranchIntegration.cpp.o: \
- Scalar_2Fermion_6Fermion_SingleBranchIntegration.cpp \
+../lib/LifeTime_Muon_Polarized.cpp.o: LifeTime_Muon_Polarized.cpp \
  /home/de3u14/lib/build/hep/root/include/TH3D.h \
  /home/de3u14/lib/build/hep/root/include/TH3.h \
  /home/de3u14/lib/build/hep/root/include/TH1.h \
@@ -53,6 +52,5 @@
  /home/de3u14/lib/build/hep/root/include/TMath.h \
  /home/de3u14/lib/build/hep/root/include/TRotation.h ../inc/HelicityFW.h \
  ../inc/FortranInterface.h ../inc/PhysConst.h ../inc/UtilFunctions.h \
- ../inc/PhaseSpaceTools.h ../inc/UtilFunctions.h ../inc/HelicityTools.h \
- ../inc/FortranInterface.h \
+ ../inc/PhaseSpaceTools.h ../inc/UtilFunctions.h \
  /home/de3u14/lib/build/hep/Cuba/Cuba-4.2/cuba.h
