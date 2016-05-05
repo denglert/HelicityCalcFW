@@ -1,0 +1,188 @@
+
+##########################################################
+### --- Phi -> 2f -> 6f, single branch integration --- ###
+##########################################################
+
+
+Boost back: yes
+
+
+###########################################################
+### --- Testing DecayChain126 phase space generator --- ###
+###########################################################
+
+xAB1_ : 0.80
+xAB2_ : 0.91
+xA1_  : 0.50
+xA2_  : 0.50
+xA3_  : 0.50
+xA4_  : 0.50
+xA5_  : 0.50
+xB1_  : 0.50
+xB2_  : 0.50
+xB3_  : 0.50
+xB4_  : 0.50
+xB5_  : 0.50
+
+
+-- Momenta Information --
+P:
+(E,px,py,pz): ( 125.00000000,    0.00000000,    0.00000000,    0.00000000)
+pA:
+(E,px,py,pz): (  62.50000000,   42.19935207,   26.78052317,   37.48485997)
+pB:
+(E,px,py,pz): (  62.50000000,  -42.19935207,  -26.78052317,  -37.48485997)
+pA1:
+(E,px,py,pz): (   5.07516198,    3.17954075,    2.29954033,    3.21868048)
+pA2:
+(E,px,py,pz): (   5.07516198,    3.17954075,    2.29954033,    3.21868048)
+pA3:
+(E,px,py,pz): (  52.34967604,   35.84027057,   22.18144251,   31.04749901)
+pB1:
+(E,px,py,pz): (  26.17483802,  -17.92013529,  -11.09072126,  -15.52374950)
+pB2:
+(E,px,py,pz): (  26.17483802,  -17.92013529,  -11.09072126,  -15.52374950)
+pB3:
+(E,px,py,pz): (  10.15032396,   -6.35908150,   -4.59908066,   -6.43736096)
+
+Internal test with sum of specific momenta
+pA+pB:
+(E,px,py,pz): ( 125.00000000,    0.00000000,    0.00000000,    0.00000000)
+pA1+pA2+pA3:
+(E,px,py,pz): (  62.50000000,   42.19935207,   26.78052317,   37.48485997)
+pB1+pB2+pB3:
+(E,px,py,pz): (  62.50000000,  -42.19935207,  -26.78052317,  -37.48485997)
+
+cdec_taum[0][0]:  0
+cdec_taum[0][0]: 27
+
+h_tautau matrix: 
+   (149.9,0)  (3348,4686) 
+(-3348,4686)    (149.9,0) 
+
+
+taum matrix: 
+       (0,0)        (0,0) 
+(27.49,-38.48) (98.69,9.202e-13) 
+
+
+taup matrix: 
+       (0,0)  (3084,4317) 
+       (0,0) (2296,-1.244e-11) 
+
+
+c7_568 matrix: 
+       (0,0)        (0,0) 
+(-1.623e+04,2.271e+04) (-1.269e+04,-1.866e-11) 
+
+
+c_amp_7_568 matrix: 
+       (0,0)        (0,0) 
+(1.254e+05,0) (2.591e+04,0) 
+
+
+c_amp_res matrix: 
+       (0,0)        (0,0) 
+       (0,0) (3.952e+04,0) 
+
+
+############################################################
+### Decay process: h --> A + B --> (a1 a2 a3) (b1 b2 b3) ###
+############################################################
+
+
+--------------------------
+--- Physical constants ---
+--------------------------
+
+hbar:    6.582119e-25 [GeV s]
+c:       2.997925e+08 [m/s]
+hbar*c:  1.973270e-01 [GeV fm]
+G_Fermi: 1.160000e-05 [GeV^{-2}]
+m (tau): 1.775820e+00 [GeV]
+
+
+##################################################
+### --- h -> (tau) (tau) consistency check --- ###
+#################################################
+# Checking 'M(h-> tau tau)' value
+expected amplitude: 0.5*(2*(M_h)^(2) - 8*(m_tau)^2)
+
+h tautau amplitude value:      0.000000
+expected amplitude value:  15612.385853
+
+ratio:
+ampl/expected:  1.253939e-320
+
+
+############################################
+### --- Gamma(tau) consistency check --- ###
+############################################
+# Comparing 'Gamma(tau) numerical int. result' with
+#       the 'Gamma(tau) textbook formula'.
+
+integral_taudecay value:      0.000000
+mA (daughter particle A):     1.775820 [GeV]
+
+Textbook result of the integration:
+Gamma(tau): G_Fermi^{2}*m_tau^{5}/(192*pi^{3})
+
+Our result of the integration:
+Gamma(tau): 4*integral_taudecay * G_Fermi * G_Fermi / mA / 2.0
+
+Gamma(tau) textbook:                        3.991718e-13 [GeV]
+Gamma(tau) our result w/o gamma factor:     0.000000e+00 [GeV]
+ratio [Gamma(tau)_result_woutgamma / Gamma(tau)_expected]: 0.00e+00
+
+
+#################################################################
+### --- Comparison of 'Combined result' and '(Prod)x(BR)' --- ###
+#################################################################
+# Here we compare the result of the following two formulae:
+# o A) 'Combined result'
+#   (Formula A) = |M_{combined}|^2 * (pi)/(Gamma(tau)*m(tau))
+#   where Gamma(tau) is the numerical integration result.
+# o B) '(Production) x (BR)'
+#   (Formula B) = 2.0*pi |M_{prod}|^2 * BR(tau->3f)
+#   Both of them use NWA.
+#   These two formulae are integrated over the phase space
+#   of the daughter particle of A (a1, a2 and a3).
+
+integral_combined_pol_1:     0.000000 [a.u.]
+integral_combined_pol_2:     0.000000 [a.u.]
+integral_htautau:            0.000000 [a.u.]
+integral_taudecay:           0.000000 [a.u.]
+mA:                          1.775820 [GeV]
+
+----------------------------------------------
+--- With reduced calculation on Gamma(tau) ---
+-----------------------------------------------
+  no normalization to Gamma(tau) and |M| with
+  coupling constants, phase space constants, etc.
+  i.e taking directly the 'integral_taudecay' value
+  Note: The ratios should be equal to the 'full calculation' case!
+
+Gamma_Combined_redu_pol_1 value:              inf [a.u.]
+Gamma_Combined_redu_pol_2 value:              inf [a.u.]
+Gamma_Prod_BR_redu value:            3.463039e-316 [a.u.]
+
+ratios:
+(Gamma_Combined_redu_pol_1)/(Gamma_Prod_BR_redu):          inf [a.u.]
+(Gamma_Combined_redu_pol_2)/(Gamma_Prod_BR_redu):          inf [a.u.]
+
+
+-------------------------------------------
+--- With full calculation on Gamma(tau) ---
+-------------------------------------------
+  all normalization to Gamma(tau) and |M| with
+  coupling constants, phase space constants, etc.
+  i.e taking directly the 'Gamma(tau)' value
+  Note: The ratios should be equal to the 'reduced calculation' case!
+
+Gamma_Combined_full_pol_1 value:             -nan [a.u.]
+Gamma_Combined_full_pol_2 value:              inf [a.u.]
+Gamma_Prod_BR_full value:            1.229947e-315 [a.u.]
+
+ratios:
+(Gamma_Combined_full_pol_1)/(Gamma_Prod_BR_full):         -nan [a.u.]
+(Gamma_Combined_full_pol_2)/(Gamma_Prod_BR_full):          inf [a.u.]

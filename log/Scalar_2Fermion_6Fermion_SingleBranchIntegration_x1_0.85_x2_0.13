@@ -1,0 +1,350 @@
+
+##########################################################
+### --- Phi -> 2f -> 6f, single branch integration --- ###
+##########################################################
+
+
+Boost back: yes
+
+
+###########################################################
+### --- Testing DecayChain126 phase space generator --- ###
+###########################################################
+
+xAB1_ : 0.85
+xAB2_ : 0.13
+xA1_  : 0.50
+xA2_  : 0.50
+xA3_  : 0.50
+xA4_  : 0.50
+xA5_  : 0.50
+xB1_  : 0.50
+xB2_  : 0.50
+xB3_  : 0.50
+xB4_  : 0.50
+xB5_  : 0.50
+
+
+-- Momenta Information --
+P:
+(E,px,py,pz): ( 125.00000000,    0.00000000,    0.00000000,    0.00000000)
+pA:
+(E,px,py,pz): (  62.50000000,   30.54169031,   32.52359680,   43.73233663)
+pB:
+(E,px,py,pz): (  62.50000000,  -30.54169031,  -32.52359680,  -43.73233663)
+pA1:
+(E,px,py,pz): (   7.98957742,    3.56337366,    4.26737159,    5.73805327)
+pA2:
+(E,px,py,pz): (   7.98957742,    3.56337366,    4.26737159,    5.73805327)
+pA3:
+(E,px,py,pz): (  46.52084516,   23.41494300,   23.98885363,   32.25623010)
+pB1:
+(E,px,py,pz): (  23.26042258,  -11.70747150,  -11.99442681,  -16.12811505)
+pB2:
+(E,px,py,pz): (  23.26042258,  -11.70747150,  -11.99442681,  -16.12811505)
+pB3:
+(E,px,py,pz): (  15.97915484,   -7.12674731,   -8.53474318,  -11.47610653)
+
+Internal test with sum of specific momenta
+pA+pB:
+(E,px,py,pz): ( 125.00000000,    0.00000000,    0.00000000,    0.00000000)
+pA1+pA2+pA3:
+(E,px,py,pz): (  62.50000000,   30.54169031,   32.52359680,   43.73233663)
+pB1+pB2+pB3:
+(E,px,py,pz): (  62.50000000,  -30.54169031,  -32.52359680,  -43.73233663)
+
+
+h_tautau matrix: 
+   (108.5,0)  (4065,5467) 
+(-4065,5467)    (108.5,0) 
+
+
+taum matrix: 
+       (0,0)        (0,0) 
+(119.1,-160.2) (322.5,-1.165e-11) 
+
+
+taup matrix: 
+       (0,0)  (2645,3557) 
+       (0,0) (2548,-1.634e-10) 
+
+
+c7_568 matrix: 
+       (0,0)        (0,0) 
+(-4.082e+04,5.488e+04) (-4.146e+04,1.092e-10) 
+
+
+c_amp_htautau matrix: 
+   (3.957,0) (1.561e+04,0) 
+(1.561e+04,0)    (3.957,0) 
+
+
+c_amp_dec_taum matrix: 
+       (0,0)        (0,0) 
+   (2.755,0)     (7.19,0) 
+
+
+c_amp_dec_taup matrix: 
+       (0,0)    (7.475,0) 
+       (0,0)     (2.47,0) 
+
+
+c_amp_7_568 matrix: 
+       (0,0)        (0,0) 
+(1.111e+05,0) (4.081e+04,0) 
+
+
+c_amp_res matrix: 
+       (0,0)        (0,0) 
+       (0,0) (9.803e+04,0) 
+
+xAB1: 0.85
+xAB2: 0.13
+-------------------- Vegas test --------------------
+Vegas input parameters:
+  ndim 5
+  ncomp 6
+  nvec 1
+  epsrel 0.001
+  epsabs 1e-12
+  flags 2
+  seed 0
+  mineval 0
+  maxeval 50000
+  nstart 1000
+  nincrease 500
+  nbatch 1000
+  gridno 0
+  statefile "(null)"
+
+Iteration 1:  1000 integrand evaluations so far
+[1] 25933.3 +- 916.713  	chisq 0 (0 df)
+[2] 25980.1 +- 938.896  	chisq 0 (0 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0 (0 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0 (0 df)
+[5] 1.66442 +- 0.0601589  	chisq 0 (0 df)
+[6] 1.66156 +- 0.0587383  	chisq 0 (0 df)
+
+Iteration 2:  2500 integrand evaluations so far
+[1] 25796.7 +- 519.165  	chisq 0.032673 (1 df)
+[2] 25886.9 +- 520.558  	chisq 0.0142251 (1 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.0028744 (1 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.0028744 (1 df)
+[5] 1.65831 +- 0.033343  	chisq 0.0148904 (1 df)
+[6] 1.65274 +- 0.0332682  	chisq 0.0331986 (1 df)
+
+Iteration 3:  4500 integrand evaluations so far
+[1] 25887.3 +- 363.635  	chisq 0.0924996 (2 df)
+[2] 25864.7 +- 365.213  	chisq 0.0178194 (2 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.00624125 (2 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.00624125 (2 df)
+[5] 1.65674 +- 0.0233902  	chisq 0.0192339 (2 df)
+[6] 1.65847 +- 0.0232973  	chisq 0.091497 (2 df)
+
+Iteration 4:  7000 integrand evaluations so far
+[1] 25914.5 +- 280.215  	chisq 0.106295 (3 df)
+[2] 25944.8 +- 282.443  	chisq 0.13742 (3 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.00740709 (3 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.00740709 (3 df)
+[5] 1.66185 +- 0.0180884  	chisq 0.137787 (3 df)
+[6] 1.6602 +- 0.0179516  	chisq 0.105065 (3 df)
+
+Iteration 5:  10000 integrand evaluations so far
+[1] 25899.6 +- 230.181  	chisq 0.11503 (4 df)
+[2] 25875 +- 230.477  	chisq 0.319917 (4 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.00747834 (4 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.00747834 (4 df)
+[5] 1.65731 +- 0.0147606  	chisq 0.326568 (4 df)
+[6] 1.65921 +- 0.0147464  	chisq 0.114517 (4 df)
+
+Iteration 6:  13500 integrand evaluations so far
+[1] 25930.4 +- 195.247  	chisq 0.178737 (5 df)
+[2] 25888.1 +- 195.133  	chisq 0.331303 (5 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.0116684 (5 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.0116684 (5 df)
+[5] 1.65816 +- 0.012498  	chisq 0.338277 (5 df)
+[6] 1.66118 +- 0.0125087  	chisq 0.178585 (5 df)
+
+Iteration 7:  17500 integrand evaluations so far
+[1] 25917.6 +- 169.875  	chisq 0.196417 (6 df)
+[2] 25897.2 +- 169.891  	chisq 0.340255 (6 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.0117874 (6 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.0117874 (6 df)
+[5] 1.65877 +- 0.0108824  	chisq 0.348222 (6 df)
+[6] 1.66038 +- 0.0108836  	chisq 0.195579 (6 df)
+
+Iteration 8:  22000 integrand evaluations so far
+[1] 25883.5 +- 150.297  	chisq 0.381241 (7 df)
+[2] 25885.2 +- 150.562  	chisq 0.363242 (7 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.0118044 (7 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.0118044 (7 df)
+[5] 1.658 +- 0.00964409  	chisq 0.371867 (7 df)
+[6] 1.65819 +- 0.00962892  	chisq 0.381507 (7 df)
+
+Iteration 9:  27000 integrand evaluations so far
+[1] 25903.3 +- 135.02  	chisq 0.470764 (8 df)
+[2] 25885.2 +- 135.094  	chisq 0.363243 (8 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.011808 (8 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.011808 (8 df)
+[5] 1.658 +- 0.00865302  	chisq 0.371867 (8 df)
+[6] 1.65946 +- 0.00865024  	chisq 0.471124 (8 df)
+
+Iteration 10:  32500 integrand evaluations so far
+[1] 25891.1 +- 122.599  	chisq 0.517076 (9 df)
+[2] 25900.2 +- 122.713  	chisq 0.433684 (9 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.0118139 (9 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.0118139 (9 df)
+[5] 1.65895 +- 0.00786033  	chisq 0.441855 (9 df)
+[6] 1.65868 +- 0.00785443  	chisq 0.517665 (9 df)
+
+Iteration 11:  38500 integrand evaluations so far
+[1] 25897 +- 112.354  	chisq 0.531453 (10 df)
+[2] 25891 +- 112.385  	chisq 0.468436 (10 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.0121586 (10 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.0121586 (10 df)
+[5] 1.65837 +- 0.00719878  	chisq 0.475719 (10 df)
+[6] 1.65906 +- 0.0071981  	chisq 0.53235 (10 df)
+
+Iteration 12:  45000 integrand evaluations so far
+[1] 25891.1 +- 103.618  	chisq 0.549952 (11 df)
+[2] 25896.1 +- 103.764  	chisq 0.481975 (11 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.0121606 (11 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.0121606 (11 df)
+[5] 1.65869 +- 0.00664653  	chisq 0.48927 (11 df)
+[6] 1.65868 +- 0.00663836  	chisq 0.550861 (11 df)
+
+Iteration 13:  52000 integrand evaluations so far
+[1] 25894.7 +- 96.3199  	chisq 0.559067 (12 df)
+[2] 25888.3 +- 96.3554  	chisq 0.522294 (12 df)
+[3] 3.95715 +- 7.02518e-18  	chisq 0.0126794 (12 df)
+[4] 15608.4 +- 7.02518e-18  	chisq 0.0126794 (12 df)
+[5] 1.6582 +- 0.00617213  	chisq 0.529044 (12 df)
+[6] 1.65891 +- 0.00617089  	chisq 0.560115 (12 df)
+VEGAS RESULT:	neval 52000	fail 1
+Component 0:
+VEGAS RESULT:	25894.74078635 +- 96.31990944	p = 0.000
+Component 1:
+VEGAS RESULT:	25888.32520927 +- 96.35539530	p = 0.000
+Component 2:
+VEGAS RESULT:	3.95715100 +- 0.00000000	p = 0.000
+Component 3:
+VEGAS RESULT:	15608.42870231 +- 0.00000000	p = 0.000
+Component 4:
+VEGAS RESULT:	1.65820172 +- 0.00617213	p = 0.000
+Component 5:
+VEGAS RESULT:	1.65891338 +- 0.00617089	p = 0.000
+
+############################################################
+### Decay process: h --> A + B --> (a1 a2 a3) (b1 b2 b3) ###
+############################################################
+
+
+--------------------------
+--- Physical constants ---
+--------------------------
+
+hbar:    6.582119e-25 [GeV s]
+c:       2.997925e+08 [m/s]
+hbar*c:  1.973270e-01 [GeV fm]
+G_Fermi: 1.160000e-05 [GeV^{-2}]
+m (tau): 1.775820e+00 [GeV]
+
+
+##################################################
+### --- h -> (tau) (tau) consistency check --- ###
+#################################################
+# Checking 'M(h-> tau tau)' value
+
+pol_1 = [0][0]; pol_2 = [0][1]integral_htautau_pol_1:            3.957151 [a.u.]
+integral_htautau_pol_2:        15608.428702 [a.u.]
+integral_htautau_unpol:            3.317115 [a.u.]
+
+
+expected amplitude: 0.5*(2*(M_h)^(2) - 8*(m_tau)^2)
+
+h tautau amplitude value:  15612.385853
+expected amplitude value:  15612.385853
+
+ratio:
+ampl/expected:  1.000000e+00
+
+
+############################################
+### --- Gamma(tau) consistency check --- ###
+############################################
+# Comparing 'Gamma(tau) numerical int. result' with
+#       the 'Gamma(tau) textbook formula'.
+
+Unpolarized case
+integral_taudecay_unpol value:      3.317115
+integral_taudecay_pol_1 value:      1.658202
+integral_taudecay_pol_2 value:      1.658913
+mA (daughter particle A):     1.775820 [GeV]
+
+Textbook result of the integration:
+Gamma(tau): G_Fermi^{2}*m_tau^{5}/(192*pi^{3})
+
+Our result of the integration:
+Gamma(tau): 4*integral_taudecay * G_Fermi * G_Fermi / mA / 2.0
+
+Gamma(tau) textbook:                                  			   3.991718e-13 [GeV]
+Gamma(tau) unpolarized our result w/o gamma factor:   			   3.994348e-13 [GeV]
+ratio [Gamma(tau)_unpol_result_woutgamma / Gamma(tau)_expected]: 1.000659e+00
+ratio [Gamma(tau)_pol_1_result_woutgamma / Gamma(tau)_expected]: 1.000444e+00
+ratio [Gamma(tau)_pol_2_result_woutgamma / Gamma(tau)_expected]: 1.000444e+00
+
+
+#################################################################
+### --- Comparison of 'Combined result' and '(Prod)x(BR)' --- ###
+#################################################################
+# Here we compare the result of the following two formulae:
+# o A) 'Combined result'
+#   (Formula A) = |M_{combined}|^2 * (pi)/(Gamma(tau)*m(tau))
+#   where Gamma(tau) is the numerical integration result.
+# o B) '(Production) x (BR)'
+#   (Formula B) = 2.0*pi |M_{prod}|^2 * BR(tau->3f)
+#   Both of them use NWA.
+#   These two formulae are integrated over the phase space
+#   of the daughter particle of A (a1, a2 and a3).
+
+integral_combined_pol_1: 25894.740786 [a.u.]
+integral_combined_pol_2: 25888.325209 [a.u.]
+integral_htautau_pol_1:            3.957151 [a.u.]
+integral_htautau_pol_2:        15608.428702 [a.u.]
+integral_htautau_unpol:        15612.385853 [a.u.]
+integral_taudecay_pol_1:           1.658202 [a.u.]
+integral_taudecay_pol_2:           1.658913 [a.u.]
+mA:                          1.775820 [GeV]
+
+----------------------------------------------
+--- With reduced calculation on Gamma(tau) ---
+-----------------------------------------------
+  no normalization to Gamma(tau) and |M| with
+  coupling constants, phase space constants, etc.
+  i.e taking directly the 'integral_taudecay' value
+  Note: The ratios should be equal to the 'full calculation' case!
+
+Gamma_Combined_redu_pol_1 value:     2.762053e+04 [a.u.]
+Gamma_Combined_redu_pol_2 value:     2.761368e+04 [a.u.]
+Gamma_Prod_BR_redu value:            2.761978e+04 [a.u.]
+
+ratios:
+(Gamma_Combined_redu_pol_1)/(Gamma_Prod_BR_redu): 1.000027e+00 [a.u.]
+(Gamma_Combined_redu_pol_2)/(Gamma_Prod_BR_redu): 9.997793e-01 [a.u.]
+
+
+-------------------------------------------
+--- With full calculation on Gamma(tau) ---
+-------------------------------------------
+  all normalization to Gamma(tau) and |M| with
+  coupling constants, phase space constants, etc.
+  i.e taking directly the 'Gamma(tau)' value
+  Note: The ratios should be equal to the 'reduced calculation' case!
+
+Gamma_Combined_full_pol_1 value:     9.811922e+04 [a.u.]
+Gamma_Combined_full_pol_2 value:     9.805283e+04 [a.u.]
+Gamma_Prod_BR_full value:            9.809551e+04 [a.u.]
+
+ratios:
+(Gamma_Combined_full_pol_1)/(Gamma_Prod_BR_full): 1.000242e+00 [a.u.]
+(Gamma_Combined_full_pol_2)/(Gamma_Prod_BR_full): 9.995648e-01 [a.u.]
