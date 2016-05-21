@@ -94,8 +94,11 @@ const double E  = sqrt( Px*Px + Py*Py + Pz*Pz + M*M );
 //const double  xB4 = 0.50;
 //const double  xB5 = 0.50;
 //
-double xAB1;
-double xAB2;
+//double xAB1 = 0.39;
+//double xAB2 = 0.81;
+double xAB1 = 0.90;
+double xAB2 = 0.50;
+
 const double  xB1 = 0.73;
 const double  xB2 = 0.12;
 const double  xB3 = 0.71;
@@ -155,8 +158,8 @@ const double Gamma_formula = pow(mA,5.0) * G_Fermi * G_Fermi / 192.0 / pow(M_PI,
 const double ctau_formula = hbar_c/Gamma_formula;
 
 // Integrated values
-double integral_combined_pol_2;
 double integral_combined_pol_1;
+double integral_combined_pol_2;
 double integral_htautau_pol_1;
 double integral_htautau_pol_2;
 double integral_taudecay_pol_1;
@@ -210,13 +213,15 @@ static int Integrand(const int *ndim, const cubareal xx[],
 //	f_h_tautau = PSWeight_A123;
 //	f_taudecay = PSWeight_A123;
 
-	f_combined1 = PSWeight_A123 * std::abs(  c_amp_7_568.m[1][0] ); // spinB is fixed, spinA is summed
-	f_combined2 = PSWeight_A123 * std::abs(  c_amp_7_568.m[1][1] ); // spinB is fixed, spinA is summed
+	double w = PSWeight_A123;
+
+	f_combined1 = w * std::abs(  c_amp_7_568.m[1][0] ); // spinB is fixed, spinA is summed
+	f_combined2 = w * std::abs(  c_amp_7_568.m[1][1] ); // spinB is fixed, spinA is summed
 	f_h_tautau1 = std::abs(c_amp_htautau.m[0][0]);
 	f_h_tautau2 = std::abs(c_amp_htautau.m[0][1]);   // spinB is fixed, spinA is summed
 //	f_h_tautau = std::abs(c_amp_htautau.m[1][0]) + std::abs(c_amp_htautau.m[1][1]);   // spinB is fixed, spinA is summed
-	f_taudecay1 = PSWeight_A123 * (std::abs(c_amp_dec_taum.m[1][0]));
-	f_taudecay2 = PSWeight_A123 * (std::abs(c_amp_dec_taum.m[1][1])); // unpolarized amplitude for 
+	f_taudecay1 = w * (std::abs(c_amp_dec_taum.m[1][0]));
+	f_taudecay2 = w * (std::abs(c_amp_dec_taum.m[1][1])); // unpolarized amplitude for 
 
 //	printf("c_amp_res: %.2e\n", std::abs(c_amp_res.m[1][1]));
 //	printf("c_amp_res: %.2e\n", std::abs(c_amp_res.m[1][1]));
@@ -237,33 +242,28 @@ int main()
   
   // Histogram for values
   //
-  const double x1nBins = 1;
-  const double x2nBins = 1;
-  const double x1Min = 0.01;
-  const double x1Max = 0.99;
-  const double x2Min = 0.0;
-  const double x2Max = 1.0;
+  const double x1nBins = 0;
+  const double x2nBins = 0;
+  const double x1Min = 0.49;
+  const double x1Max = 0.51;
+  const double x2Min = 0.00;
+  const double x2Max = 0.01;
+//  const double x2Min = 0.49;
+//  const double x2Max = 0.51;
   const double x1BinWidth = (x1Max-x1Min)/x1nBins;
   const double x2BinWidth = (x2Max-x2Min)/x2nBins;
 
-  const double thetaMin = 0.0;
-  const double thetaMax = M_PI;
-  const double phiMin = 0.0;
-  const double phiMax = 2.0*M_PI;
+  const double thetaMin = x1Min*M_PI;
+  const double thetaMax = x1Max*M_PI;
+  const double phiMin = x2Min*2.0*M_PI;
+  const double phiMax = x2Max*2.0*M_PI;
   TH2D *hist_Gamma_Combined_full_pol_1 = new TH2D ("Gamma_Combined_full_pol_1",";#theta [rad];#phi [rad];value",x1nBins,thetaMin,thetaMax,x2nBins,phiMin,phiMax);
   TH2D *hist_Gamma_Combined_full_pol_2 = new TH2D ("Gamma_Combined_full_pol_2",";#theta [rad];#phi [rad];value",x1nBins,thetaMin,thetaMax,x2nBins,phiMin,phiMax);
   TH2D *hist_Gamma_Prod_BR_full = new TH2D ("Gamma_Prod_BR_full",";#theta [rad];#phi [rad];value",x1nBins,thetaMin,thetaMax,x2nBins,phiMin,phiMax);
 
-  // Start of loop
-  for (int x1Bin = 0; x1Bin < x1nBins; x1Bin++ )
-  for (int x2Bin = 0; x2Bin < x2nBins; x2Bin++ )
-  {
-  
-//  xAB1 = x1Min + x1BinWidth*x1Bin;
-//  xAB2 = x2Min + x2BinWidth*x2Bin;
-  
-  xAB1 = 0.9;
-  xAB2 = 0.9;
+    
+//  xAB1 = 0.9;
+//  xAB2 = 0.9;
 
   printf("\n");
   printf("##########################################################\n");
@@ -294,7 +294,8 @@ int main()
   c_amp_htautau.SetName("c_amp_htautau");
   c_amp_dec_taum.SetName("c_amp_dec_taum");
   c_amp_dec_taup.SetName("c_amp_dec_taup");
-
+  c_amp_7_568.SetName("c_amp_7_568");
+  c_amp_res.SetName("c_amp_res");
 
 	// Fortran COMMON blocks
 	masses_.rmtau             = m_tau;
@@ -319,8 +320,8 @@ int main()
   printf("###########################################################\n");
   printf("\n");
 
-  const double xAB1_ = 0.80;
-  const double xAB2_ = 0.91;
+  const double xAB1_ = xAB1;
+  const double xAB2_ = xAB2;
   const double xA1_  = 0.50;
   const double xA2_  = 0.50;
   const double xA3_  = 0.50;
@@ -374,24 +375,46 @@ int main()
 	//
 	rh_6f_(pA1_,pA2_,pB2_,pB1_,pA3_,pB3_);
 
-	c_amp_htautau.ReadInCMatrix_2_2(  tau_amplitudes_.c_amp_htautau );
 	h_tautau.ReadInCMatrix_2_2(taumatrices_.ch_tautau);
 	taum.ReadInCMatrix_2_2(    taumatrices_.cdec_taum);
 	taup.ReadInCMatrix_2_2(    taumatrices_.cdec_taup);
 	c7_568.ReadInCMatrix_2_2(  taumatrices_.c7_568);
 
-	printf("cdec_taum[0][0]: %2.f\n", taumatrices_.cdec_taum[0][0]);
-	printf("cdec_taum[0][0]: %2.f\n", taumatrices_.cdec_taum[0][1]);
+	c_amp_htautau.ReadInCMatrix_2_2(  tau_amplitudes_.c_amp_htautau  );
+   c_amp_dec_taum.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_dec_taum );
+   c_amp_dec_taup.ReadInCMatrix_2_2( tau_amplitudes_.c_amp_dec_taup );
+	c_amp_7_568.ReadInCMatrix_2_2(    tau_amplitudes_.c_amp_7_568    );
+   c_amp_res.ReadInCMatrix_2_2(      tau_amplitudes_.c_amp_res    );
 
 	h_tautau.Show();
-	c_amp_htautau.Show();
    taum.Show();
    taup.Show();
    c7_568.Show();
+
+	c_amp_htautau.Show();
+	c_amp_dec_taum.Show();
+	c_amp_dec_taup.Show();
+	c_amp_7_568.Show();
+	c_amp_res.Show();
+
 //	decay.DisplayAllInfo();
 
 
 #endif
+
+// theta,phi sweep
+// Start of loop
+//  for (int x1Bin = 0; x1Bin < x1nBins; x1Bin++ )
+//  for (int x2Bin = 0; x2Bin < x2nBins; x2Bin++ )
+//  {
+//  
+//  xAB1 = x1Min + x1BinWidth*x1Bin;
+//  xAB2 = x2Min + x2BinWidth*x2Bin;
+
+  printf("xAB1: %.2f\n", xAB1);
+  printf("xAB2: %.2f\n", xAB2);
+
+
 
 #if 1
 
@@ -503,8 +526,12 @@ int main()
   // (similar to the case of muon decay)
   double integral_taudecay_unpol = (integral_taudecay_pol_1 + integral_taudecay_pol_2);
   double DecayA123_PSConst = decay.DecayA123->GetPSConst();
-  double Gamma_tau_woutgamma = 4.0 * integral_taudecay_unpol * DecayA123_PSConst * G_Fermi * G_Fermi / mA / 2.0  ;
-  double ratio_Gamma_tau_woutgamma_result_per_expected = Gamma_tau_woutgamma/Gamma_formula;
+  double Gamma_tau_unpol_woutgamma = 4.0 * integral_taudecay_unpol * DecayA123_PSConst * G_Fermi * G_Fermi / mA / 2.0  ;
+  double Gamma_tau_pol_1_woutgamma = 8.0 * integral_taudecay_pol_1 * DecayA123_PSConst * G_Fermi * G_Fermi / mA / 2.0  ;
+  double Gamma_tau_pol_2_woutgamma = 8.0 * integral_taudecay_pol_2 * DecayA123_PSConst * G_Fermi * G_Fermi / mA / 2.0  ;
+  double ratio_Gamma_tau_unpol_woutgamma_result_per_expected = Gamma_tau_unpol_woutgamma/Gamma_formula;
+  double ratio_Gamma_tau_pol_1_woutgamma_result_per_expected = Gamma_tau_pol_1_woutgamma/Gamma_formula;
+  double ratio_Gamma_tau_pol_2_woutgamma_result_per_expected = Gamma_tau_pol_1_woutgamma/Gamma_formula;
 
   printf("\n");
   printf("############################################################\n");
@@ -531,11 +558,20 @@ int main()
   printf("#################################################\n");
   printf("# Checking 'M(h-> tau tau)' value\n");
 
+
   //double integral_htautau_unpol = (integral_htautau_pol_1 + integral_htautau_pol_2);
   double integral_htautau_unpol = (integral_htautau_pol_1 + integral_htautau_pol_2);
   double htautau_exp   = 0.5*((2*M*M)-(8*mA*mA));
   double htautau_ratio = (integral_htautau_unpol) /htautau_exp;
 
+  printf("\n");
+  printf("pol_1 = [0][0]; pol_2 = [0][1]");
+  printf("integral_htautau_pol_1:        %12.6f [a.u.]\n", integral_htautau_pol_1);
+  printf("integral_htautau_pol_2:        %12.6f [a.u.]\n", integral_htautau_pol_2);
+  printf("integral_htautau_unpol:        %12.6f [a.u.]\n", integral_taudecay_unpol);
+  printf("\n");
+
+  printf("\n");
   printf("expected amplitude: 0.5*(2*(M_h)^(2) - 8*(m_tau)^2)\n");
   printf("\n");
   printf("h tautau amplitude value:  %12.6f\n", integral_htautau_unpol);
@@ -554,7 +590,10 @@ int main()
   printf("#       the 'Gamma(tau) textbook formula'.\n");
 
   printf("\n");
-  printf("integral_taudecay value:  %12.6f\n", integral_taudecay_unpol);
+  printf("Unpolarized case\n");
+  printf("integral_taudecay_unpol value:  %12.6f\n", integral_taudecay_unpol);
+  printf("integral_taudecay_pol_1 value:  %12.6f\n", integral_taudecay_pol_1);
+  printf("integral_taudecay_pol_2 value:  %12.6f\n", integral_taudecay_pol_2);
   printf("mA (daughter particle A): %12.6f [GeV]\n", mA);
   printf("\n");
   printf("Textbook result of the integration:\n");
@@ -564,10 +603,14 @@ int main()
   printf("Gamma(tau): 4*integral_taudecay * G_Fermi * G_Fermi / mA / 2.0\n");
   printf("\n");
 
-  printf("Gamma(tau) textbook:                        %12.6e [GeV]\n", Gamma_formula);
-  printf("Gamma(tau) our result w/o gamma factor:     %12.6e [GeV]\n", Gamma_tau_woutgamma);
+  printf("Gamma(tau) textbook:                                  			   %12.6e [GeV]\n", Gamma_formula);
+  printf("Gamma(tau) unpolarized our result w/o gamma factor:   			   %12.6e [GeV]\n", Gamma_tau_unpol_woutgamma);
 
-  printf("ratio [Gamma(tau)_result_woutgamma / Gamma(tau)_expected]: %.2e\n", ratio_Gamma_tau_woutgamma_result_per_expected);
+  printf("ratio [Gamma(tau)_unpol_result_woutgamma / Gamma(tau)_expected]: %12.6e\n", ratio_Gamma_tau_unpol_woutgamma_result_per_expected);
+  printf("ratio [Gamma(tau)_pol_1_result_woutgamma / Gamma(tau)_expected]: %12.6e\n", ratio_Gamma_tau_pol_1_woutgamma_result_per_expected);
+  printf("ratio [Gamma(tau)_pol_2_result_woutgamma / Gamma(tau)_expected]: %12.6e\n", ratio_Gamma_tau_pol_2_woutgamma_result_per_expected);
+
+
 
   printf("\n");
   printf("\n");
@@ -578,10 +621,10 @@ int main()
   
   // Note: These Gamma's are not weighted with the appropriate couplings
   //       and several other factors might be missing
-  double Gamma_Combined_redu_pol_1 = integral_combined_pol_1*(M_PI/(mA*integral_taudecay_unpol));
-  double Gamma_Combined_redu_pol_2 = integral_combined_pol_2*(M_PI/(mA*integral_taudecay_unpol));
-  double Gamma_Combined_full_pol_1 = integral_combined_pol_1*(4.0* DecayA123_PSConst * G_Fermi * G_Fermi )*(M_PI/(mA*Gamma_tau_woutgamma));
-  double Gamma_Combined_full_pol_2 = integral_combined_pol_2*(4.0* DecayA123_PSConst * G_Fermi * G_Fermi )*(M_PI/(mA*Gamma_tau_woutgamma));
+  double Gamma_Combined_redu_pol_1 = 2*integral_combined_pol_1*(M_PI/(mA*integral_taudecay_unpol));
+  double Gamma_Combined_redu_pol_2 = 2*integral_combined_pol_2*(M_PI/(mA*integral_taudecay_unpol));
+  double Gamma_Combined_full_pol_1 = 2*integral_combined_pol_1*(4.0* DecayA123_PSConst * G_Fermi * G_Fermi )*(M_PI/(mA*Gamma_tau_unpol_woutgamma));
+  double Gamma_Combined_full_pol_2 = 2*integral_combined_pol_2*(4.0* DecayA123_PSConst * G_Fermi * G_Fermi )*(M_PI/(mA*Gamma_tau_unpol_woutgamma));
   //double Gamma_Combined_NWA = integral_combined*(1.0/(integral_taudecay));
   double Gamma_Prod_BR_redu        = integral_htautau_unpol*M_PI/mA;
   double Gamma_Prod_BR_full        = integral_htautau_unpol*2.0*M_PI;
@@ -604,6 +647,7 @@ int main()
   printf("integral_combined_pol_2: %12.6f [a.u.]\n", integral_combined_pol_2);
   printf("integral_htautau_pol_1:        %12.6f [a.u.]\n", integral_htautau_pol_1);
   printf("integral_htautau_pol_2:        %12.6f [a.u.]\n", integral_htautau_pol_2);
+  printf("integral_htautau_unpol:        %12.6f [a.u.]\n", integral_htautau_unpol);
   printf("integral_taudecay_pol_1:       %12.6f [a.u.]\n", integral_taudecay_pol_1);
   printf("integral_taudecay_pol_2:       %12.6f [a.u.]\n", integral_taudecay_pol_2);
   printf("mA:                      %12.6f [GeV]\n", mA);
@@ -661,36 +705,41 @@ int main()
 //  double PSWeight_B123 = decay.DecayB123->GetPhaseSpaceWeight(xB1, xB2, xB3, xB4, xB5);
 //  printf("PSWeight_B123 = %10.5e \n", PSWeight_B123);
 
-  hist_Gamma_Combined_full_pol_1 -> SetBinContent( (x1nBins-x1Bin), 1+x2Bin, Gamma_Combined_full_pol_1);
-  hist_Gamma_Combined_full_pol_2 -> SetBinContent( (x1nBins-x1Bin), 1+x2Bin, Gamma_Combined_full_pol_2);
-  hist_Gamma_Prod_BR_full        -> SetBinContent( (x1nBins-x1Bin), 1+x2Bin, Gamma_Prod_BR_full );
+///////////////////
+//  --- Root --- //
+///////////////////
+
+//  hist_Gamma_Combined_full_pol_1 -> SetBinContent( (x1nBins-x1Bin), 1+x2Bin, Gamma_Combined_full_pol_1);
+//  hist_Gamma_Combined_full_pol_2 -> SetBinContent( (x1nBins-x1Bin), 1+x2Bin, Gamma_Combined_full_pol_2);
+//  hist_Gamma_Prod_BR_full        -> SetBinContent( (x1nBins-x1Bin), 1+x2Bin, Gamma_Prod_BR_full );
 
 
   // End of loops
-  }
+  // }
 
+//	hist_Gamma_Combined_full_pol_1 -> Divide( hist_Gamma_Prod_BR_full);
+//	hist_Gamma_Combined_full_pol_2 -> Divide( hist_Gamma_Prod_BR_full);
+//
+//   gStyle->SetOptStat(0);
+//   TCanvas canv ("canvas","canv", 800, 600);
+//
+//	canv.SetRightMargin(0.20);
+//
+//	hist_Gamma_Combined_full_pol_1 -> Draw("COLZ");
+////	hist_Gamma_Combined_full_pol_2 			
+////	hist_Gamma_Prod_BR_full        
+//	
+//	canv.SaveAs("histo_Gamma_Combined_full_pol1.pdf");
+//
+//	canv.Clear();
+//	hist_Gamma_Combined_full_pol_2 -> Draw("COLZ");
+//	canv.SaveAs("histo_Gamma_Combined_full_pol2.pdf");
+//
+//	canv.Clear();
+//	hist_Gamma_Prod_BR_full -> Draw("COLZ");
+//	canv.SaveAs("histo_Gamma_Prod_BR_full.pdf");
 
-	hist_Gamma_Combined_full_pol_1 -> Divide( hist_Gamma_Prod_BR_full);
-	hist_Gamma_Combined_full_pol_2 -> Divide( hist_Gamma_Prod_BR_full);
-
-   gStyle->SetOptStat(0);
-   TCanvas canv ("canvas","canv", 800, 600);
-
-	canv.SetRightMargin(0.20);
-
-	hist_Gamma_Combined_full_pol_1 -> Draw("COLZ");
-//	hist_Gamma_Combined_full_pol_2 			
-//	hist_Gamma_Prod_BR_full        
-	
-	canv.SaveAs("histo_Gamma_Combined_full_pol1.pdf");
-
-	canv.Clear();
-	hist_Gamma_Combined_full_pol_2 -> Draw("COLZ");
-	canv.SaveAs("histo_Gamma_Combined_full_pol2.pdf");
-
-	canv.Clear();
-	hist_Gamma_Prod_BR_full -> Draw("COLZ");
-	canv.SaveAs("histo_Gamma_Prod_BR_full.pdf");
+////////////////////////////////////////////
 
 	//hist_Gamma_Combined_full_pol_1 -> SaveAs("./hist_Gamma_Combined_full_pol_1.pdf");
 	//hist_Gamma_Combined_full_pol_2 -> SaveAs("./hist_Gamma_Combined_full_pol_2.pdf");  
@@ -699,4 +748,3 @@ int main()
   return 0;
 
 }
-

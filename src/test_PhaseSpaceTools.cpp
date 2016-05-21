@@ -10,9 +10,9 @@
 int main( int argc, const char *argv[] )
 {
 
-	double momentum  = 0.0;
-	double theta 	  = 0.53;
-	double phi  	  = 1.34;
+	double momentum  = 0.2;
+	double theta 	  = 0.5*M_PI;
+	double phi  	  = 0.00;
 	double 	     M  = 10.0;
 	double 	Energy  = sqrt(momentum*momentum+M*M);
 	double 	    m1  = 0.0000;

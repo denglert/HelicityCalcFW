@@ -74,6 +74,11 @@ c     do mu=0,3
 c     print*, "p734 component:", mu, "value", p734(mu)
 c     enddo
 
+c     do mu=0,3
+c     print*, "p568 component:", mu, "value", p568(mu)
+c     enddo
+
+
 c     print*, "p3"
 c     call PrintLorentzVector(p3)
 c     print*, "p4"
@@ -95,6 +100,19 @@ c     call PrintLorentzVector(p8)
       p8k0=p8(0)-p8(1)
       p734k0=p734(0)-p734(1)
       p568k0=p568(0)-p568(1)
+
+!     write(*,*) '#############################'
+!     write(*,*) '### --- rh_6f_k0_1001 --- ###'
+!     write(*,*) '#############################'
+!     write(*,*) '                             '
+!     write(*,*) 'p3k0', p3k0
+!     write(*,*) 'p4k0', p4k0
+!     write(*,*) 'p5k0', p5k0
+!     write(*,*) 'p5k0', p5k0
+!     write(*,*) 'p6k0', p7k0
+!     write(*,*) 'p8k0', p8k0
+!     write(*,*) 'p734k0', p734k0 ! This is zero.
+!     write(*,*) 'p568k0', p568k0 ! This is non-zero.
 
 **********************************************************************
 c e-(p3) and vu_e_bar(p4)
@@ -234,14 +252,14 @@ c e-(p3) and vu_e_bar(p4)
       ccl=1.d0/cden568
 * TSC -- qu=p734,qd=p568,a=th734_568.a,b=th734_568.b,c=th734_568.c,cr=ccr,c     
 * l=ccl                                                                         
-      auxa=-p734k0*p568(2)+p568k0*p734(2)
-      cauxa=-cim*(p568(3)*p734k0-p734(3)*p568k0)
-      th734_568.a(1,2)=ccl*(auxa+cauxa)
-      th734_568.a(2,1)=ccr*(-auxa+cauxa)
-      th734_568.b(1,1)=ccr*p568k0
-      th734_568.b(2,2)=ccl*p568k0
-      th734_568.c(1,1)=ccl*p734k0
-      th734_568.c(2,2)=ccr*p734k0
+      auxa=-p734k0*p568(2)+p568k0*p734(2)        ! zero at x1=0.5 x2=0.0
+      cauxa=-cim*(p568(3)*p734k0-p734(3)*p568k0) ! zero at x1=0.5 x2=0.0
+      th734_568.a(1,2)=ccl*(auxa+cauxa)   ! zero at x1=0.5 x2=0.0
+      th734_568.a(2,1)=ccr*(-auxa+cauxa)  ! zero at x1=0.5 x2=0.0
+      th734_568.b(1,1)=ccr*p568k0 ! non-zero at x1=0.5 x2=0.0 
+      th734_568.b(2,2)=ccl*p568k0 ! non-zero at x1=0.5 x2=0.0 
+      th734_568.c(1,1)=ccl*p734k0 ! zero at x1=0.5 x2=0.0 
+      th734_568.c(2,2)=ccr*p734k0 ! zero at x1=0.5 x2=0.0 
 
 **********************************************************************
 
@@ -373,7 +391,9 @@ c      print*,'i: ',iut,'j: ', jut, tw568_8.b(iut,jut)
       enddo
       enddo
 
+      c_amp_res = 0.d0
       res=0.d0
+
       do i=1,2
       do j=1,2
       res=res+cres(i,j)*conjg(cres(i,j))

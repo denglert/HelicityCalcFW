@@ -52,6 +52,8 @@ Scalar_2Fermion_6Fermion_SingleBranchIntegration : build
 Scalar_2Fermion_6Fermion_FullIntegration : build
 	@ ./bin/Scalar_2Fermion_6Fermion_FullIntegration | tee ./log/Scalar_2Fermion_6Fermion_FullIntegration
 
+Analyzer-h-tautau-6f : build
+	@ ./bin/Analyzer-h-tautau-6f | tee ./log/Analyzer-h-tautau-6f
 
 
 ####################

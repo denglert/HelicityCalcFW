@@ -27,6 +27,8 @@ OBJ_Scalar_2Fermion_6Fermion_SingleBranchIntegration = $(CMN)  ../lib/PhaseSpace
 
 OBJ_Scalar_2Fermion_6Fermion_FullIntegration = $(CMN)  ../lib/PhaseSpaceTools.cpp.o ../lib/rh_6f_k0_1001.f.o ../lib/HelicityTools.cpp.o ../lib/FortranUtils.f.o ../lib/Scalar_2Fermion_6Fermion_FullIntegration.cpp.o
 
+OBJ_Analyzer-h-tautau-6f = $(CMN) ../lib/PhaseSpaceTools.cpp.o ../lib/rh_6f_k0_1001.f.o ../lib/HelicityTools.cpp.o ../lib/FortranUtils.f.o ../lib/Analyzer-h-tautau-6f.cpp.o
+
 OBJ_LifeTime_Muon_Polarized = $(CMN) ../lib/LifeTime_Muon_Polarized.cpp.o ../lib/PhaseSpaceTools.cpp.o
 
 OBJ_SpinPolarization = $(CMN) ../lib/SpinPolarization.cpp.o ../lib/PhaseSpaceTools.cpp.o
@@ -40,7 +42,7 @@ CMN = ../lib/UtilFunctions.cpp.o
 ## Linking
 LINKER = ifort
 
-binaries : ../bin/test_rh_tautau ../bin/test_rh_6f_k0_1001 ../bin/test_rh_6f_k0_physical ../bin/test_cuba ../bin/main_test ../bin/test_HelicityTools ../bin/test_FortranUtils ../bin/test_PhaseSpaceTools ../bin/test_PhaseSpaceIntegration ../bin/test_PhaseSpaceIntegration2 ../bin/test_PhaseSpaceIntegration3 ../bin/test_PhaseSpaceIntegration4 ../bin/Scalar_2Fermion_6Fermion_SingleBranchIntegration ../bin/LifeTime_Muon_Polarized ../bin/SpinPolarization ../bin/test_PhaseSpaceTools2 ../bin/test_PhaseSpaceTools3  ../bin/Scalar_2Fermion_6Fermion_FullIntegration
+binaries : ../bin/test_rh_tautau ../bin/test_rh_6f_k0_1001 ../bin/test_rh_6f_k0_physical ../bin/test_cuba ../bin/main_test ../bin/test_HelicityTools ../bin/test_FortranUtils ../bin/test_PhaseSpaceTools ../bin/test_PhaseSpaceIntegration ../bin/test_PhaseSpaceIntegration2 ../bin/test_PhaseSpaceIntegration3 ../bin/test_PhaseSpaceIntegration4 ../bin/Scalar_2Fermion_6Fermion_SingleBranchIntegration ../bin/LifeTime_Muon_Polarized ../bin/SpinPolarization ../bin/test_PhaseSpaceTools2 ../bin/test_PhaseSpaceTools3  ../bin/Scalar_2Fermion_6Fermion_FullIntegration ../bin/Analyzer-h-tautau-6f
 
 ../bin/test_rh_tautau : $(OBJ_rh_tautau)
 ifeq ($(LINKER),ifort)
@@ -162,6 +164,14 @@ ifeq ($(LINKER),g++)
 	$(CC) $(CLFLAGS) $(CUBALFLAGS) -o $@ $^
 endif
 
+../bin/Analyzer-h-tautau-6f: $(OBJ_Analyzer-h-tautau-6f)
+ifeq ($(LINKER),ifort)
+	$(FC) -o $@ $^ $(FLFLAGS) $(CUBALFLAGS)
+endif
+ifeq ($(LINKER),g++)
+	$(CC) $(CLFLAGS) $(CUBALFLAGS) -o $@ $^
+endif
+
 ../bin/test_FortranUtils: $(OBJ_test_FortranUtils)
 ifeq ($(LINKER),ifort)
 	$(FC) -o $@ $^ $(FLFLAGS) 
@@ -212,8 +222,13 @@ FLFLAGS = -cxxlib -nofor_main $(ROOTLFLAGS)
 CC     = g++
 #CC     = icc
 
-CCFLAGS = -I../inc/ -MMD -MF .depend_cpp
+DEPDIR := .d
+$(shell mkdir -p $(DEPDIR) >/dev/null)
+CCCUSTOMFLAGS = -I../inc/
+CCGENERALFLAGS = -I../inc/  $(DEPFLAGS)
+DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
 CLFLAGS = $(ROOTLFLAGS)
+POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
 
 # ROOT flags can also be set to environment variables
 ROOTCFLAGS = `root-config --cflags`
@@ -227,22 +242,22 @@ CUBALFLAGS = -L/home/de3u14/lib/build/hep/Cuba/Cuba-4.2 -lcuba
 ### Compilation rule for specific .cpp sources
 
 ../lib/test_cuba.cpp.o : test_cuba.cpp
-	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
+	$(CC) $(ROOTCFLAGS) $(CCCUSTOMFLAGS) $(CUBACFLAGS) -c $< -o $@
 
 ../lib/test_PhaseSpaceIntegration.cpp.o : test_PhaseSpaceIntegration.cpp
-	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
+	$(CC) $(ROOTCFLAGS) $(CCCUSTOMFLAGS) $(CUBACFLAGS) -c $< -o $@
 
 ../lib/test_PhaseSpaceIntegration2.cpp.o : test_PhaseSpaceIntegration2.cpp
-	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
+	$(CC) $(ROOTCFLAGS) $(CCCUSTOMFLAGS) $(CUBACFLAGS) -c $< -o $@
 
 ../lib/test_PhaseSpaceIntegration3.cpp.o : test_PhaseSpaceIntegration3.cpp
-	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
+	$(CC) $(ROOTCFLAGS) $(CCCUSTOMFLAGS) $(CUBACFLAGS) -c $< -o $@
 
 ../lib/test_PhaseSpaceIntegration4.cpp.o : test_PhaseSpaceIntegration4.cpp
-	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
+	$(CC) $(ROOTCFLAGS) $(CCCUSTOMFLAGS) $(CUBACFLAGS) -c $< -o $@
 
 ../lib/Scalar_2Fermion_6Fermion_SingleBranchIntegration.cpp.o : Scalar_2Fermion_6Fermion_SingleBranchIntegration.cpp
-	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
+	$(CC) $(ROOTCFLAGS) $(CCCUSTOMFLAGS) $(CUBACFLAGS) -c $< -o $@
 
 ../lib/Scalar_2Fermion_6Fermion_FullIntegration.cpp.o : Scalar_2Fermion_6Fermion_FullIntegration.cpp
 	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
@@ -251,7 +266,14 @@ CUBALFLAGS = -L/home/de3u14/lib/build/hep/Cuba/Cuba-4.2 -lcuba
 	$(CC) $(ROOTCFLAGS) $(CCFLAGS) $(CUBACFLAGS) -c $< -o $@
 
 ### General compilation rule for .cpp sources
+#%.cpp.o : %.cpp
 ../lib/%.cpp.o : %.cpp
-	$(CC) $(ROOTCFLAGS) $(CCFLAGS) -c $< -o $@
+	$(CC) $(ROOTCFLAGS) $(CCGENERALFLAGS) -c $< -o $@
+	$(POSTCOMPILE)
 
-include .depend_cpp
+$(DEPDIR)/%.d: ;
+.PRECIOUS: $(DEPDIR)/%.d
+
+SRCS = Analyzer-h-tautau-6f.cpp
+
+-include $(patsubst %,$(DEPDIR)/%.d,$(basename $(SRCS)))$(CC) $(ROOTCFLAGS) $(CCFLAGS) -c $< -o $@

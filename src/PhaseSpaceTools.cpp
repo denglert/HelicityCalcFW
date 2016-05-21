@@ -4,6 +4,11 @@
 // --- TwoBodyFunc namespace --- //
 ///////////////////////////////////
 
+// Note: Division by 's'!
+// Beware of the massless scenario
+// when m1 = 0.0, m2 = 0.0, and s = 0.0
+// which leads to divergence.
+
 namespace TwoBodyFunc
 {
 
@@ -34,9 +39,10 @@ namespace TwoBodyFunc
 	{
 		double E;
 		double sqrt_s = sqrt(s);
-		E = sqrt_s*( 1 + (m_sqr/s) - (m_other_sqr/s))/2.0;
+		E = sqrt(s)*( 1.0 + (m_sqr/s) - (m_other_sqr/s))/2.0;
 		return E;
 	}
+
 
 }
 
@@ -389,7 +395,7 @@ void ThreeBodyDecay::SetPhaseSpace(double x1_, double x2_, double x3_, double x4
 	x1 = x1_;
 	x2 = x2_;
 	x3 = x3_;
-	x4 = x5_;
+	x4 = x4_;
 	x5 = x5_;
 
 		  s23  = s23_min + s23_length*x1;
@@ -428,6 +434,7 @@ void ThreeBodyDecay::SetPhaseSpace(double x1_, double x2_, double x3_, double x4
 	p[0]->SetPxPyPzE(pmag*sintheta1*cosphi1,pmag*sintheta1*sinphi1,pmag*costheta1,E1);
 	Beta23 = -p[0]->Vect();
 	Beta23.SetMag(Beta23.Mag()/E23);
+
 
 	p[1]->SetPxPyPzE(p2mag_23*sintheta23*cosphi23, p2mag_23*sintheta23*sinphi23, p2mag_23*costheta23, E2_23);
 	p[2]->SetPxPyPzE(-(*p[1])[0], -(*p[1])[1], -(*p[1])[2], E3_23);
@@ -821,11 +828,11 @@ void DecayChain126::SetPhaseSpace(  double x1_,  double x2_,  double x3_,
 //	DecayB123->SetPhaseSpace(x8, x9, x10, x11, x12);
 
 	DecayAB->SetPhaseSpace(x1, x2);
-	double PSWeight_DecayA123 = DecayA123->GetPhaseSpaceWeight(x3, x4, x5, x6, x7);     // - sets sub phase space and return the weight
-	double PSWeight_DecayB123 = DecayB123->GetPhaseSpaceWeight(x8, x9, x10, x11, x12);  // - sets sub phase space and return the weight
+	PSWeight_DecayAB = DecayAB->PSWeight;
+	PSWeight_DecayA123 = DecayA123->GetPhaseSpaceWeight(x3, x4, x5, x6, x7);     // - sets sub phase space and return the weight
+	PSWeight_DecayB123 = DecayB123->GetPhaseSpaceWeight(x8, x9, x10, x11, x12);  // - sets sub phase space and return the weight
 
 	PSWeight = PSWeight_DecayA123 * PSWeight_DecayB123; // - you need to multiply this by PSConst!!
-
 
 // You don't need this as the BitBoostBack flags are already set 
 // in the initialization and take care of boosting all the particles
@@ -860,9 +867,9 @@ double DecayChain126::GetPhaseSpaceWeight(  double x1_,  double x2_,  double x3_
 					 						  double x10_, double x11_, double x12_)
 {
 
-	DecayChain126::SetPhaseSpace( x1, x2,
-						 	   x3, x4,  x5,  x6,  x7,
-								x8, x9, x10, x11, x12);
+	DecayChain126::SetPhaseSpace( x1_, x2_,
+						 	   x3_, x4_,  x5_,  x6_,  x7_,
+								x8_, x9_, x10_, x11_, x12_);
 
 
 	return PSWeight;
@@ -893,10 +900,12 @@ void DecayChain126::DisplayMomenta()
 	TLorentzVector sum;
 	TLorentzVector sumA;
 	TLorentzVector sumB;
+	TLorentzVector sum6;
 
 	sum = (*pA) + (*pB);
 	sumA = (*pA1) + (*pA2) + (*pA3); 
 	sumB = (*pB1) + (*pB2) + (*pB3); 
+	sum6 = (*pA1) + (*pA2) + (*pA3) + (*pB1) + (*pB2) + (*pB3);
 
 	printf("\n-- Momenta Information --\n") ;
 	std::cout << "P:" << std::endl;
@@ -921,6 +930,20 @@ void DecayChain126::DisplayMomenta()
 	std::cout << "pB3:" << std::endl;
 	displayTLorentzVector(pB3);
 
+
+	printf("\n-- Masses --\n") ;
+
+	std::cout << "pA->M():  " << pA->M()  << std::endl;
+	std::cout << "pB->M():  " << pB->M()  << std::endl;
+
+	std::cout << "pA1->M(): " << pA1->M()  << std::endl;
+	std::cout << "pA2->M(): " << pA2->M()  << std::endl;
+	std::cout << "pA3->M(): " << pA3->M()  << std::endl;
+
+	std::cout << "pB1->M(): " << pB1->M()  << std::endl;
+	std::cout << "pB2->M(): " << pB2->M()  << std::endl;
+	std::cout << "pB3->M(): " << pB3->M()  << std::endl;
+
 	printf("\nInternal test with sum of specific momenta\n") ;
 	std::cout << "pA+pB:" << std::endl;
 	displayTLorentzVector(&sum);
@@ -930,6 +953,9 @@ void DecayChain126::DisplayMomenta()
 
 	std::cout << "pB1+pB2+pB3:" << std::endl;
 	displayTLorentzVector(&sumB);
+
+	std::cout << "pA1+pA2+pA3+pB1+pB2+pB3:" << std::endl;
+	displayTLorentzVector(&sum6);
 	printf("\n");
 
 }
@@ -937,7 +963,7 @@ void DecayChain126::DisplayMomenta()
 ///////////////////////////////////////////
 void DecayChain126::DisplayConfiguration()
 {
-	DecayChain126::DisplayTag();
+	   DecayChain126::DisplayTag();
 	printf("x1  = %.2f = DecayAB   x1\n", x1);
 	printf("x2  = %.2f = DecayAB   x2\n", x2);
 	printf("x3  = %.2f = DecayA123 x1\n", x3);

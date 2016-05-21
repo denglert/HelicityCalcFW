@@ -73,6 +73,8 @@ class TwoBodyDecay
 	TLorentzVector *p2;
 	TLorentzVector *sum;
 
+	double PSWeight;
+
 	///////
 	private:
 
@@ -80,10 +82,6 @@ class TwoBodyDecay
 	bool BitBoostBack;
 	TVector3 BetaVec;
 
-	double PSWeight_DecayAB;
-	double PSWeight_DecayA123;
-	double PSWeight_DecayB123;
-	double PSWeight;
 
 	double x1, x2;
 
@@ -259,13 +257,16 @@ class DecayChain126
 	TLorentzVector *sumA;
 	TLorentzVector *sumB;
 
+	double PSWeight;
+	double PSConst;
+	double PSWeight_DecayAB;
+	double PSWeight_DecayA123;
+	double PSWeight_DecayB123;
+
 	private:
 
 	bool BitBoostBack;
 	TVector3 BetaVec;
-
-	double PSWeight;
-	double PSConst;
 
 	double x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12;
 
