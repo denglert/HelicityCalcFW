@@ -531,7 +531,7 @@ int main()
   double Gamma_tau_pol_2_woutgamma = 8.0 * integral_taudecay_pol_2 * DecayA123_PSConst * G_Fermi * G_Fermi / mA / 2.0  ;
   double ratio_Gamma_tau_unpol_woutgamma_result_per_expected = Gamma_tau_unpol_woutgamma/Gamma_formula;
   double ratio_Gamma_tau_pol_1_woutgamma_result_per_expected = Gamma_tau_pol_1_woutgamma/Gamma_formula;
-  double ratio_Gamma_tau_pol_2_woutgamma_result_per_expected = Gamma_tau_pol_1_woutgamma/Gamma_formula;
+  double ratio_Gamma_tau_pol_2_woutgamma_result_per_expected = Gamma_tau_pol_2_woutgamma/Gamma_formula;
 
   printf("\n");
   printf("############################################################\n");
@@ -625,6 +625,7 @@ int main()
   double Gamma_Combined_redu_pol_2 = 2*integral_combined_pol_2*(M_PI/(mA*integral_taudecay_unpol));
   double Gamma_Combined_full_pol_1 = 2*integral_combined_pol_1*(4.0* DecayA123_PSConst * G_Fermi * G_Fermi )*(M_PI/(mA*Gamma_tau_unpol_woutgamma));
   double Gamma_Combined_full_pol_2 = 2*integral_combined_pol_2*(4.0* DecayA123_PSConst * G_Fermi * G_Fermi )*(M_PI/(mA*Gamma_tau_unpol_woutgamma));
+
   //double Gamma_Combined_NWA = integral_combined*(1.0/(integral_taudecay));
   double Gamma_Prod_BR_redu        = integral_htautau_unpol*M_PI/mA;
   double Gamma_Prod_BR_full        = integral_htautau_unpol*2.0*M_PI;

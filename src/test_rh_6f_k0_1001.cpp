@@ -24,6 +24,8 @@
 // Eucledian to Minkowski indeces mapping
 int e2m[4] = {1, 2, 3, 0};
 
+const double gamma_formula = pow(m_tau,5.0) * G_Fermi * G_Fermi / 192.0 / pow(M_PI,3.0);
+
 /////////////////////////////////////////////////
 int main( int argc, const char *argv[] )
 {
@@ -347,12 +349,12 @@ int main( int argc, const char *argv[] )
 		std::cout << Form("\n# --- Comparison --- #") << std::endl;
 		std::cout << Form("- rh_6f_taum/taum ratio (unpolarized): %.4f", amplitudes_.rh_6f_taum/taum_amp ) << std::endl;
 		std::cout << Form("- rh_6f_taup/taup ratio (unpolarized): %.4f", amplitudes_.rh_6f_taup/taup_amp ) << std::endl;
+		std::cout << Form("- taum_unpol/taum_amp (unpolarized): %.4f", taum_unpol/taum_amp ) << std::endl;
 
 		std::cout << Form("- taum_pol_1 (rh_6f/standard ratio) (polarized): %.4f", taum_rh_6f_pol_1/taum_standard_pol_1 ) << std::endl;
 		std::cout << Form("- taum_pol_2 (rh_6f/standard ratio) (polarized): %.4f", taum_rh_6f_pol_2/taum_standard_pol_2 ) << std::endl;
 		std::cout << Form("- taup_pol_1 (rh_6f/standard ratio) (polarized): %.4f", taup_rh_6f_pol_1/taup_standard_pol_1 ) << std::endl;
 		std::cout << Form("- taup_pol_2 (rh_6f/standard ratio) (polarized): %.4f", taup_rh_6f_pol_2/taup_standard_pol_2 ) << std::endl;
-
 
 		//std::cout << Form("rh_6f: %.2f", rh_6f_val) << std::endl;
 		//	double LeptonMasses1[3] = {m_nu_tau, m_ele, m_nu_ele};

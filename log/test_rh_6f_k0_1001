@@ -109,6 +109,7 @@ c_amp_7_568 matrix:
 # --- Comparison --- #
 - rh_6f_taum/taum ratio (unpolarized): 16.0000
 - rh_6f_taup/taup ratio (unpolarized): 16.0000
+- taum_unpol/taum_amp (unpolarized): 16.0000
 - taum_pol_1 (rh_6f/standard ratio) (polarized): 8.0000
 - taum_pol_2 (rh_6f/standard ratio) (polarized): 8.0000
 - taup_pol_1 (rh_6f/standard ratio) (polarized): 8.0000

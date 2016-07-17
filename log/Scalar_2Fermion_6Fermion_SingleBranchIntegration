@@ -45,6 +45,16 @@ pB2:
 pB3:
 (E,px,py,pz): (  49.99242998,   30.56069238,   -0.00000000,  -39.56370985)
 
+-- Masses --
+pA->M():  1.77582
+pB->M():  1.77582
+pA1->M(): 0
+pA2->M(): 4.76837e-07
+pA3->M(): 1.68587e-07
+pB1->M(): 8.42937e-08
+pB2->M(): 1.46001e-07
+pB3->M(): 0
+
 Internal test with sum of specific momenta
 pA+pB:
 (E,px,py,pz): ( 125.00000000,    0.00000000,    0.00000000,    0.00000000)
@@ -52,6 +62,8 @@ pA1+pA2+pA3:
 (E,px,py,pz): (  62.50000000,  -37.48485997,   -0.00000000,   49.97981329)
 pB1+pB2+pB3:
 (E,px,py,pz): (  62.50000000,   37.48485997,   -0.00000000,  -49.97981329)
+pA1+pA2+pA3+pB1+pB2+pB3:
+(E,px,py,pz): ( 125.00000000,   -0.00000000,   -0.00000000,    0.00000000)
 
 
 h_tautau matrix: 
@@ -291,7 +303,7 @@ Gamma(tau) textbook:                                  			   3.991718e-13 [GeV]
 Gamma(tau) unpolarized our result w/o gamma factor:   			   3.995040e-13 [GeV]
 ratio [Gamma(tau)_unpol_result_woutgamma / Gamma(tau)_expected]: 1.000832e+00
 ratio [Gamma(tau)_pol_1_result_woutgamma / Gamma(tau)_expected]: 1.000927e+00
-ratio [Gamma(tau)_pol_2_result_woutgamma / Gamma(tau)_expected]: 1.000927e+00
+ratio [Gamma(tau)_pol_2_result_woutgamma / Gamma(tau)_expected]: 1.000737e+00
 
 
 #################################################################

@@ -1,7 +1,7 @@
 -------------------- Vegas test --------------------
 Vegas input parameters:
   ndim 5
-  ncomp 1
+  ncomp 2
   nvec 1
   epsrel 0.001
   epsabs 1e-12
@@ -17,62 +17,81 @@ Vegas input parameters:
 
 Iteration 1:  1000 integrand evaluations so far
 [1] 0.000166788 +- 5.84867e-06  	chisq 0 (0 df)
+[2] 0 +- 7.02518e-18  	chisq 0 (0 df)
 
 Iteration 2:  2500 integrand evaluations so far
 [1] 0.000166118 +- 2.78594e-06  	chisq 0.0170084 (1 df)
+[2] 8.54269e-32 +- 7.02518e-18  	chisq 300.755 (1 df)
 
 Iteration 3:  4500 integrand evaluations so far
-[1] 0.000166441 +- 1.79835e-06  	chisq 0.0401096 (2 df)
+[1] 0.000166201 +- 2.27814e-06  	chisq 0.0196917 (2 df)
+[2] 2.84661e-32 +- 4.05531e-18  	chisq 300.755 (2 df)
 
 Iteration 4:  7000 integrand evaluations so far
-[1] 0.000166191 +- 1.33349e-06  	chisq 0.0829984 (3 df)
+[1] 0.00016582 +- 1.64324e-06  	chisq 0.0779081 (3 df)
+[2] 6.17209e-32 +- 4.05531e-18  	chisq 514.192 (3 df)
 
 Iteration 5:  10000 integrand evaluations so far
-[1] 0.00016633 +- 1.07132e-06  	chisq 0.113702 (4 df)
+[1] 0.00016579 +- 1.48608e-06  	chisq 0.0798018 (4 df)
+[2] 3.08553e-32 +- 2.8673e-18  	chisq 514.192 (4 df)
 
 Iteration 6:  13500 integrand evaluations so far
-[1] 0.00016624 +- 8.9967e-07  	chisq 0.137588 (5 df)
+[1] 0.000165977 +- 1.21908e-06  	chisq 0.128653 (5 df)
+[2] 5.40035e-32 +- 2.8673e-18  	chisq 718.434 (5 df)
 
 Iteration 7:  17500 integrand evaluations so far
-[1] 0.000166478 +- 7.78339e-07  	chisq 0.41423 (6 df)
+[1] 0.000166187 +- 1.13478e-06  	chisq 0.349245 (6 df)
+[2] 3.23989e-32 +- 2.22089e-18  	chisq 718.434 (6 df)
 
 Iteration 8:  22000 integrand evaluations so far
-[1] 0.000166441 +- 6.86344e-07  	chisq 0.423992 (7 df)
+[1] 0.000166251 +- 9.66683e-07  	chisq 0.360932 (7 df)
+[2] 5.10496e-32 +- 2.22089e-18  	chisq 932.338 (7 df)
 
 Iteration 9:  27000 integrand evaluations so far
-[1] 0.00016631 +- 6.13945e-07  	chisq 0.607303 (8 df)
+[1] 0.000166188 +- 9.02082e-07  	chisq 0.393592 (8 df)
+[2] 3.40308e-32 +- 1.81329e-18  	chisq 932.338 (8 df)
 
 Iteration 10:  32500 integrand evaluations so far
-[1] 0.000166416 +- 5.56165e-07  	chisq 0.772154 (9 df)
+[1] 0.00016626 +- 7.86081e-07  	chisq 0.420317 (9 df)
+[2] 4.36412e-32 +- 1.81329e-18  	chisq 1072.97 (9 df)
 
 Iteration 11:  38500 integrand evaluations so far
-[1] 0.000166392 +- 5.08223e-07  	chisq 0.78355 (10 df)
+[1] 0.000166258 +- 7.56598e-07  	chisq 0.420413 (10 df)
+[2] 3.11708e-32 +- 1.53247e-18  	chisq 1072.97 (10 df)
 
 Iteration 12:  45000 integrand evaluations so far
-[1] 0.000166314 +- 4.67334e-07  	chisq 0.933951 (11 df)
+[1] 0.000166238 +- 6.82651e-07  	chisq 0.42434 (11 df)
+[2] 4.30434e-32 +- 1.53247e-18  	chisq 1279.46 (11 df)
 
 Iteration 13:  52000 integrand evaluations so far
-[1] 0.000166374 +- 4.33717e-07  	chisq 1.05263 (12 df)
+[1] 0.00016621 +- 6.50539e-07  	chisq 0.442498 (12 df)
+[2] 3.22814e-32 +- 1.32714e-18  	chisq 1279.46 (12 df)
 
 Iteration 14:  59500 integrand evaluations so far
-[1] 0.000166363 +- 4.04369e-07  	chisq 1.05762 (13 df)
+[1] 0.000166232 +- 5.89775e-07  	chisq 0.44886 (13 df)
+[2] 4.46797e-32 +- 1.32714e-18  	chisq 1516.39 (13 df)
 
 Iteration 15:  67500 integrand evaluations so far
-[1] 0.000166328 +- 3.78522e-07  	chisq 1.11726 (14 df)
+[1] 0.000166205 +- 5.63833e-07  	chisq 0.472326 (14 df)
+[2] 3.47499e-32 +- 1.17041e-18  	chisq 1516.39 (14 df)
 
 Iteration 16:  76000 integrand evaluations so far
-[1] 0.00016632 +- 3.55729e-07  	chisq 1.12135 (15 df)
+[1] 0.000166258 +- 5.14467e-07  	chisq 0.524393 (15 df)
+[2] 4.21239e-32 +- 1.17041e-18  	chisq 1690.53 (15 df)
 
 Iteration 17:  85000 integrand evaluations so far
-[1] 0.000166302 +- 3.35784e-07  	chisq 1.14578 (16 df)
+[1] 0.000166274 +- 4.99045e-07  	chisq 0.540336 (16 df)
+[2] 3.36984e-32 +- 1.04683e-18  	chisq 1690.53 (16 df)
 
 Iteration 18:  94500 integrand evaluations so far
-[1] 0.000166333 +- 3.18305e-07  	chisq 1.23215 (17 df)
+[1] 0.00016631 +- 4.63759e-07  	chisq 0.579745 (17 df)
+[2] 4.17018e-32 +- 1.04683e-18  	chisq 1887.05 (17 df)
 
 Iteration 19:  104500 integrand evaluations so far
-[1] 0.000166334 +- 3.02253e-07  	chisq 1.23219 (18 df)
+[1] 0.00016632 +- 4.49542e-07  	chisq 0.587634 (18 df)
+[2] 3.4119e-32 +- 9.46887e-19  	chisq 1887.05 (18 df)
 VEGAS RESULT:	neval 104500	fail 1
-VEGAS RESULT:	0.00016633 +- 0.00000030	p = 0.000
+VEGAS RESULT:	0.00016632 +- 0.00000045	p = 0.000
 
 ###############################################
 ### --- Muon decay lifetime calculation --- ###
@@ -217,21 +236,21 @@ Note: Choosing (k0_type = 2) and (spin_polarization = 1) should give the same re
 
 Gamma(PDG):                             2.995983e-19 [GeV] (note: this is the total gamma!)
 Gamma(textbook):                        2.976355e-19 [GeV]
-Gamma(our result w/o gamma factor):     2.979274e-19 [GeV]
-Gamma(our result):                      2.692963e-19 [GeV]
+Gamma(our result w/o gamma factor):     2.979038e-19 [GeV]
+Gamma(our result):                      2.692750e-19 [GeV]
 
 ctau(PDG):                              6.586384e+02 [m]
 ctau(textbook):                         6.629820e+02 [m]
-ctau(our result w/o gamma factor):      6.623323e+02 [m]
-ctau(our result):                       7.327504e+02 [m]
+ctau(our result w/o gamma factor):      6.623848e+02 [m]
+ctau(our result):                       7.328085e+02 [m]
 
 # Muon configuration
 beta:                                                    0.427746
 gamma:                                                   1.106318 <- compare this value
 
 # Ratios
-ratio of ctau's: (our result)/(textbook rest frame)      1.105234 <- with this
-ratio of the above two values:                           1.000981
+ratio of ctau's: (our result)/(textbook rest frame)      1.105322 <- with this
+ratio of the above two values:                           1.000902
 
 Note: You should compare the values of 'gamma' with the 'ratio of ctau's',
       as they should be equal.
@@ -239,4 +258,4 @@ Note: You should compare the values of 'gamma' with the 'ratio of ctau's',
       It should be close to unity, but there could be some tiny deviation as
       this is after all a numerical integration.
 
-VEGAS RESULT:	0.00016633 +- 0.00000030	p = 0.000
+VEGAS RESULT:	0.00016632 +- 0.00000045	p = 0.000

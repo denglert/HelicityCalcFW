@@ -224,6 +224,7 @@ CC     = g++
 
 DEPDIR := .d
 $(shell mkdir -p $(DEPDIR) >/dev/null)
+CCFLAGS = -I../inc/
 CCCUSTOMFLAGS = -I../inc/
 CCGENERALFLAGS = -I../inc/  $(DEPFLAGS)
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td
